@@ -27,6 +27,10 @@ backend/tests/__pycache__/
 backend/nhaa_stress.db
 backend/test_nhaa.db
 
+# Audio Uploads & Media Cache
+uploads/
+backend/uploads/
+
 # Environment Variables & Secrets (CRITICAL)
 .env
 .env.local
