@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build": "npm run build --prefix frontend",
+    "postinstall": "cd frontend && npm install",
+    "build": "cd frontend && npm install && npm run build",
     "dev": "npm run dev --prefix frontend",
-    "start": "npm run preview --prefix frontend"
+    "start": "cd backend && pip install -r requirements.txt && uvicorn app.main:app --host 0.0.0.0 --port $PORT"
   }
 }
