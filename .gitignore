@@ -1,0 +1,42 @@
+# Dependencies
+node_modules/
+frontend/node_modules/
+backend/venv/
+backend/env/
+
+# Production Build
+frontend/dist/
+frontend/build/
+
+# Python Cache
+__pycache__/
+*.py[cod]
+*$py.class
+backend/__pycache__/
+backend/app/__pycache__/
+backend/app/ai/__pycache__/
+backend/app/routers/__pycache__/
+backend/app/utils/__pycache__/
+backend/tests/__pycache__/
+.pytest_cache/
+
+# Databases
+*.db
+*.sqlite
+*.sqlite3
+backend/nhaa_stress.db
+backend/test_nhaa.db
+
+# Environment Variables & Logs
+.env
+*.log
+*.tgz
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# IDE & OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
