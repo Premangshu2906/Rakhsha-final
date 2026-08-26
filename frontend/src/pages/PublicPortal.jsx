@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { 
   Send, Mic, ShieldAlert, Lock, Search, PhoneCall, AlertTriangle, 
-  CheckCircle, FileText, Scale, Shield, Sparkles, User, ExternalLink, ArrowRight 
+  CheckCircle, FileText, Scale, Shield, Sparkles, User, ExternalLink, 
+  ArrowRight, HeartHandshake, Eye, CheckCircle2, ChevronRight, Clock 
 } from 'lucide-react';
 import VoiceRecorder from '../components/VoiceRecorder';
 import DisclaimerBanner from '../components/DisclaimerBanner';
@@ -23,6 +24,9 @@ const CATEGORIES = [
 ];
 
 export default function PublicPortal({ onSubmitSuccess, citizenUser, onOpenCitizenAuth }) {
+  const formRef = useRef(null);
+  const trackRef = useRef(null);
+
   const [complainantType, setComplainantType] = useState('VICTIM');
   const [name, setName] = useState(citizenUser ? citizenUser.name : '');
   const [phone, setPhone] = useState(citizenUser ? citizenUser.mobile : '');
@@ -48,12 +52,20 @@ export default function PublicPortal({ onSubmitSuccess, citizenUser, onOpenCitiz
     }
   }, [citizenUser]);
 
+  const scrollToForm = () => {
+    formRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  const scrollToTrack = () => {
+    trackRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setErrorMsg(null);
 
     if (!inputText || inputText.trim().length < 5) {
-      setErrorMsg('Please record your voice or write what happened before submitting.');
+      setErrorMsg('Please describe what happened or record your voice statement before submitting.');
       return;
     }
 
@@ -61,7 +73,7 @@ export default function PublicPortal({ onSubmitSuccess, citizenUser, onOpenCitiz
     try {
       const payload = {
         complainant_type: complainantType,
-        complainant_name: complainantType !== 'ANONYMOUS' ? (name || 'Citizen Reporter') : 'Anonymous',
+        complainant_name: complainantType !== 'ANONYMOUS' ? (name || 'Citizen Complainant') : 'Anonymous',
         complainant_phone: complainantType !== 'ANONYMOUS' ? phone : '',
         complainant_email: complainantType !== 'ANONYMOUS' ? email : '',
         state_region: stateRegion,
@@ -93,211 +105,244 @@ export default function PublicPortal({ onSubmitSuccess, citizenUser, onOpenCitiz
       const res = await trackComplaint(searchRefId.trim(), searchToken.trim());
       setTrackedCase(res);
     } catch (err) {
-      setTrackingError(err.message || 'Reference ID not found.');
+      setTrackingError(err.message || 'Docket reference ID not found.');
     }
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-8">
-      {/* 1. Hero Banner with High-Tech Graphic Design */}
-      <div className="hero-glow-bg text-white rounded-3xl p-6 sm:p-10 shadow-2xl border border-indigo-500/20 relative overflow-hidden">
-        <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-          <div className="lg:col-span-8 space-y-4">
-            <div className="inline-flex items-center space-x-2 bg-indigo-500/20 border border-indigo-400/30 px-3.5 py-1.5 rounded-full text-xs font-bold text-indigo-300">
-              <Sparkles className="w-3.5 h-3.5 text-amber-400" />
-              <span>MoSJE Initiative &bull; SC/ST (PoA) Act 1989 &bull; Section 18A Safeguard</span>
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 space-y-12 text-slate-900">
+      {/* 1. Hero Section with Human/Reassuring Visual and Floating Cards */}
+      <section className="hero-gradient-bg border border-slate-200/80 rounded-3xl p-6 sm:p-10 lg:p-12 shadow-soft-sm relative overflow-hidden">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+          {/* Hero Left Content */}
+          <div className="lg:col-span-7 space-y-6">
+            <div className="inline-flex items-center space-x-2 bg-blue-50 border border-blue-200/60 px-3.5 py-1.5 rounded-full text-xs font-bold text-blue-700 shadow-soft-sm">
+              <Shield className="w-3.5 h-3.5 text-blue-600" />
+              <span>National Helpline Against Atrocities &bull; MoSJE</span>
             </div>
 
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white leading-tight">
-              You Don't Have to Face Injustice &amp; Atrocities <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-amber-300 to-yellow-200">Alone.</span>
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-slate-900 leading-[1.18]">
+              You don't have to face it <span className="text-blue-600">alone.</span>
             </h1>
 
-            <p className="text-sm sm:text-base text-slate-300 leading-relaxed max-w-2xl">
-              Report incidents of caste-based violence, discrimination, or distress through secure voice or text. 
-              Our real-time AI evaluates urgency to immediately alert District Nodal Officers, Special Public Prosecutors, and Emergency Response Units.
+            <p className="text-sm sm:text-base text-slate-600 leading-relaxed max-w-xl">
+              A secure, confidential space to report caste discrimination, harassment, and violence. 
+              Our AI decision support module triages urgent cases in real time to guarantee swift legal counsel and police intervention under the SC/ST (PoA) Act.
             </p>
 
-            <div className="flex flex-wrap gap-2.5 pt-2">
-              <span className="bg-slate-950/60 border border-slate-700/80 px-3 py-1 rounded-xl text-xs font-semibold text-slate-200 flex items-center space-x-1.5">
-                <Shield className="w-3.5 h-3.5 text-emerald-400" />
+            {/* Primary & Secondary Action Buttons */}
+            <div className="flex flex-wrap items-center gap-3 pt-2">
+              <button
+                onClick={scrollToForm}
+                className="px-6 py-3.5 bg-blue-600 hover:bg-blue-700 active:scale-95 text-white font-bold text-sm rounded-xl shadow-md hover:shadow-lg transition-all flex items-center space-x-2"
+              >
+                <span>Get Help Now</span>
+                <ArrowRight className="w-4 h-4" />
+              </button>
+
+              <button
+                onClick={scrollToTrack}
+                className="px-5 py-3.5 bg-white hover:bg-slate-50 active:scale-95 text-slate-700 font-semibold text-sm rounded-xl border border-slate-200 shadow-soft-sm transition-all flex items-center space-x-2"
+              >
+                <Search className="w-4 h-4 text-slate-400" />
+                <span>Track Complaint</span>
+              </button>
+            </div>
+
+            {/* Trust Badges */}
+            <div className="flex flex-wrap gap-4 pt-4 text-xs font-semibold text-slate-500 border-t border-slate-200/80">
+              <span className="flex items-center space-x-1.5">
+                <CheckCircle2 className="w-4 h-4 text-emerald-600" />
                 <span>100% Confidential</span>
               </span>
-              <span className="bg-slate-950/60 border border-slate-700/80 px-3 py-1 rounded-xl text-xs font-semibold text-slate-200 flex items-center space-x-1.5">
-                <Scale className="w-3.5 h-3.5 text-amber-400" />
+              <span className="flex items-center space-x-1.5">
+                <CheckCircle2 className="w-4 h-4 text-emerald-600" />
                 <span>Mandatory Zero-FIR</span>
               </span>
-              <span className="bg-slate-950/60 border border-slate-700/80 px-3 py-1 rounded-xl text-xs font-semibold text-slate-200 flex items-center space-x-1.5">
-                <Mic className="w-3.5 h-3.5 text-indigo-400" />
-                <span>Multilingual Voice AI</span>
-              </span>
-              <span className="bg-slate-950/60 border border-slate-700/80 px-3 py-1 rounded-xl text-xs font-semibold text-slate-200 flex items-center space-x-1.5">
-                <span>💰 Statutory Relief Slabs</span>
+              <span className="flex items-center space-x-1.5">
+                <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+                <span>Free Legal Assistance</span>
               </span>
             </div>
           </div>
 
-          {/* Hero Side Action Box */}
-          <div className="lg:col-span-4 bg-slate-950/80 border border-slate-800 rounded-2xl p-5 shadow-xl space-y-4">
-            <div className="flex items-center justify-between pb-3 border-b border-slate-800">
-              <span className="text-xs font-bold text-slate-300 uppercase tracking-wider flex items-center space-x-1.5">
-                <span className="w-2 h-2 rounded-full bg-emerald-400 live-pulse-dot"></span>
-                <span>24x7 Triage Active</span>
-              </span>
-              <span className="text-[11px] font-mono text-indigo-400">Toll-Free 14566</span>
-            </div>
-
-            <div className="space-y-2">
-              <a
-                href="tel:14566"
-                className="w-full py-2.5 px-3 bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-500 hover:to-amber-600 text-white font-bold text-xs rounded-xl flex items-center justify-between transition shadow-md"
-              >
-                <span className="flex items-center space-x-2">
-                  <PhoneCall className="w-4 h-4" />
-                  <span>Call 14566 (NHAA Toll-Free)</span>
-                </span>
-                <span className="text-[10px] bg-amber-900/60 px-2 py-0.5 rounded font-mono">24/7</span>
-              </a>
-
-              <a
-                href="tel:112"
-                className="w-full py-2.5 px-3 bg-red-800/80 hover:bg-red-700 text-white font-bold text-xs rounded-xl flex items-center justify-between transition border border-red-700"
-              >
-                <span className="flex items-center space-x-2">
-                  <ShieldAlert className="w-4 h-4 text-red-300" />
-                  <span>Call 112 (Police Emergency)</span>
-                </span>
-                <span className="text-[10px] bg-red-950 px-2 py-0.5 rounded font-mono">SOS</span>
-              </a>
-            </div>
-
-            <div className="pt-2 text-center">
-              {!citizenUser ? (
-                <button
-                  onClick={onOpenCitizenAuth}
-                  className="text-xs text-indigo-300 hover:text-white font-semibold underline underline-offset-4"
-                >
-                  Sign In to save grievances to your Citizen Profile &rarr;
-                </button>
-              ) : (
-                <div className="text-xs text-emerald-400 font-semibold">
-                  ✓ Signed in as {citizenUser.name} ({citizenUser.category || 'SC'})
+          {/* Hero Right Visual: Elegant Abstract Illustration & Floating UI Cards */}
+          <div className="lg:col-span-5 relative flex items-center justify-center">
+            {/* Center Human Reassurance Card */}
+            <div className="w-full max-w-sm bg-white/90 backdrop-blur-md border border-slate-200 rounded-3xl p-6 shadow-soft-lg space-y-4">
+              <div className="flex items-center justify-between pb-3 border-b border-slate-100">
+                <div className="flex items-center space-x-2.5">
+                  <div className="w-3 h-3 rounded-full bg-emerald-500 live-pulse-dot"></div>
+                  <span className="text-xs font-bold text-slate-800">Support System Active</span>
                 </div>
-              )}
+                <span className="text-[11px] font-mono text-blue-600 font-semibold">24x7 Ready</span>
+              </div>
+
+              {/* Floating Card 1: AI-Assisted Assessment */}
+              <div className="p-3.5 bg-blue-50/80 rounded-2xl border border-blue-100 flex items-center space-x-3 transition-transform hover:-translate-y-0.5">
+                <div className="p-2 bg-blue-600 text-white rounded-xl shadow-soft-sm">
+                  <Sparkles className="w-4 h-4" />
+                </div>
+                <div>
+                  <h4 className="font-bold text-xs text-slate-900">AI-Assisted Distress Assessment</h4>
+                  <p className="text-[11px] text-slate-500">Real-time acoustic tremor &amp; threat detection</p>
+                </div>
+              </div>
+
+              {/* Floating Card 2: Human Officer Review */}
+              <div className="p-3.5 bg-teal-50/80 rounded-2xl border border-teal-100 flex items-center space-x-3 transition-transform hover:-translate-y-0.5">
+                <div className="p-2 bg-teal-600 text-white rounded-xl shadow-soft-sm">
+                  <HeartHandshake className="w-4 h-4" />
+                </div>
+                <div>
+                  <h4 className="font-bold text-xs text-slate-900">Dedicated Human Review</h4>
+                  <p className="text-[11px] text-slate-500">District Nodal Officers &amp; Special Prosecutors</p>
+                </div>
+              </div>
+
+              {/* Floating Card 3: Secure Assistance */}
+              <div className="p-3.5 bg-indigo-50/80 rounded-2xl border border-indigo-100 flex items-center space-x-3 transition-transform hover:-translate-y-0.5">
+                <div className="p-2 bg-indigo-600 text-white rounded-xl shadow-soft-sm">
+                  <Lock className="w-4 h-4" />
+                </div>
+                <div>
+                  <h4 className="font-bold text-xs text-slate-900">End-to-End Secure Assistance</h4>
+                  <p className="text-[11px] text-slate-500">Victim privacy protected under Section 15A</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </section>
 
-      {/* 2. 24x7 Immediate Danger SOS Ribbon */}
-      <div className="bg-gradient-to-r from-red-950 via-red-900 to-red-950 text-white rounded-2xl p-4 sm:p-5 shadow-lg border border-red-700/80 flex flex-col sm:flex-row items-center justify-between gap-4">
-        <div className="flex items-center space-x-3">
-          <div className="p-2.5 bg-red-600 rounded-xl text-white shadow-inner flex-shrink-0 animate-bounce">
-            <ShieldAlert className="w-6 h-6" />
+      {/* 2. Emergency Section - Clean, Calm & Impossible to Miss */}
+      <section className="bg-gradient-to-r from-red-50 via-rose-50 to-amber-50 border border-red-200/80 rounded-3xl p-6 sm:p-8 shadow-soft-sm">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="flex items-start space-x-4">
+            <div className="p-3 bg-red-600 text-white rounded-2xl shadow-soft-sm flex-shrink-0 mt-0.5">
+              <PhoneCall className="w-6 h-6 animate-pulse" />
+            </div>
+            <div>
+              <span className="text-xs font-bold uppercase tracking-wider text-red-700">Immediate Danger?</span>
+              <h3 className="text-lg sm:text-xl font-extrabold text-slate-900 mt-0.5">
+                Need Immediate Help?
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-600 mt-1 max-w-xl">
+                Access 24x7 emergency response if you are facing active violence, confinement, or life-threatening situations.
+              </p>
+            </div>
           </div>
-          <div>
-            <h3 className="font-extrabold text-sm sm:text-base text-white">
-              Are you or your family in immediate physical danger?
-            </h3>
-            <p className="text-xs text-red-200">
-              Do not wait for AI evaluation. Connect directly with Emergency Dispatch Units &bull; Dial <strong>112</strong> or <strong>14566</strong> now.
-            </p>
-          </div>
-        </div>
 
-        <div className="flex items-center space-x-2 w-full sm:w-auto">
-          <a
-            href="tel:112"
-            className="flex-1 sm:flex-none px-4 py-2 bg-white text-red-900 hover:bg-red-50 font-bold text-xs rounded-xl shadow transition text-center"
-          >
-            🚨 Dial 112
-          </a>
-          <a
-            href="tel:14566"
-            className="flex-1 sm:flex-none px-4 py-2 bg-amber-400 text-slate-950 hover:bg-amber-300 font-bold text-xs rounded-xl shadow transition text-center"
-          >
-            📞 Dial 14566
-          </a>
-        </div>
-      </div>
-
-      <DisclaimerBanner />
-
-      {/* 3. Main Grievance Submission Form & Sidebar */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-        {/* Left Col: Main Intake Form */}
-        <div className="lg:col-span-8 space-y-6">
-          <form onSubmit={handleSubmit} className="bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-8 shadow-xl text-slate-100 space-y-6">
-            <div className="flex items-center justify-between pb-4 border-b border-slate-800">
+          {/* Emergency Helpline Cards */}
+          <div className="flex flex-wrap items-center gap-3 w-full md:w-auto">
+            <a
+              href="tel:14566"
+              className="flex-1 md:flex-none px-4 py-3 bg-white hover:bg-slate-50 text-slate-900 rounded-2xl border border-red-200 shadow-soft-sm flex items-center space-x-3 transition"
+            >
+              <div className="w-2 h-2 rounded-full bg-red-600"></div>
               <div>
-                <span className="text-[11px] font-bold tracking-wider text-indigo-400 uppercase">
-                  Step 1: Confidential Grievance Details
-                </span>
-                <h3 className="text-lg sm:text-xl font-bold text-white mt-0.5">
-                  Record Incident Statement
-                </h3>
+                <span className="text-[10px] text-slate-500 uppercase font-bold block">NHAA Toll-Free</span>
+                <strong className="text-base text-red-600 font-mono">14566</strong>
               </div>
-              <div className="flex items-center space-x-1.5 text-xs text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded-full border border-emerald-500/20 font-semibold">
-                <Lock className="w-3.5 h-3.5" />
-                <span>Statutory Encryption</span>
+            </a>
+
+            <a
+              href="tel:112"
+              className="flex-1 md:flex-none px-4 py-3 bg-red-600 hover:bg-red-700 text-white rounded-2xl shadow-md flex items-center space-x-3 transition"
+            >
+              <div>
+                <span className="text-[10px] text-red-200 uppercase font-bold block">Police SOS</span>
+                <strong className="text-base text-white font-mono">112</strong>
+              </div>
+            </a>
+
+            <a
+              href="tel:1091"
+              className="flex-1 md:flex-none px-4 py-3 bg-white hover:bg-slate-50 text-slate-900 rounded-2xl border border-slate-200 shadow-soft-sm flex items-center space-x-3 transition"
+            >
+              <div>
+                <span className="text-[10px] text-slate-500 uppercase font-bold block">Women Help</span>
+                <strong className="text-base text-slate-800 font-mono">1091</strong>
+              </div>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* 3. Main Grievance Submission Guided Experience */}
+      <div ref={formRef} className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        {/* Left Form: Guided Step Cards */}
+        <div className="lg:col-span-8 space-y-6">
+          <form onSubmit={handleSubmit} className="bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 shadow-soft-md space-y-8">
+            <div className="flex items-center justify-between pb-4 border-b border-slate-100">
+              <div>
+                <span className="text-xs font-bold uppercase tracking-wider text-blue-600">Guided Filing</span>
+                <h2 className="text-xl sm:text-2xl font-extrabold text-slate-900 mt-0.5">
+                  File Incident Complaint
+                </h2>
+              </div>
+              <div className="text-xs text-slate-400 font-medium hidden sm:flex items-center space-x-1">
+                <Lock className="w-3.5 h-3.5 text-slate-500" />
+                <span>Encrypted Submission</span>
               </div>
             </div>
 
             {errorMsg && (
-              <div className="p-3 bg-red-950/80 border border-red-800 rounded-xl text-xs text-red-200 flex items-center space-x-2">
-                <AlertTriangle className="w-4 h-4 text-red-400 flex-shrink-0" />
+              <div className="p-4 bg-red-50 border border-red-200 rounded-2xl text-xs text-red-800 flex items-center space-x-3">
+                <AlertTriangle className="w-4 h-4 text-red-600 flex-shrink-0" />
                 <span>{errorMsg}</span>
               </div>
             )}
 
-            {/* Complainant Type Switcher */}
-            <div>
-              <label className="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">
-                Who is filing this report?
+            {/* Step 1: Complainant Identity Selection */}
+            <div className="space-y-3">
+              <label className="block text-xs font-bold uppercase tracking-wider text-slate-700">
+                Step 1: Who is reporting this incident?
               </label>
-              <div className="grid grid-cols-3 gap-2.5">
+              <div className="grid grid-cols-3 gap-3">
                 {[
-                  { id: 'VICTIM', label: 'Victim / Self', icon: '👤' },
-                  { id: 'THIRD_PARTY', label: 'Relative / Witness', icon: '👥' },
-                  { id: 'ANONYMOUS', label: 'Anonymous Reporter', icon: '🛡️' }
+                  { id: 'VICTIM', label: 'Victim / Self', desc: 'Direct applicant' },
+                  { id: 'THIRD_PARTY', label: 'Relative / Witness', desc: 'On behalf of victim' },
+                  { id: 'ANONYMOUS', label: 'Anonymous Reporter', desc: 'Identity withheld' }
                 ].map((type) => (
                   <button
                     key={type.id}
                     type="button"
                     onClick={() => setComplainantType(type.id)}
-                    className={`py-3 px-3 rounded-2xl text-xs font-bold border transition text-center flex flex-col items-center gap-1 ${
+                    className={`py-3 px-3.5 rounded-2xl text-xs font-bold border text-left transition ${
                       complainantType === type.id
-                        ? 'bg-indigo-600 text-white border-indigo-500 shadow-lg shadow-indigo-600/30 ring-2 ring-indigo-400'
-                        : 'bg-slate-950 text-slate-400 border-slate-800 hover:text-white hover:bg-slate-800'
+                        ? 'bg-blue-50/80 border-blue-600 text-blue-900 shadow-soft-sm ring-1 ring-blue-600'
+                        : 'bg-slate-50/70 border-slate-200 text-slate-700 hover:bg-slate-100'
                     }`}
                   >
-                    <span className="text-base">{type.icon}</span>
-                    <span>{type.label}</span>
+                    <span className="block font-bold text-slate-900">{type.label}</span>
+                    <span className="text-[11px] text-slate-500 font-normal">{type.desc}</span>
                   </button>
                 ))}
               </div>
             </div>
 
-            {/* Complainant Info Fields */}
+            {/* Complainant Personal Fields if not anonymous */}
             {complainantType !== 'ANONYMOUS' && (
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 p-4 bg-slate-950/60 rounded-2xl border border-slate-800">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 p-5 bg-slate-50/70 rounded-2xl border border-slate-200">
                 <div>
-                  <label className="block text-xs font-semibold text-slate-300 mb-1">Full Legal Name</label>
+                  <label className="block text-xs font-semibold text-slate-700 mb-1.5">Full Legal Name</label>
                   <input
                     type="text"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     placeholder="Enter your name"
-                    className="w-full bg-slate-900 text-xs sm:text-sm p-2.5 rounded-xl border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500"
+                    className="w-full bg-white text-xs sm:text-sm p-3 rounded-xl border border-slate-200 text-slate-900 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 focus:outline-none transition"
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-semibold text-slate-300 mb-1">Mobile Contact No.</label>
+                  <label className="block text-xs font-semibold text-slate-700 mb-1.5">Mobile Contact No.</label>
                   <input
                     type="text"
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
                     placeholder="+91 98765 43210"
-                    className="w-full bg-slate-900 text-xs sm:text-sm p-2.5 rounded-xl border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500"
+                    className="w-full bg-white text-xs sm:text-sm p-3 rounded-xl border border-slate-200 text-slate-900 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 focus:outline-none transition"
                   />
                 </div>
               </div>
@@ -306,11 +351,11 @@ export default function PublicPortal({ onSubmitSuccess, citizenUser, onOpenCitiz
             {/* Region & Incident Category */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label className="block text-xs font-semibold text-slate-300 mb-1">State / UT in India</label>
+                <label className="block text-xs font-semibold text-slate-700 mb-1.5">State / UT in India</label>
                 <select
                   value={stateRegion}
                   onChange={(e) => setStateRegion(e.target.value)}
-                  className="w-full bg-slate-950 text-xs sm:text-sm p-2.5 rounded-xl border border-slate-700 text-white focus:outline-none focus:border-indigo-500"
+                  className="w-full bg-white text-xs sm:text-sm p-3 rounded-xl border border-slate-200 text-slate-900 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 focus:outline-none transition"
                 >
                   {INDIAN_STATES.map((st) => (
                     <option key={st} value={st}>{st}</option>
@@ -319,11 +364,11 @@ export default function PublicPortal({ onSubmitSuccess, citizenUser, onOpenCitiz
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-slate-300 mb-1">Incident Category (PoA Act)</label>
+                <label className="block text-xs font-semibold text-slate-700 mb-1.5">Incident Category (SC/ST PoA Act)</label>
                 <select
                   value={category}
                   onChange={(e) => setCategory(e.target.value)}
-                  className="w-full bg-slate-950 text-xs sm:text-sm p-2.5 rounded-xl border border-slate-700 text-white focus:outline-none focus:border-indigo-500"
+                  className="w-full bg-white text-xs sm:text-sm p-3 rounded-xl border border-slate-200 text-slate-900 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 focus:outline-none transition"
                 >
                   {CATEGORIES.map((cat) => (
                     <option key={cat.id} value={cat.id}>{cat.label}</option>
@@ -332,58 +377,58 @@ export default function PublicPortal({ onSubmitSuccess, citizenUser, onOpenCitiz
               </div>
             </div>
 
-            {/* Mode Switcher & Input */}
-            <div className="space-y-4 pt-4 border-t border-slate-800">
-              <label className="block text-xs font-bold text-slate-300 uppercase tracking-wider">
-                Step 2: Choose Statement Input Mode
+            {/* Step 2: Choose Statement Input Mode */}
+            <div className="space-y-4 pt-4 border-t border-slate-100">
+              <label className="block text-xs font-bold uppercase tracking-wider text-slate-700">
+                Step 2: Choose Statement Mode (Voice or Text)
               </label>
 
               <div className="flex space-x-3">
                 <button
                   type="button"
                   onClick={() => setInputMode('VOICE')}
-                  className={`flex-1 py-2.5 px-3 rounded-xl text-xs font-bold border flex items-center justify-center space-x-2 transition ${
+                  className={`flex-1 py-3 px-4 rounded-2xl text-xs font-bold border flex items-center justify-center space-x-2 transition ${
                     inputMode === 'VOICE'
-                      ? 'bg-gradient-to-r from-red-600 to-indigo-600 text-white border-indigo-500 shadow-lg'
-                      : 'bg-slate-950 text-slate-400 border-slate-800 hover:text-white'
+                      ? 'bg-blue-600 text-white border-blue-600 shadow-md'
+                      : 'bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100'
                   }`}
                 >
-                  <Mic className="w-4 h-4 text-amber-300" />
-                  <span>🎙️ Voice Statement (AI Speech-to-Text)</span>
+                  <Mic className="w-4 h-4" />
+                  <span>Voice Statement (Speech-to-Text)</span>
                 </button>
 
                 <button
                   type="button"
                   onClick={() => setInputMode('TEXT')}
-                  className={`flex-1 py-2.5 px-3 rounded-xl text-xs font-bold border flex items-center justify-center space-x-2 transition ${
+                  className={`flex-1 py-3 px-4 rounded-2xl text-xs font-bold border flex items-center justify-center space-x-2 transition ${
                     inputMode === 'TEXT'
-                      ? 'bg-indigo-600 text-white border-indigo-500 shadow-lg'
-                      : 'bg-slate-950 text-slate-400 border-slate-800 hover:text-white'
+                      ? 'bg-blue-600 text-white border-blue-600 shadow-md'
+                      : 'bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100'
                   }`}
                 >
                   <FileText className="w-4 h-4" />
-                  <span>✍️ Type Written Statement</span>
+                  <span>Type Written Statement</span>
                 </button>
               </div>
 
               {/* Voice Recorder Component */}
               {inputMode === 'VOICE' && (
-                <div className="p-4 bg-slate-950 rounded-2xl border border-slate-800">
+                <div className="pt-2">
                   <VoiceRecorder onTranscriptChange={(text) => setInputText(text)} />
                 </div>
               )}
 
-              {/* Main Statement Textarea */}
+              {/* Statement Text Area */}
               <div>
-                <label className="block text-xs font-semibold text-slate-300 mb-1">
+                <label className="block text-xs font-semibold text-slate-700 mb-1.5">
                   Full Statement &amp; Incident Description:
                 </label>
                 <textarea
                   rows={5}
                   value={inputText}
                   onChange={(e) => setInputText(e.target.value)}
-                  placeholder="Describe what happened, persons involved, weapons/threats used, location, and immediate assistance needed..."
-                  className="w-full bg-slate-950 text-slate-100 placeholder-slate-500 text-xs sm:text-sm p-4 rounded-2xl border border-slate-700 focus:ring-2 focus:ring-indigo-500 focus:outline-none shadow-inner"
+                  placeholder="Describe what happened, persons involved, threats or physical harm faced, location, and immediate assistance needed..."
+                  className="w-full bg-white text-slate-900 placeholder-slate-400 text-xs sm:text-sm p-4 rounded-2xl border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 focus:outline-none transition shadow-inner"
                 />
               </div>
             </div>
@@ -392,97 +437,116 @@ export default function PublicPortal({ onSubmitSuccess, citizenUser, onOpenCitiz
             <button
               type="submit"
               disabled={isSubmitting}
-              className="w-full py-4 bg-gradient-to-r from-indigo-600 via-indigo-700 to-indigo-800 hover:from-indigo-500 hover:to-indigo-700 text-white font-extrabold text-sm sm:text-base rounded-2xl shadow-xl shadow-indigo-600/30 hover:shadow-indigo-600/50 transition-all flex items-center justify-center space-x-2 cursor-pointer"
+              className="w-full py-4 bg-blue-600 hover:bg-blue-700 active:scale-[0.99] text-white font-bold text-sm sm:text-base rounded-2xl shadow-md hover:shadow-lg transition flex items-center justify-center space-x-2 cursor-pointer"
             >
               {isSubmitting ? (
-                <span className="animate-pulse flex items-center space-x-2">
-                  <Sparkles className="w-5 h-5 text-amber-300" />
-                  <span>Running Real-Time AI Stress &amp; Threat Triage...</span>
+                <span className="flex items-center space-x-2 animate-pulse">
+                  <Sparkles className="w-4 h-4" />
+                  <span>Running Real-Time AI Distress Assessment...</span>
                 </span>
               ) : (
                 <>
                   <Send className="w-4 h-4" />
-                  <span>Submit Grievance for Immediate AI Triage &rarr;</span>
+                  <span>Submit Complaint for Immediate AI Triage &rarr;</span>
                 </>
               )}
             </button>
           </form>
         </div>
 
-        {/* Right Col: Docket Tracker & Emergency Sidebar */}
+        {/* Right Sidebar: Complaint Tracker & Hotlines */}
         <div className="lg:col-span-4 space-y-6">
-          {/* Quick Docket Tracker Box */}
-          <div className="bg-slate-900 border border-slate-800 rounded-3xl p-6 shadow-xl text-slate-100 space-y-4">
-            <div className="flex items-center space-x-2 pb-3 border-b border-slate-800">
-              <Search className="w-5 h-5 text-indigo-400" />
-              <h3 className="font-bold text-sm text-white">Track Existing Docket / FIR</h3>
+          {/* Tracking Card */}
+          <div ref={trackRef} className="bg-white border border-slate-200 rounded-3xl p-6 shadow-soft-sm space-y-4">
+            <div className="flex items-center space-x-2 pb-3 border-b border-slate-100">
+              <Search className="w-4 h-4 text-blue-600" />
+              <h3 className="font-bold text-sm text-slate-900">Track Complaint Progress</h3>
             </div>
 
             <form onSubmit={handleTrackSearch} className="space-y-3">
               <div>
-                <label className="block text-[11px] font-semibold text-slate-400 mb-1">Reference ID:</label>
+                <label className="block text-[11px] font-semibold text-slate-500 mb-1">Reference ID:</label>
                 <input
                   type="text"
                   value={searchRefId}
                   onChange={(e) => setSearchRefId(e.target.value)}
                   placeholder="e.g. NHAA-2026-89101"
-                  className="w-full bg-slate-950 text-xs p-2.5 rounded-xl border border-slate-700 text-white uppercase font-mono placeholder-slate-600 focus:outline-none focus:border-indigo-500"
+                  className="w-full bg-slate-50 text-xs p-3 rounded-xl border border-slate-200 text-slate-900 uppercase font-mono placeholder-slate-400 focus:border-blue-500 focus:bg-white focus:outline-none"
                 />
               </div>
 
               <button
                 type="submit"
-                className="w-full py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold rounded-xl transition shadow"
+                className="w-full py-2.5 bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold rounded-xl transition shadow-soft-sm"
               >
-                Track Live Status &rarr;
+                Track Status &rarr;
               </button>
             </form>
 
             {trackingError && (
-              <div className="p-3 text-xs text-red-300 bg-red-950/80 border border-red-800 rounded-xl">
+              <div className="p-3 text-xs text-red-700 bg-red-50 border border-red-200 rounded-xl">
                 {trackingError}
               </div>
             )}
 
+            {/* Tracked Case Progress Card */}
             {trackedCase && (
-              <div className="p-4 bg-slate-950 rounded-2xl border border-slate-800 text-xs space-y-2 animate-fadeIn">
+              <div className="p-4 bg-slate-50/90 rounded-2xl border border-slate-200 text-xs space-y-3 animate-fadeIn">
                 <div className="flex justify-between items-center font-bold">
-                  <span className="font-mono text-indigo-400">{trackedCase.reference_id}</span>
-                  <span className="text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded font-mono">{trackedCase.status}</span>
+                  <span className="font-mono text-blue-700">{trackedCase.reference_id}</span>
+                  <span className="bg-blue-100 text-blue-800 px-2 py-0.5 rounded text-[11px]">
+                    {trackedCase.status}
+                  </span>
                 </div>
-                <div className="text-slate-300">Category: {trackedCase.category}</div>
-                <div className="text-slate-400">Region: {trackedCase.state_region}</div>
-                <div className="text-[11px] text-slate-500">Submitted: {new Date(trackedCase.submitted_at).toLocaleString()}</div>
+
+                <div className="text-slate-600 space-y-1 text-[11px]">
+                  <div>Category: <strong>{trackedCase.category}</strong></div>
+                  <div>Region: <strong>{trackedCase.state_region}</strong></div>
+                  <div className="text-slate-400">
+                    Logged: {new Date(trackedCase.submitted_at).toLocaleString()}
+                  </div>
+                </div>
+
+                {/* Progress Mini Timeline */}
+                <div className="pt-2 border-t border-slate-200">
+                  <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-1.5">
+                    Workflow Status
+                  </span>
+                  <div className="flex items-center justify-between text-[10px] text-slate-500 font-medium">
+                    <span className="text-blue-600 font-bold">Submitted ✓</span>
+                    <span>→</span>
+                    <span className="text-blue-600 font-bold">AI Triaged ✓</span>
+                    <span>→</span>
+                    <span className={trackedCase.status !== 'NEW' ? 'text-blue-600 font-bold' : 'text-slate-400'}>
+                      Officer Review
+                    </span>
+                  </div>
+                </div>
               </div>
             )}
           </div>
 
-          {/* Quick Helplines Box */}
-          <div className="bg-gradient-to-b from-indigo-950 via-slate-950 to-slate-950 border border-indigo-800/60 rounded-3xl p-6 shadow-xl text-slate-100 space-y-3">
-            <h4 className="font-bold text-sm text-yellow-300 flex items-center space-x-2 pb-2 border-b border-indigo-900/80">
-              <PhoneCall className="w-4 h-4 text-red-400 animate-pulse" />
-              <span>National 24x7 Helplines</span>
+          {/* Reassurance Info Card */}
+          <div className="bg-white border border-slate-200 rounded-3xl p-6 shadow-soft-sm space-y-3">
+            <h4 className="font-bold text-sm text-slate-900 flex items-center space-x-2 pb-2 border-b border-slate-100">
+              <Scale className="w-4 h-4 text-blue-600" />
+              <span>Statutory Legal Safeguards</span>
             </h4>
-
-            <div className="space-y-2 text-xs">
-              <div className="p-3 bg-slate-900/90 rounded-xl border border-indigo-900/60">
-                <div className="font-bold text-yellow-300 text-sm">NHAA: 14566</div>
-                <div className="text-slate-400 text-[11px]">National Helpline Against Atrocities</div>
-              </div>
-              <div className="p-3 bg-slate-900/90 rounded-xl border border-indigo-900/60">
-                <div className="font-bold text-red-300 text-sm">Police SOS: 112</div>
-                <div className="text-slate-400 text-[11px]">Instant Police &amp; Dispatch Alert</div>
-              </div>
-              <div className="p-3 bg-slate-900/90 rounded-xl border border-indigo-900/60">
-                <div className="font-bold text-emerald-300 text-sm">Women Help: 1091</div>
-                <div className="text-slate-400 text-[11px]">24x7 Women in Distress Support</div>
-              </div>
-            </div>
+            <p className="text-xs text-slate-600 leading-relaxed">
+              Under the <strong>SC/ST (Prevention of Atrocities) Amendment Act 2018 (Section 18A)</strong>, registration of FIRs for atrocities cannot be delayed, and anticipatory bail is prohibited.
+            </p>
+            <a
+              href="#statutoryDocuments"
+              className="text-xs text-blue-600 hover:text-blue-700 font-bold inline-flex items-center space-x-1"
+            >
+              <span>Explore Statutory Gazettes &amp; Relief Slabs</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </a>
           </div>
         </div>
       </div>
 
-      {/* 4. Statutory Documents & Gazettes Repository Component */}
+      {/* 4. Statutory Documents & Gazettes Repository Section */}
       <StatutoryDocuments />
     </div>
   );

@@ -1,98 +1,124 @@
 import React from 'react';
-import { BarChart2, PieChart as PieIcon, ShieldAlert } from 'lucide-react';
+import { 
+  ResponsiveContainer, BarChart, Bar, XAxis, YAxis, Tooltip, 
+  PieChart, Pie, Cell, Legend, CartesianGrid 
+} from 'recharts';
+import { BarChart3, PieChart as PieIcon } from 'lucide-react';
+
+const RISK_COLORS = {
+  HIGH: '#DC2626',
+  MODERATE: '#F59E0B',
+  LOW: '#10B981'
+};
+
+const CATEGORY_COLORS = ['#2563EB', '#14B8A6', '#8B5CF6', '#F59E0B', '#EC4899', '#64748B'];
 
 export default function RiskChart({ stats }) {
   if (!stats) return null;
 
-  const total = stats.total_complaints || 1;
-  const highPercent = Math.round(((stats.high_risk_count || 0) / total) * 100);
-  const modPercent = Math.round(((stats.moderate_risk_count || 0) / total) * 100);
-  const lowPercent = Math.round(((stats.low_risk_count || 0) / total) * 100);
+  const riskData = [
+    { name: 'HIGH', count: stats.high_risk_count || 0, color: RISK_COLORS.HIGH },
+    { name: 'MODERATE', count: stats.moderate_risk_count || 0, color: RISK_COLORS.MODERATE },
+    { name: 'LOW', count: stats.low_risk_count || 0, color: RISK_COLORS.LOW }
+  ];
 
-  const categories = stats.category_breakdown || {};
+  const categoryData = Object.entries(stats.category_distribution || {}).map(([key, val], idx) => ({
+    name: key.replace(/_/g, ' '),
+    count: val,
+    color: CATEGORY_COLORS[idx % CATEGORY_COLORS.length]
+  }));
+
+  const CustomTooltip = ({ active, payload, label }) => {
+    if (active && payload && payload.length) {
+      return (
+        <div className="bg-slate-900 text-white p-2.5 rounded-xl text-xs shadow-xl border border-slate-700 space-y-0.5 font-sans">
+          <p className="font-bold">{label || payload[0].name}</p>
+          <p className="text-slate-300">
+            Cases: <strong className="text-white font-mono">{payload[0].value}</strong>
+          </p>
+        </div>
+      );
+    }
+    return null;
+  };
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 my-4">
-      {/* Risk Distribution Breakdown */}
-      <div className="bg-white border border-slate-200 rounded-xl p-4 sm:p-5 shadow-sm">
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 my-4">
+      {/* Chart 1: Risk Severity Distribution */}
+      <div className="bg-white border border-slate-200 rounded-3xl p-5 sm:p-6 shadow-soft-sm">
         <div className="flex items-center justify-between pb-3 border-b border-slate-100 mb-4">
           <div className="flex items-center space-x-2">
-            <ShieldAlert className="w-5 h-5 text-indigo-600" />
-            <h3 className="font-bold text-slate-900 text-sm sm:text-base">AI Risk Level Distribution</h3>
+            <BarChart3 className="w-4 h-4 text-blue-600" />
+            <h3 className="font-bold text-sm text-slate-900">AI Risk Classification Volume</h3>
           </div>
-          <span className="text-xs text-slate-500 font-mono">Triage Analytics</span>
+          <span className="text-[11px] text-slate-400 font-medium">Real-Time Triage</span>
         </div>
 
-        {/* Visual Progress Bars */}
-        <div className="space-y-4">
-          <div>
-            <div className="flex justify-between text-xs font-semibold mb-1">
-              <span className="text-red-700 flex items-center space-x-1">
-                <span className="w-2.5 h-2.5 rounded-full bg-red-600"></span>
-                <span>HIGH RISK ({stats.high_risk_count || 0} cases)</span>
-              </span>
-              <span className="text-red-900 font-mono">{highPercent}%</span>
-            </div>
-            <div className="w-full bg-slate-100 rounded-full h-3 overflow-hidden border border-slate-200">
-              <div className="bg-red-600 h-3 rounded-full transition-all duration-500" style={{ width: `${highPercent}%` }}></div>
-            </div>
-          </div>
-
-          <div>
-            <div className="flex justify-between text-xs font-semibold mb-1">
-              <span className="text-amber-700 flex items-center space-x-1">
-                <span className="w-2.5 h-2.5 rounded-full bg-amber-500"></span>
-                <span>MODERATE RISK ({stats.moderate_risk_count || 0} cases)</span>
-              </span>
-              <span className="text-amber-900 font-mono">{modPercent}%</span>
-            </div>
-            <div className="w-full bg-slate-100 rounded-full h-3 overflow-hidden border border-slate-200">
-              <div className="bg-amber-500 h-3 rounded-full transition-all duration-500" style={{ width: `${modPercent}%` }}></div>
-            </div>
-          </div>
-
-          <div>
-            <div className="flex justify-between text-xs font-semibold mb-1">
-              <span className="text-emerald-700 flex items-center space-x-1">
-                <span className="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
-                <span>LOW RISK ({stats.low_risk_count || 0} cases)</span>
-              </span>
-              <span className="text-emerald-900 font-mono">{lowPercent}%</span>
-            </div>
-            <div className="w-full bg-slate-100 rounded-full h-3 overflow-hidden border border-slate-200">
-              <div className="bg-emerald-500 h-3 rounded-full transition-all duration-500" style={{ width: `${lowPercent}%` }}></div>
-            </div>
-          </div>
+        <div className="h-60 w-full">
+          <ResponsiveContainer width="100%" height="100%">
+            <BarChart data={riskData} margin={{ top: 10, right: 10, left: -15, bottom: 0 }}>
+              <CartesianGrid strokeDasharray="3 3" stroke="#F1F5F9" vertical={false} />
+              <XAxis 
+                dataKey="name" 
+                tick={{ fontSize: 11, fill: '#64748B', fontWeight: 600 }}
+                axisLine={{ stroke: '#E2E8F0' }}
+                tickLine={false}
+              />
+              <YAxis 
+                tick={{ fontSize: 11, fill: '#64748B' }}
+                axisLine={false}
+                tickLine={false}
+                allowDecimals={false}
+              />
+              <Tooltip content={<CustomTooltip />} />
+              <Bar dataKey="count" radius={[8, 8, 0, 0]}>
+                {riskData.map((entry, index) => (
+                  <Cell key={`cell-${index}`} fill={entry.color} />
+                ))}
+              </Bar>
+            </BarChart>
+          </ResponsiveContainer>
         </div>
       </div>
 
-      {/* Category Breakdown */}
-      <div className="bg-white border border-slate-200 rounded-xl p-4 sm:p-5 shadow-sm">
+      {/* Chart 2: Category Breakdown */}
+      <div className="bg-white border border-slate-200 rounded-3xl p-5 sm:p-6 shadow-soft-sm">
         <div className="flex items-center justify-between pb-3 border-b border-slate-100 mb-4">
           <div className="flex items-center space-x-2">
-            <BarChart2 className="w-5 h-5 text-indigo-600" />
-            <h3 className="font-bold text-slate-900 text-sm sm:text-base">Complaint Category Spread</h3>
+            <PieIcon className="w-4 h-4 text-teal-600" />
+            <h3 className="font-bold text-sm text-slate-900">Incident Category Breakdown</h3>
           </div>
-          <span className="text-xs text-slate-500">Real-Time Intake</span>
+          <span className="text-[11px] text-slate-400 font-medium">PoA &amp; Crime Types</span>
         </div>
 
-        <div className="space-y-2.5">
-          {Object.keys(categories).length === 0 ? (
-            <div className="text-xs text-slate-400 py-4 text-center">No categories recorded yet</div>
+        <div className="h-60 w-full flex items-center justify-center">
+          {categoryData.length === 0 ? (
+            <div className="text-xs text-slate-400">No incident category data yet</div>
           ) : (
-            Object.entries(categories).map(([cat, count]) => {
-              const catPercent = Math.round((count / total) * 100);
-              const label = cat.replace('_', ' ');
-              return (
-                <div key={cat} className="flex items-center text-xs">
-                  <span className="w-36 font-medium text-slate-700 truncate">{label}</span>
-                  <div className="flex-1 mx-2 bg-slate-100 rounded-full h-2 overflow-hidden">
-                    <div className="bg-indigo-600 h-2 rounded-full" style={{ width: `${catPercent}%` }}></div>
-                  </div>
-                  <span className="w-12 text-right font-mono font-semibold text-slate-800">{count} ({catPercent}%)</span>
-                </div>
-              );
-            })
+            <ResponsiveContainer width="100%" height="100%">
+              <PieChart>
+                <Pie
+                  data={categoryData}
+                  cx="50%"
+                  cy="50%"
+                  innerRadius={50}
+                  outerRadius={75}
+                  paddingAngle={3}
+                  dataKey="count"
+                >
+                  {categoryData.map((entry, index) => (
+                    <Cell key={`cell-${index}`} fill={entry.color} />
+                  ))}
+                </Pie>
+                <Tooltip content={<CustomTooltip />} />
+                <Legend 
+                  layout="horizontal" 
+                  verticalAlign="bottom" 
+                  align="center"
+                  wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }}
+                />
+              </PieChart>
+            </ResponsiveContainer>
           )}
         </div>
       </div>

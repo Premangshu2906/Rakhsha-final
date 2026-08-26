@@ -1,5 +1,5 @@
 import React from 'react';
-import { ShieldAlert, AlertTriangle, FileText, CheckCircle2, Clock } from 'lucide-react';
+import { ShieldAlert, AlertTriangle, FileText, CheckCircle2, Clock, Activity, ArrowUpRight } from 'lucide-react';
 
 export default function StatsCards({ stats }) {
   if (!stats) return null;
@@ -11,77 +11,88 @@ export default function StatsCards({ stats }) {
   const resolved = stats.resolved_count || 0;
   const resolutionRate = total > 0 ? ((resolved / total) * 100).toFixed(0) : 0;
 
+  const cardItems = [
+    {
+      title: 'High Risk Queue',
+      val: highRisk,
+      sub: 'Immediate Intervention',
+      icon: ShieldAlert,
+      color: 'text-red-600',
+      bg: 'bg-red-50/80',
+      border: 'border-red-100',
+      iconBg: 'bg-red-100 text-red-600'
+    },
+    {
+      title: 'Urgent Priority',
+      val: urgentPrio,
+      sub: 'Expedited Triage',
+      icon: AlertTriangle,
+      color: 'text-amber-700',
+      bg: 'bg-amber-50/80',
+      border: 'border-amber-100',
+      iconBg: 'bg-amber-100 text-amber-700'
+    },
+    {
+      title: 'Action Required',
+      val: actionReq,
+      sub: 'Pending Officer Review',
+      icon: Clock,
+      color: 'text-blue-700',
+      bg: 'bg-blue-50/80',
+      border: 'border-blue-100',
+      iconBg: 'bg-blue-100 text-blue-700'
+    },
+    {
+      title: 'Total Registered Cases',
+      val: total,
+      sub: 'All Intake Channels',
+      icon: FileText,
+      color: 'text-slate-900',
+      bg: 'bg-white',
+      border: 'border-slate-200',
+      iconBg: 'bg-slate-100 text-slate-700'
+    },
+    {
+      title: 'Resolution Rate',
+      val: `${resolutionRate}%`,
+      sub: `${resolved} Closed Cases`,
+      icon: CheckCircle2,
+      color: 'text-emerald-700',
+      bg: 'bg-emerald-50/80',
+      border: 'border-emerald-100',
+      iconBg: 'bg-emerald-100 text-emerald-700'
+    }
+  ];
+
   return (
-    <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-5 gap-3 sm:gap-4 my-4">
-      {/* High Risk Card */}
-      <div className="bg-gradient-to-br from-red-50 to-red-100/60 border border-red-200 rounded-xl p-3.5 sm:p-4 shadow-sm">
-        <div className="flex items-center justify-between">
-          <span className="text-xs font-bold uppercase tracking-wider text-red-900">High Risk Queue</span>
-          <div className="p-2 bg-red-600 text-white rounded-lg shadow-sm">
-            <ShieldAlert className="w-4 h-4 animate-pulse" />
-          </div>
-        </div>
-        <div className="mt-2 flex items-baseline justify-between">
-          <span className="text-2xl sm:text-3xl font-extrabold text-red-950">{highRisk}</span>
-          <span className="text-[11px] font-medium text-red-700 bg-red-200/80 px-1.5 py-0.5 rounded">Immediate Action</span>
-        </div>
-      </div>
+    <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-5 gap-3.5 sm:gap-4 my-4">
+      {cardItems.map((item, i) => {
+        const Icon = item.icon;
+        return (
+          <div
+            key={i}
+            className={`${item.bg} border ${item.border} rounded-2xl p-4 sm:p-5 shadow-soft-sm hover:shadow-soft-md transition-all flex flex-col justify-between`}
+          >
+            <div className="flex items-center justify-between">
+              <span className="text-[11px] font-bold uppercase tracking-wider text-slate-500">
+                {item.title}
+              </span>
+              <div className={`p-2 rounded-xl ${item.iconBg}`}>
+                <Icon className="w-4 h-4" />
+              </div>
+            </div>
 
-      {/* Urgent Priority */}
-      <div className="bg-gradient-to-br from-amber-50 to-amber-100/60 border border-amber-200 rounded-xl p-3.5 sm:p-4 shadow-sm">
-        <div className="flex items-center justify-between">
-          <span className="text-xs font-bold uppercase tracking-wider text-amber-900">Urgent Priority</span>
-          <div className="p-2 bg-amber-500 text-white rounded-lg shadow-sm">
-            <AlertTriangle className="w-4 h-4" />
+            <div className="mt-3">
+              <div className={`text-2xl sm:text-3xl font-extrabold font-mono tracking-tight ${item.color}`}>
+                {item.val}
+              </div>
+              <span className="text-[11px] font-medium text-slate-500 mt-0.5 block">
+                {item.sub}
+              </span>
+            </div>
           </div>
-        </div>
-        <div className="mt-2 flex items-baseline justify-between">
-          <span className="text-2xl sm:text-3xl font-extrabold text-amber-950">{urgentPrio}</span>
-          <span className="text-[11px] font-medium text-amber-700 bg-amber-200/80 px-1.5 py-0.5 rounded">Triage Priority</span>
-        </div>
-      </div>
-
-      {/* Action Required */}
-      <div className="bg-gradient-to-br from-purple-50 to-purple-100/60 border border-purple-200 rounded-xl p-3.5 sm:p-4 shadow-sm">
-        <div className="flex items-center justify-between">
-          <span className="text-xs font-bold uppercase tracking-wider text-purple-900">Action Required</span>
-          <div className="p-2 bg-purple-600 text-white rounded-lg shadow-sm">
-            <Clock className="w-4 h-4" />
-          </div>
-        </div>
-        <div className="mt-2 flex items-baseline justify-between">
-          <span className="text-2xl sm:text-3xl font-extrabold text-purple-950">{actionReq}</span>
-          <span className="text-[11px] font-medium text-purple-700 bg-purple-200/80 px-1.5 py-0.5 rounded">Pending Officer</span>
-        </div>
-      </div>
-
-      {/* Total Complaints */}
-      <div className="bg-gradient-to-br from-slate-50 to-slate-100 border border-slate-200 rounded-xl p-3.5 sm:p-4 shadow-sm">
-        <div className="flex items-center justify-between">
-          <span className="text-xs font-bold uppercase tracking-wider text-slate-700">Total Registered</span>
-          <div className="p-2 bg-slate-700 text-white rounded-lg shadow-sm">
-            <FileText className="w-4 h-4" />
-          </div>
-        </div>
-        <div className="mt-2 flex items-baseline justify-between">
-          <span className="text-2xl sm:text-3xl font-extrabold text-slate-900">{total}</span>
-          <span className="text-[11px] font-medium text-slate-600 bg-slate-200 px-1.5 py-0.5 rounded">All Intake</span>
-        </div>
-      </div>
-
-      {/* Resolution Rate */}
-      <div className="bg-gradient-to-br from-emerald-50 to-emerald-100/60 border border-emerald-200 rounded-xl p-3.5 sm:p-4 shadow-sm col-span-2 sm:col-span-1">
-        <div className="flex items-center justify-between">
-          <span className="text-xs font-bold uppercase tracking-wider text-emerald-900">Resolution Rate</span>
-          <div className="p-2 bg-emerald-600 text-white rounded-lg shadow-sm">
-            <CheckCircle2 className="w-4 h-4" />
-          </div>
-        </div>
-        <div className="mt-2 flex items-baseline justify-between">
-          <span className="text-2xl sm:text-3xl font-extrabold text-emerald-950">{resolutionRate}%</span>
-          <span className="text-[11px] font-medium text-emerald-700 bg-emerald-200/80 px-1.5 py-0.5 rounded">{resolved} Closed</span>
-        </div>
-      </div>
+        );
+      })}
     </div>
   );
 }

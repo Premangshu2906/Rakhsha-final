@@ -60,29 +60,29 @@ export function CitizenAuthModal({ isOpen, onClose, onLoginSuccess }) {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm animate-fadeIn">
-      <div className="bg-slate-900 border border-slate-700 rounded-3xl w-full max-w-md shadow-2xl overflow-hidden text-slate-100">
-        <div className="p-5 border-b border-slate-800 flex items-center justify-between bg-gradient-to-r from-slate-900 to-indigo-950">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm animate-fadeIn">
+      <div className="bg-white border border-slate-200 rounded-3xl w-full max-w-md shadow-2xl overflow-hidden text-slate-900">
+        <div className="p-5 border-b border-slate-100 flex items-center justify-between bg-slate-50">
           <div className="flex items-center space-x-2.5">
-            <div className="p-2 bg-indigo-600/30 border border-indigo-400/30 rounded-xl text-indigo-400">
+            <div className="p-2 bg-blue-50 border border-blue-100 rounded-xl text-blue-600">
               <User className="w-5 h-5" />
             </div>
             <div>
-              <h3 className="font-bold text-base text-white">Citizen Self-Service Portal</h3>
-              <span className="text-[11px] text-slate-400">Grievance Logging &amp; Tracking</span>
+              <h3 className="font-extrabold text-base text-slate-900">Citizen Self-Service Portal</h3>
+              <span className="text-[11px] text-slate-500">Confidential Grievance Tracking</span>
             </div>
           </div>
-          <button onClick={onClose} className="text-slate-400 hover:text-white p-1">
+          <button onClick={onClose} className="text-slate-400 hover:text-slate-700 p-1">
             <X className="w-5 h-5" />
           </button>
         </div>
 
         {/* Tab Switcher */}
-        <div className="flex border-b border-slate-800 bg-slate-950/60 p-1">
+        <div className="flex border-b border-slate-100 bg-slate-100/70 p-1">
           <button
             onClick={() => setActiveTab('login')}
             className={`flex-1 py-2 text-xs font-bold rounded-lg transition ${
-              activeTab === 'login' ? 'bg-indigo-600 text-white shadow' : 'text-slate-400 hover:text-white'
+              activeTab === 'login' ? 'bg-white text-blue-700 shadow-soft-sm' : 'text-slate-500 hover:text-slate-800'
             }`}
           >
             Citizen Sign In
@@ -90,30 +90,30 @@ export function CitizenAuthModal({ isOpen, onClose, onLoginSuccess }) {
           <button
             onClick={() => setActiveTab('register')}
             className={`flex-1 py-2 text-xs font-bold rounded-lg transition ${
-              activeTab === 'register' ? 'bg-indigo-600 text-white shadow' : 'text-slate-400 hover:text-white'
+              activeTab === 'register' ? 'bg-white text-blue-700 shadow-soft-sm' : 'text-slate-500 hover:text-slate-800'
             }`}
           >
             New Registration
           </button>
         </div>
 
-        <div className="p-5 space-y-4">
+        <div className="p-6 space-y-4">
           {activeTab === 'login' ? (
             <form onSubmit={handleLoginSubmit} className="space-y-4">
-              {/* 1-Click Demo Button */}
-              <div className="p-3 bg-indigo-950/60 border border-indigo-800/80 rounded-xl flex items-center justify-between text-xs">
-                <span className="text-indigo-300 font-medium">⚡ Demo Account:</span>
+              {/* Demo Account Fill Button */}
+              <div className="p-3 bg-blue-50/70 border border-blue-100 rounded-xl flex items-center justify-between text-xs">
+                <span className="text-blue-900 font-medium">⚡ Demo Account:</span>
                 <button
                   type="button"
                   onClick={handleDemoFill}
-                  className="px-2.5 py-1 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-lg transition shadow text-[11px]"
+                  className="px-2.5 py-1 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-lg transition text-[11px] shadow-soft-sm"
                 >
                   Fill Rameshwar Paswan (SC)
                 </button>
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-slate-300 mb-1">10-Digit Mobile Number:</label>
+                <label className="block text-xs font-semibold text-slate-700 mb-1">10-Digit Mobile Number:</label>
                 <div className="relative">
                   <input
                     type="tel"
@@ -121,21 +121,21 @@ export function CitizenAuthModal({ isOpen, onClose, onLoginSuccess }) {
                     onChange={(e) => setLoginMobile(e.target.value)}
                     placeholder="9876543210"
                     maxLength={10}
-                    className="w-full bg-slate-950 border border-slate-700 rounded-xl p-2.5 pl-8 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500"
+                    className="w-full bg-slate-50 border border-slate-200 rounded-xl p-2.5 pl-8 text-xs text-slate-900 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:bg-white"
                   />
                   <Phone className="w-3.5 h-3.5 text-slate-400 absolute left-2.5 top-3" />
                 </div>
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-slate-300 mb-1">Password / Access PIN:</label>
+                <label className="block text-xs font-semibold text-slate-700 mb-1">Password / Access PIN:</label>
                 <div className="relative">
                   <input
                     type="password"
                     value={loginPassword}
                     onChange={(e) => setLoginPassword(e.target.value)}
                     placeholder="••••••••"
-                    className="w-full bg-slate-950 border border-slate-700 rounded-xl p-2.5 pl-8 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500"
+                    className="w-full bg-slate-50 border border-slate-200 rounded-xl p-2.5 pl-8 text-xs text-slate-900 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:bg-white"
                   />
                   <Lock className="w-3.5 h-3.5 text-slate-400 absolute left-2.5 top-3" />
                 </div>
@@ -143,44 +143,44 @@ export function CitizenAuthModal({ isOpen, onClose, onLoginSuccess }) {
 
               <button
                 type="submit"
-                className="w-full py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs rounded-xl transition shadow-lg"
+                className="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs rounded-xl transition shadow-md"
               >
                 Sign In to Citizen Portal &rarr;
               </button>
             </form>
           ) : (
-            <form onSubmit={handleRegisterSubmit} className="space-y-3">
+            <form onSubmit={handleRegisterSubmit} className="space-y-3 text-xs">
               <div>
-                <label className="block text-xs font-semibold text-slate-300 mb-1">Full Legal Name:</label>
+                <label className="block font-semibold text-slate-700 mb-1">Full Legal Name:</label>
                 <input
                   type="text"
                   value={regName}
                   onChange={(e) => setRegName(e.target.value)}
                   placeholder="Rameshwar Paswan"
-                  className="w-full bg-slate-950 border border-slate-700 rounded-xl p-2 text-xs text-white placeholder-slate-500"
+                  className="w-full bg-slate-50 border border-slate-200 rounded-xl p-2.5 text-slate-900"
                   required
                 />
               </div>
 
               <div className="grid grid-cols-2 gap-2">
                 <div>
-                  <label className="block text-xs font-semibold text-slate-300 mb-1">Mobile No.:</label>
+                  <label className="block font-semibold text-slate-700 mb-1">Mobile No.:</label>
                   <input
                     type="tel"
                     value={regMobile}
                     onChange={(e) => setRegMobile(e.target.value)}
                     placeholder="9876543210"
                     maxLength={10}
-                    className="w-full bg-slate-950 border border-slate-700 rounded-xl p-2 text-xs text-white"
+                    className="w-full bg-slate-50 border border-slate-200 rounded-xl p-2.5 text-slate-900"
                     required
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-semibold text-slate-300 mb-1">Category:</label>
+                  <label className="block font-semibold text-slate-700 mb-1">Category:</label>
                   <select
                     value={regCategory}
                     onChange={(e) => setRegCategory(e.target.value)}
-                    className="w-full bg-slate-950 border border-slate-700 rounded-xl p-2 text-xs text-white"
+                    className="w-full bg-slate-50 border border-slate-200 rounded-xl p-2.5 text-slate-900"
                   >
                     <option value="SC">Scheduled Caste (SC)</option>
                     <option value="ST">Scheduled Tribe (ST)</option>
@@ -192,40 +192,40 @@ export function CitizenAuthModal({ isOpen, onClose, onLoginSuccess }) {
 
               <div className="grid grid-cols-2 gap-2">
                 <div>
-                  <label className="block text-xs font-semibold text-slate-300 mb-1">State:</label>
+                  <label className="block font-semibold text-slate-700 mb-1">State:</label>
                   <input
                     type="text"
                     value={regState}
                     onChange={(e) => setRegState(e.target.value)}
-                    className="w-full bg-slate-950 border border-slate-700 rounded-xl p-2 text-xs text-white"
+                    className="w-full bg-slate-50 border border-slate-200 rounded-xl p-2.5 text-slate-900"
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-semibold text-slate-300 mb-1">District:</label>
+                  <label className="block font-semibold text-slate-700 mb-1">District:</label>
                   <input
                     type="text"
                     value={regDistrict}
                     onChange={(e) => setRegDistrict(e.target.value)}
-                    className="w-full bg-slate-950 border border-slate-700 rounded-xl p-2 text-xs text-white"
+                    className="w-full bg-slate-50 border border-slate-200 rounded-xl p-2.5 text-slate-900"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-slate-300 mb-1">Create Password:</label>
+                <label className="block font-semibold text-slate-700 mb-1">Create Password:</label>
                 <input
                   type="password"
                   value={regPassword}
                   onChange={(e) => setRegPassword(e.target.value)}
                   placeholder="Min 6 characters"
-                  className="w-full bg-slate-950 border border-slate-700 rounded-xl p-2 text-xs text-white"
+                  className="w-full bg-slate-50 border border-slate-200 rounded-xl p-2.5 text-slate-900"
                   required
                 />
               </div>
 
               <button
                 type="submit"
-                className="w-full py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs rounded-xl transition shadow-lg"
+                className="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs rounded-xl transition shadow-md"
               >
                 Register Citizen Account &rarr;
               </button>
@@ -267,44 +267,44 @@ export function OfficerAuthModal({ isOpen, onClose, onLoginSuccess }) {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm animate-fadeIn">
-      <div className="bg-slate-900 border border-slate-700 rounded-3xl w-full max-w-md shadow-2xl overflow-hidden text-slate-100">
-        <div className="p-5 border-b border-slate-800 flex items-center justify-between bg-gradient-to-r from-slate-900 via-red-950 to-slate-900">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm animate-fadeIn">
+      <div className="bg-white border border-slate-200 rounded-3xl w-full max-w-md shadow-2xl overflow-hidden text-slate-900">
+        <div className="p-5 border-b border-slate-100 flex items-center justify-between bg-slate-50">
           <div className="flex items-center space-x-2.5">
-            <div className="p-2 bg-red-600/30 border border-red-400/30 rounded-xl text-red-400">
+            <div className="p-2 bg-red-50 border border-red-100 rounded-xl text-red-600">
               <Shield className="w-5 h-5" />
             </div>
             <div>
-              <span className="text-[10px] font-bold uppercase tracking-wider text-red-300 bg-red-950/80 px-2 py-0.5 rounded border border-red-800">
+              <span className="text-[10px] font-bold uppercase tracking-wider text-red-700 bg-red-50 px-2 py-0.5 rounded border border-red-200">
                 Government Officials Only
               </span>
-              <h3 className="font-bold text-base text-white mt-0.5">Authorized Officer Authentication</h3>
+              <h3 className="font-extrabold text-base text-slate-900 mt-0.5">Authorized Officer Authentication</h3>
             </div>
           </div>
-          <button onClick={onClose} className="text-slate-400 hover:text-white p-1">
+          <button onClick={onClose} className="text-slate-400 hover:text-slate-700 p-1">
             <X className="w-5 h-5" />
           </button>
         </div>
 
-        <form onSubmit={handleSubmit} className="p-5 space-y-4 text-xs">
+        <form onSubmit={handleSubmit} className="p-6 space-y-4 text-xs">
           {/* Quick 1-Click Passkeys */}
-          <div className="p-3 bg-slate-950 rounded-xl border border-slate-800 space-y-2">
-            <div className="text-[11px] font-bold text-slate-400 flex items-center space-x-1">
-              <Zap className="w-3.5 h-3.5 text-yellow-400" />
+          <div className="p-3.5 bg-slate-50 rounded-2xl border border-slate-200 space-y-2">
+            <div className="text-[11px] font-bold text-slate-600 flex items-center space-x-1">
+              <Zap className="w-3.5 h-3.5 text-amber-500" />
               <span>1-Click Official Passkeys:</span>
             </div>
             <div className="flex flex-wrap gap-1.5">
               <button
                 type="button"
                 onClick={() => handleDemoFill('officer@nhaa.gov.in')}
-                className="px-2 py-1 bg-slate-800 hover:bg-slate-700 text-indigo-300 rounded-lg text-[11px] font-semibold border border-slate-700 transition"
+                className="px-2.5 py-1 bg-white hover:bg-slate-100 text-blue-700 rounded-lg text-[11px] font-semibold border border-slate-200 transition shadow-soft-sm"
               >
                 Nodal Officer (Rajesh Verma)
               </button>
               <button
                 type="button"
                 onClick={() => handleDemoFill('legal.officer@nhaa.gov.in')}
-                className="px-2 py-1 bg-slate-800 hover:bg-slate-700 text-amber-300 rounded-lg text-[11px] font-semibold border border-slate-700 transition"
+                className="px-2.5 py-1 bg-white hover:bg-slate-100 text-amber-800 rounded-lg text-[11px] font-semibold border border-slate-200 transition shadow-soft-sm"
               >
                 Special Prosecutor (Meenakshi)
               </button>
@@ -312,28 +312,28 @@ export function OfficerAuthModal({ isOpen, onClose, onLoginSuccess }) {
           </div>
 
           <div>
-            <label className="block font-semibold text-slate-300 mb-1">Officer ID / Gov Email:</label>
+            <label className="block font-semibold text-slate-700 mb-1">Officer ID / Gov Email:</label>
             <div className="relative">
               <input
                 type="text"
                 value={officerId}
                 onChange={(e) => setOfficerId(e.target.value)}
                 placeholder="officer@nhaa.gov.in"
-                className="w-full bg-slate-950 border border-slate-700 rounded-xl p-2.5 pl-8 text-white focus:outline-none focus:border-red-500"
+                className="w-full bg-slate-50 border border-slate-200 rounded-xl p-2.5 pl-8 text-slate-900 focus:outline-none focus:border-blue-500 focus:bg-white"
               />
               <Mail className="w-3.5 h-3.5 text-slate-400 absolute left-2.5 top-3" />
             </div>
           </div>
 
           <div>
-            <label className="block font-semibold text-slate-300 mb-1">Authentication Passkey:</label>
+            <label className="block font-semibold text-slate-700 mb-1">Authentication Passkey:</label>
             <div className="relative">
               <input
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="••••••••"
-                className="w-full bg-slate-950 border border-slate-700 rounded-xl p-2.5 pl-8 text-white focus:outline-none focus:border-red-500"
+                className="w-full bg-slate-50 border border-slate-200 rounded-xl p-2.5 pl-8 text-slate-900 focus:outline-none focus:border-blue-500 focus:bg-white"
               />
               <Lock className="w-3.5 h-3.5 text-slate-400 absolute left-2.5 top-3" />
             </div>
@@ -341,7 +341,7 @@ export function OfficerAuthModal({ isOpen, onClose, onLoginSuccess }) {
 
           <button
             type="submit"
-            className="w-full py-2.5 bg-gradient-to-r from-red-700 to-indigo-800 hover:from-red-600 hover:to-indigo-700 text-white font-bold text-xs rounded-xl transition shadow-lg"
+            className="w-full py-3 bg-slate-900 hover:bg-blue-600 text-white font-bold text-xs rounded-xl transition shadow-md"
           >
             Authorize &amp; Access Officer Dashboard &rarr;
           </button>
