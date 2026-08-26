@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { 
   ShieldAlert, Filter, Search, RefreshCw, Eye, AlertTriangle, 
-  Calendar, CheckCircle, Clock, ChevronRight, UserCheck, LifeBuoy, Sparkles, Scale, Shield 
+  Calendar, CheckCircle, Clock, ChevronRight, UserCheck, LifeBuoy, Sparkles, Scale, Shield, Lock 
 } from 'lucide-react';
 import StatsCards from '../components/StatsCards';
 import RiskChart from '../components/RiskChart';
 import { RiskBadge, StatusBadge, PriorityBadge } from '../components/Badge';
 import DisclaimerBanner from '../components/DisclaimerBanner';
-import { getDashboardStats, getOfficerComplaints, reseedDemoData } from '../api';
+import { useAuth } from '../context/AuthContext';
+import { getOfficerCases, getDashboardKPIs } from '../services/grievanceService';
+import { reseedDemoData } from '../api';
 
 const TRIGGER_WORDS = [
   'kill', 'dead', 'die', 'murder', 'threat', 'threaten', 'dhamki', 'harm',
@@ -25,7 +27,9 @@ function highlightTriggers(text) {
   return highlighted;
 }
 
-export default function OfficerDashboard({ onSelectComplaint, officerUser }) {
+export default function OfficerDashboard({ onSelectComplaint, onRequireOfficerAuth }) {
+  const { user, profile, isOfficer } = useAuth();
+
   const [stats, setStats] = useState(null);
   const [complaints, setComplaints] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -43,8 +47,8 @@ export default function OfficerDashboard({ onSelectComplaint, officerUser }) {
     setError(null);
     try {
       const [statsRes, complaintsRes] = await Promise.all([
-        getDashboardStats(),
-        getOfficerComplaints({
+        getDashboardKPIs(),
+        getOfficerCases({
           risk_level: riskFilter || undefined,
           category: categoryFilter || undefined,
           status: statusFilter || undefined,
@@ -84,6 +88,29 @@ export default function OfficerDashboard({ onSelectComplaint, officerUser }) {
     }
   };
 
+  // Route & Role Protection guard
+  if (!isOfficer && user) {
+    return (
+      <div className="max-w-3xl mx-auto px-4 py-16 text-center space-y-6">
+        <div className="p-4 bg-red-50 border border-red-200 text-red-800 rounded-3xl space-y-3">
+          <div className="w-12 h-12 bg-red-100 text-red-600 rounded-2xl flex items-center justify-center mx-auto">
+            <Lock className="w-6 h-6" />
+          </div>
+          <h2 className="text-xl font-bold">Access Denied: Authorized Officers Only</h2>
+          <p className="text-xs text-red-700 max-w-md mx-auto leading-relaxed">
+            Your current logged in account ({user.email}) has a <strong>citizen</strong> role and cannot access the NHAA Duty Control Room.
+          </p>
+          <button
+            onClick={() => onRequireOfficerAuth('officer')}
+            className="px-5 py-2.5 bg-slate-900 text-white font-bold text-xs rounded-xl shadow-md"
+          >
+            Sign In with Officer Credentials &rarr;
+          </button>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 space-y-6 text-slate-900">
       {/* Officer Dashboard Header */}
@@ -95,14 +122,14 @@ export default function OfficerDashboard({ onSelectComplaint, officerUser }) {
               <span>NHAA Duty Officer Console</span>
             </span>
             <span className="text-xs text-slate-400 font-mono">
-              {officerUser ? `${officerUser.name} (${officerUser.officer_id})` : 'Inspector Rajesh Verma (NHAA-OFF-101)'}
+              {profile?.full_name || 'Inspector Rajesh Verma'} ({profile?.badge_number || 'NHAA-OFF-101'})
             </span>
           </div>
           <h1 className="text-xl sm:text-2xl font-extrabold tracking-tight text-slate-900">
             NHAA Control Room
           </h1>
           <p className="text-xs text-slate-500 font-medium mt-0.5">
-            Real-time assistance, AI distress scoring and triage overview
+            Real-time assistance, AI distress scoring and triage overview &bull; Connected to Supabase PostgreSQL
           </p>
         </div>
 
@@ -146,7 +173,7 @@ export default function OfficerDashboard({ onSelectComplaint, officerUser }) {
                   : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
               }`}
             >
-              All Registered Cases ({stats?.total_complaints || 0})
+              All Registered Cases ({stats?.total_complaints || complaints.length})
             </button>
 
             <button
@@ -246,7 +273,7 @@ export default function OfficerDashboard({ onSelectComplaint, officerUser }) {
         {isLoading ? (
           <div className="p-12 text-center text-xs text-slate-500 animate-pulse space-y-2">
             <div className="w-8 h-8 border-2 border-blue-600 border-t-transparent rounded-full animate-spin mx-auto"></div>
-            <div>Loading real-time triage queue...</div>
+            <div>Loading real-time triage queue from Supabase...</div>
           </div>
         ) : complaints.length === 0 ? (
           <div className="p-12 text-center text-xs text-slate-500">
@@ -278,7 +305,7 @@ export default function OfficerDashboard({ onSelectComplaint, officerUser }) {
                     <td className="py-3.5 px-4 font-mono">
                       <div className="font-bold text-slate-900">{c.reference_id}</div>
                       <div className="text-[11px] text-slate-400 font-sans">
-                        {new Date(c.submitted_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                        {new Date(c.created_at || c.submitted_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                       </div>
                     </td>
 

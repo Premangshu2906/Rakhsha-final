@@ -1,22 +1,25 @@
 import React, { useState } from 'react';
 import { 
   Shield, PhoneCall, User, ShieldAlert, LifeBuoy, FileText, 
-  LayoutDashboard, LogOut, Menu, X, ArrowRight, Lock, Bell 
+  LayoutDashboard, LogOut, Menu, X, ArrowRight, Lock, Bell, Sparkles, PlusCircle 
 } from 'lucide-react';
+import { useAuth } from '../context/AuthContext';
 
 export default function Header({ 
   currentView, 
   setCurrentView, 
-  citizenUser, 
-  officerUser, 
   onOpenCitizenAuth, 
   onOpenOfficerAuth, 
-  onOpenCitizenDashboard,
-  onLogoutCitizen,
-  onLogoutOfficer,
   onReseedDemo 
 }) {
+  const { user, profile, isOfficer, isCitizen, signOut } = useAuth();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const handleSignOut = async () => {
+    await signOut();
+    setCurrentView('public');
+    setMobileMenuOpen(false);
+  };
 
   return (
     <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200/80 shadow-soft-sm text-slate-900 transition-all">
@@ -67,14 +70,14 @@ export default function Header({
           <div>
             <div className="flex items-center space-x-2">
               <h1 className="text-base sm:text-lg font-extrabold tracking-tight text-slate-900 flex items-center gap-1.5">
-                <span>NHAA 14566 &bull; RAKHSHA</span>
+                <span>NHAA 14566 &bull; RAKSHA</span>
                 <span className="text-[10px] font-bold px-2 py-0.5 bg-blue-50 text-blue-700 border border-blue-200 rounded-md uppercase tracking-wider">
                   National Portal
                 </span>
               </h1>
             </div>
             <p className="text-[11px] text-slate-500 font-medium">
-              AI Stress &amp; Trauma Assessment Module &bull; SC/ST (PoA) Act Safeguard
+              Supabase Auth + PostgreSQL RLS &bull; SC/ST (PoA) Act Safeguard
             </p>
           </div>
         </div>
@@ -93,17 +96,41 @@ export default function Header({
             <span>Complainant Portal</span>
           </button>
 
-          <button
-            onClick={() => setCurrentView('officer')}
-            className={`flex items-center space-x-1.5 px-3.5 py-2 rounded-xl text-xs font-bold transition-all ${
-              currentView === 'officer' || currentView === 'detail' || currentView === 'follow_up'
-                ? 'bg-slate-900 text-white shadow-soft-sm'
-                : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
-            }`}
-          >
-            <LayoutDashboard className="w-3.5 h-3.5" />
-            <span>Officer Dashboard</span>
-          </button>
+          {/* Citizen's "My Grievances" Tab */}
+          {user && !isOfficer && (
+            <button
+              onClick={() => setCurrentView('my_grievances')}
+              className={`flex items-center space-x-1.5 px-3.5 py-2 rounded-xl text-xs font-bold transition-all ${
+                currentView === 'my_grievances'
+                  ? 'bg-blue-50 text-blue-700 border border-blue-200/80 shadow-soft-sm'
+                  : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
+              }`}
+            >
+              <User className="w-3.5 h-3.5 text-blue-600" />
+              <span>My Grievances</span>
+            </button>
+          )}
+
+          {/* Officer Dashboard Link */}
+          {(isOfficer || !user) && (
+            <button
+              onClick={() => {
+                if (!isOfficer && !user) {
+                  onOpenOfficerAuth();
+                } else {
+                  setCurrentView('officer');
+                }
+              }}
+              className={`flex items-center space-x-1.5 px-3.5 py-2 rounded-xl text-xs font-bold transition-all ${
+                currentView === 'officer' || currentView === 'detail' || currentView === 'follow_up'
+                  ? 'bg-slate-900 text-white shadow-soft-sm'
+                  : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
+              }`}
+            >
+              <LayoutDashboard className="w-3.5 h-3.5" />
+              <span>Officer Dashboard</span>
+            </button>
+          )}
 
           <a
             href="#statutoryDocuments"
@@ -116,51 +143,67 @@ export default function Header({
 
         {/* Auth & Actions */}
         <div className="hidden sm:flex items-center space-x-2">
-          {/* Citizen Account Trigger */}
-          {citizenUser ? (
-            <button
-              onClick={onOpenCitizenDashboard}
-              className="flex items-center space-x-1.5 bg-slate-50 hover:bg-slate-100 text-slate-800 border border-slate-200 px-3 py-1.5 rounded-xl text-xs font-bold transition shadow-soft-sm"
-            >
-              <User className="w-3.5 h-3.5 text-blue-600" />
-              <span>👤 {citizenUser.name.split(' ')[0]}</span>
-            </button>
-          ) : (
-            <button
-              onClick={onOpenCitizenAuth}
-              className="flex items-center space-x-1.5 bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 px-3 py-1.5 rounded-xl text-xs font-semibold transition"
-            >
-              <User className="w-3.5 h-3.5 text-slate-500" />
-              <span>Citizen Login</span>
-            </button>
+          {/* If Logged in as Citizen */}
+          {user && !isOfficer && (
+            <div className="flex items-center space-x-1.5">
+              <button
+                onClick={() => setCurrentView('my_grievances')}
+                className="flex items-center space-x-1.5 bg-slate-50 hover:bg-slate-100 text-slate-800 border border-slate-200 px-3 py-1.5 rounded-xl text-xs font-bold transition shadow-soft-sm"
+              >
+                <User className="w-3.5 h-3.5 text-blue-600" />
+                <span>👤 {profile?.full_name?.split(' ')[0] || user.email?.split('@')[0]}</span>
+              </button>
+
+              <button
+                onClick={handleSignOut}
+                title="Sign out of account"
+                className="p-2 text-slate-400 hover:text-red-600 rounded-xl hover:bg-red-50 transition"
+              >
+                <LogOut className="w-3.5 h-3.5" />
+              </button>
+            </div>
           )}
 
-          {/* Officer Login Trigger */}
-          {officerUser ? (
-            <div className="flex items-center space-x-1">
+          {/* If Logged in as Officer */}
+          {user && isOfficer && (
+            <div className="flex items-center space-x-1.5">
               <button
                 onClick={() => setCurrentView('officer')}
                 className="flex items-center space-x-1.5 bg-slate-900 text-white px-3 py-1.5 rounded-xl text-xs font-bold shadow-soft-sm"
               >
                 <Shield className="w-3.5 h-3.5 text-amber-400" />
-                <span>Duty Console</span>
+                <span>Officer Console</span>
               </button>
+
               <button
-                onClick={onLogoutOfficer}
+                onClick={handleSignOut}
                 title="Sign out of Officer Console"
-                className="p-1.5 text-slate-400 hover:text-red-600 rounded-lg"
+                className="p-2 text-slate-400 hover:text-red-600 rounded-xl hover:bg-red-50 transition"
               >
                 <LogOut className="w-3.5 h-3.5" />
               </button>
             </div>
-          ) : (
-            <button
-              onClick={onOpenOfficerAuth}
-              className="flex items-center space-x-1.5 bg-slate-900 hover:bg-slate-800 text-white px-3 py-1.5 rounded-xl text-xs font-bold transition shadow-soft-sm"
-            >
-              <Lock className="w-3.5 h-3.5 text-amber-300" />
-              <span>Officer Portal</span>
-            </button>
+          )}
+
+          {/* If Not Logged In */}
+          {!user && (
+            <div className="flex items-center space-x-2">
+              <button
+                onClick={onOpenCitizenAuth}
+                className="flex items-center space-x-1.5 bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 px-3.5 py-1.5 rounded-xl text-xs font-semibold transition shadow-soft-sm"
+              >
+                <User className="w-3.5 h-3.5 text-blue-600" />
+                <span>Citizen Login</span>
+              </button>
+
+              <button
+                onClick={onOpenOfficerAuth}
+                className="flex items-center space-x-1.5 bg-slate-900 hover:bg-slate-800 text-white px-3.5 py-1.5 rounded-xl text-xs font-bold transition shadow-soft-sm"
+              >
+                <Lock className="w-3.5 h-3.5 text-amber-300" />
+                <span>Officer Login</span>
+              </button>
+            </div>
           )}
         </div>
 
@@ -186,44 +229,52 @@ export default function Header({
             <span>Complainant Portal</span>
           </button>
 
-          <button
-            onClick={() => { setCurrentView('officer'); setMobileMenuOpen(false); }}
-            className="w-full text-left py-2.5 px-3 rounded-xl font-bold flex items-center space-x-2 text-slate-800 hover:bg-slate-50"
-          >
-            <LayoutDashboard className="w-4 h-4 text-indigo-600" />
-            <span>Officer Dashboard</span>
-          </button>
+          {user && !isOfficer && (
+            <button
+              onClick={() => { setCurrentView('my_grievances'); setMobileMenuOpen(false); }}
+              className="w-full text-left py-2.5 px-3 rounded-xl font-bold flex items-center space-x-2 text-slate-800 hover:bg-slate-50"
+            >
+              <User className="w-4 h-4 text-blue-600" />
+              <span>My Grievances ({profile?.full_name || 'Citizen'})</span>
+            </button>
+          )}
+
+          {(isOfficer || !user) && (
+            <button
+              onClick={() => { 
+                if (!isOfficer && !user) onOpenOfficerAuth();
+                else setCurrentView('officer'); 
+                setMobileMenuOpen(false); 
+              }}
+              className="w-full text-left py-2.5 px-3 rounded-xl font-bold flex items-center space-x-2 text-slate-800 hover:bg-slate-50"
+            >
+              <LayoutDashboard className="w-4 h-4 text-indigo-600" />
+              <span>Officer Dashboard</span>
+            </button>
+          )}
 
           <div className="pt-3 border-t border-slate-100 flex flex-col space-y-2">
-            {!citizenUser ? (
-              <button
-                onClick={() => { onOpenCitizenAuth(); setMobileMenuOpen(false); }}
-                className="w-full py-2 px-3 bg-blue-50 text-blue-700 font-bold rounded-xl text-center"
-              >
-                Citizen Login &amp; Tracking
-              </button>
+            {!user ? (
+              <>
+                <button
+                  onClick={() => { onOpenCitizenAuth(); setMobileMenuOpen(false); }}
+                  className="w-full py-2.5 px-3 bg-blue-50 text-blue-700 font-bold rounded-xl text-center"
+                >
+                  Citizen Login &amp; Registration
+                </button>
+                <button
+                  onClick={() => { onOpenOfficerAuth(); setMobileMenuOpen(false); }}
+                  className="w-full py-2.5 px-3 bg-slate-900 text-white font-bold rounded-xl text-center"
+                >
+                  Authorized Officer Login
+                </button>
+              </>
             ) : (
               <button
-                onClick={() => { onOpenCitizenDashboard(); setMobileMenuOpen(false); }}
-                className="w-full py-2 px-3 bg-slate-100 text-slate-800 font-bold rounded-xl text-center"
+                onClick={handleSignOut}
+                className="w-full py-2.5 px-3 bg-red-50 text-red-700 font-bold rounded-xl text-center"
               >
-                👤 My Filed Dockets ({citizenUser.name})
-              </button>
-            )}
-
-            {!officerUser ? (
-              <button
-                onClick={() => { onOpenOfficerAuth(); setMobileMenuOpen(false); }}
-                className="w-full py-2 px-3 bg-slate-900 text-white font-bold rounded-xl text-center"
-              >
-                Authorized Officer Portal
-              </button>
-            ) : (
-              <button
-                onClick={() => { onLogoutOfficer(); setMobileMenuOpen(false); }}
-                className="w-full py-2 px-3 bg-red-50 text-red-700 font-bold rounded-xl text-center"
-              >
-                Log Out Officer
+                Sign Out ({user.email})
               </button>
             )}
           </div>

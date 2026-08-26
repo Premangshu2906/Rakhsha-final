@@ -5,30 +5,22 @@ import AssessmentResultPage from './pages/AssessmentResultPage';
 import OfficerDashboard from './pages/OfficerDashboard';
 import CaseDetailPage from './pages/CaseDetailPage';
 import FollowUpMonitoringPage from './pages/FollowUpMonitoringPage';
+import MyGrievancesPage from './pages/MyGrievancesPage';
 import { CitizenAuthModal, OfficerAuthModal } from './components/AuthModals';
-import CitizenDashboardModal from './components/CitizenDashboardModal';
+import { AuthProvider, useAuth } from './context/AuthContext';
 import { reseedDemoData } from './api';
 
-export default function App() {
-  const [currentView, setCurrentView] = useState('public'); // 'public', 'officer', 'follow_up', 'result', 'detail'
+function MainApp() {
+  const { user, profile, isOfficer, isCitizen } = useAuth();
+
+  const [currentView, setCurrentView] = useState('public'); // 'public', 'result', 'officer', 'detail', 'follow_up', 'my_grievances'
   const [submittedComplaint, setSubmittedComplaint] = useState(null);
   const [selectedComplaintId, setSelectedComplaintId] = useState(null);
 
-  // Authentication states
-  const [citizenUser, setCitizenUser] = useState(() => {
-    const saved = localStorage.getItem('nhaa_citizen_user');
-    return saved ? JSON.parse(saved) : null;
-  });
-
-  const [officerUser, setOfficerUser] = useState(() => {
-    const saved = localStorage.getItem('nhaa_officer_user');
-    return saved ? JSON.parse(saved) : null;
-  });
-
-  // Modal open states
-  const [isCitizenAuthOpen, setIsCitizenAuthOpen] = useState(false);
-  const [isOfficerAuthOpen, setIsOfficerAuthOpen] = useState(false);
-  const [isCitizenDashboardOpen, setIsCitizenDashboardOpen] = useState(false);
+  // Modal open states & redirect targets
+  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
+  const [authInitialMode, setAuthInitialMode] = useState('login');
+  const [authRedirectTarget, setAuthRedirectTarget] = useState(null);
 
   const handleComplaintSubmitted = (complaint) => {
     setSubmittedComplaint(complaint);
@@ -42,30 +34,41 @@ export default function App() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  const handleRequireAuth = (target = 'grievance') => {
+    setAuthRedirectTarget(target);
+    setAuthInitialMode('login');
+    setIsAuthModalOpen(true);
+  };
+
+  const handleAuthSuccessRedirect = (target) => {
+    setIsAuthModalOpen(false);
+    if (target === 'officer') {
+      setCurrentView('officer');
+    } else if (target === 'my_grievances') {
+      setCurrentView('my_grievances');
+    } else {
+      setCurrentView('public');
+      // Scroll to grievance form
+      setTimeout(() => {
+        const formElement = document.querySelector('form');
+        if (formElement) {
+          formElement.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+    }
+  };
+
   const handleReseedDemo = async () => {
     if (window.confirm('Reset and seed database with standard SIH evaluation cases?')) {
       try {
         await reseedDemoData();
-        alert('Database successfully re-seeded with SIH demo cases!');
+        alert('Database successfully re-seeded with realistic NHAA demo cases!');
         if (currentView === 'officer' || currentView === 'detail') {
           setCurrentView('officer');
         }
       } catch (err) {
         alert(`Reseed failed: ${err.message}`);
       }
-    }
-  };
-
-  const handleLogoutCitizen = () => {
-    setCitizenUser(null);
-    localStorage.removeItem('nhaa_citizen_user');
-  };
-
-  const handleLogoutOfficer = () => {
-    setOfficerUser(null);
-    localStorage.removeItem('nhaa_officer_user');
-    if (currentView === 'officer' || currentView === 'detail') {
-      setCurrentView('public');
     }
   };
 
@@ -79,13 +82,16 @@ export default function App() {
           setSelectedComplaintId(null);
           window.scrollTo({ top: 0, behavior: 'smooth' });
         }}
-        citizenUser={citizenUser}
-        officerUser={officerUser}
-        onOpenCitizenAuth={() => setIsCitizenAuthOpen(true)}
-        onOpenOfficerAuth={() => setIsOfficerAuthOpen(true)}
-        onOpenCitizenDashboard={() => setIsCitizenDashboardOpen(true)}
-        onLogoutCitizen={handleLogoutCitizen}
-        onLogoutOfficer={handleLogoutOfficer}
+        onOpenCitizenAuth={() => {
+          setAuthInitialMode('login');
+          setAuthRedirectTarget(null);
+          setIsAuthModalOpen(true);
+        }}
+        onOpenOfficerAuth={() => {
+          setAuthInitialMode('login');
+          setAuthRedirectTarget('officer');
+          setIsAuthModalOpen(true);
+        }}
         onReseedDemo={handleReseedDemo}
       />
 
@@ -94,8 +100,19 @@ export default function App() {
         {currentView === 'public' && (
           <PublicPortal
             onSubmitSuccess={handleComplaintSubmitted}
-            citizenUser={citizenUser}
-            onOpenCitizenAuth={() => setIsCitizenAuthOpen(true)}
+            onRequireAuth={handleRequireAuth}
+          />
+        )}
+
+        {currentView === 'my_grievances' && (
+          <MyGrievancesPage
+            onNewGrievance={() => {
+              setCurrentView('public');
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+            onSelectGrievance={(id) => {
+              // View detail modal
+            }}
           />
         )}
 
@@ -107,17 +124,6 @@ export default function App() {
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
             onViewOfficer={() => {
-              if (!officerUser) {
-                const defaultOff = {
-                  name: 'Rajesh Kumar Verma',
-                  officer_id: 'NHAA-OFF-101',
-                  email: 'officer@nhaa.gov.in',
-                  designation: 'Senior Nodal Officer (SC/ST Protection Cell)',
-                  department: 'Ministry of Social Justice and Empowerment'
-                };
-                setOfficerUser(defaultOff);
-                localStorage.setItem('nhaa_officer_user', JSON.stringify(defaultOff));
-              }
               setCurrentView('officer');
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
@@ -127,7 +133,10 @@ export default function App() {
         {currentView === 'officer' && (
           <OfficerDashboard
             onSelectComplaint={handleSelectComplaint}
-            officerUser={officerUser}
+            onRequireOfficerAuth={(target) => {
+              setAuthRedirectTarget(target);
+              setIsAuthModalOpen(true);
+            }}
           />
         )}
 
@@ -146,39 +155,13 @@ export default function App() {
         )}
       </main>
 
-      {/* Modals */}
+      {/* Authentication Modal */}
       <CitizenAuthModal
-        isOpen={isCitizenAuthOpen}
-        onClose={() => setIsCitizenAuthOpen(false)}
-        onLoginSuccess={(user) => {
-          setCitizenUser(user);
-          setIsCitizenDashboardOpen(true);
-        }}
-      />
-
-      <OfficerAuthModal
-        isOpen={isOfficerAuthOpen}
-        onClose={() => setIsOfficerAuthOpen(false)}
-        onLoginSuccess={(officer) => {
-          setOfficerUser(officer);
-          setCurrentView('officer');
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        }}
-      />
-
-      <CitizenDashboardModal
-        isOpen={isCitizenDashboardOpen}
-        citizen={citizenUser}
-        onClose={() => setIsCitizenDashboardOpen(false)}
-        onLogout={handleLogoutCitizen}
-        onNewReport={() => {
-          setCurrentView('public');
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        }}
-        onTrackCase={(refId) => {
-          setCurrentView('public');
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        }}
+        isOpen={isAuthModalOpen}
+        onClose={() => setIsAuthModalOpen(false)}
+        initialMode={authInitialMode}
+        redirectTarget={authRedirectTarget}
+        onSuccessRedirect={handleAuthSuccessRedirect}
       />
 
       {/* Premium Government Digital Platform Footer */}
@@ -187,7 +170,7 @@ export default function App() {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div className="space-y-3">
               <div className="text-white font-extrabold text-base flex items-center space-x-2">
-                <span>🛡️ NHAA 14566 &bull; RAKHSHA</span>
+                <span>🛡️ NHAA 14566 &bull; RAKSHA</span>
               </div>
               <p className="text-slate-400 text-xs leading-relaxed">
                 National Helpline Against Atrocities, Ministry of Social Justice and Empowerment, Government of India.
@@ -218,12 +201,24 @@ export default function App() {
             </div>
 
             <div>
-              <h4 className="text-white font-bold mb-3">Portal Access</h4>
+              <h4 className="text-white font-bold mb-3">Secure Portal Access</h4>
               <div className="flex flex-col space-y-2 text-slate-400">
-                <button onClick={() => setIsCitizenAuthOpen(true)} className="text-left hover:text-white transition">
-                  &bull; Citizen Login &amp; Tracking
+                <button 
+                  onClick={() => {
+                    if (user && !isOfficer) setCurrentView('my_grievances');
+                    else handleRequireAuth('my_grievances');
+                  }} 
+                  className="text-left hover:text-white transition"
+                >
+                  &bull; Citizen Grievance Dashboard
                 </button>
-                <button onClick={() => setIsOfficerAuthOpen(true)} className="text-left hover:text-white transition">
+                <button 
+                  onClick={() => {
+                    if (isOfficer) setCurrentView('officer');
+                    else handleRequireAuth('officer');
+                  }} 
+                  className="text-left hover:text-white transition"
+                >
                   &bull; Authorized Duty Officer Console
                 </button>
                 <button onClick={handleReseedDemo} className="text-left hover:text-amber-400 transition">
@@ -238,11 +233,19 @@ export default function App() {
               &copy; 2026 Ministry of Social Justice and Empowerment, Government of India. All rights reserved.
             </div>
             <div>
-              Confidential AI Decision Support Prototype &bull; WCAG 2.1 AA Compliant
+              Supabase Auth + Row Level Security &bull; WCAG 2.1 AA Compliant
             </div>
           </div>
         </div>
       </footer>
     </div>
+  );
+}
+
+export default function App() {
+  return (
+    <AuthProvider>
+      <MainApp />
+    </AuthProvider>
   );
 }

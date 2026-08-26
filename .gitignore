@@ -27,8 +27,17 @@ backend/tests/__pycache__/
 backend/nhaa_stress.db
 backend/test_nhaa.db
 
-# Environment Variables & Logs
+# Environment Variables & Secrets (CRITICAL)
 .env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+frontend/.env
+frontend/.env.local
+backend/.env
+
+# Logs
 *.log
 *.tgz
 npm-debug.log*

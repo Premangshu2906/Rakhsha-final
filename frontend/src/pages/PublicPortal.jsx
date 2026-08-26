@@ -7,7 +7,8 @@ import {
 import VoiceRecorder from '../components/VoiceRecorder';
 import DisclaimerBanner from '../components/DisclaimerBanner';
 import StatutoryDocuments from '../components/StatutoryDocuments';
-import { submitComplaint, trackComplaint } from '../api';
+import { useAuth } from '../context/AuthContext';
+import { createGrievance, trackGrievancePublic } from '../services/grievanceService';
 
 const INDIAN_STATES = [
   'Uttar Pradesh', 'Maharashtra', 'Delhi NCR', 'Karnataka', 'Tamil Nadu',
@@ -23,15 +24,19 @@ const CATEGORIES = [
   { id: 'OTHER', label: 'Land Dispossession / General Grievance', sub: 'Magistrate Relief Claim' }
 ];
 
-export default function PublicPortal({ onSubmitSuccess, citizenUser, onOpenCitizenAuth }) {
+export default function PublicPortal({ 
+  onSubmitSuccess, 
+  onRequireAuth 
+}) {
+  const { user, profile } = useAuth();
   const formRef = useRef(null);
   const trackRef = useRef(null);
 
   const [complainantType, setComplainantType] = useState('VICTIM');
-  const [name, setName] = useState(citizenUser ? citizenUser.name : '');
-  const [phone, setPhone] = useState(citizenUser ? citizenUser.mobile : '');
-  const [email, setEmail] = useState('');
-  const [stateRegion, setStateRegion] = useState(citizenUser ? citizenUser.state || 'Uttar Pradesh' : 'Uttar Pradesh');
+  const [name, setName] = useState(profile?.full_name || '');
+  const [phone, setPhone] = useState(profile?.phone || '');
+  const [email, setEmail] = useState(user?.email || '');
+  const [stateRegion, setStateRegion] = useState(profile?.state_region || 'Uttar Pradesh');
   const [category, setCategory] = useState('DOMESTIC_ABUSE');
   const [inputMode, setInputMode] = useState('VOICE');
   const [inputText, setInputText] = useState('');
@@ -45,15 +50,21 @@ export default function PublicPortal({ onSubmitSuccess, citizenUser, onOpenCitiz
   const [trackingError, setTrackingError] = useState(null);
 
   useEffect(() => {
-    if (citizenUser) {
-      setName(citizenUser.name);
-      setPhone(citizenUser.mobile);
-      if (citizenUser.state) setStateRegion(citizenUser.state);
+    if (profile || user) {
+      if (profile?.full_name) setName(profile.full_name);
+      if (profile?.phone) setPhone(profile.phone);
+      if (user?.email) setEmail(user.email);
+      if (profile?.state_region) setStateRegion(profile.state_region);
     }
-  }, [citizenUser]);
+  }, [profile, user]);
 
-  const scrollToForm = () => {
-    formRef.current?.scrollIntoView({ behavior: 'smooth' });
+  const handleGetHelpClick = () => {
+    if (!user) {
+      // Trigger protected redirect flow: redirect to login with intended target 'grievance'
+      onRequireAuth('grievance');
+    } else {
+      formRef.current?.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   const scrollToTrack = () => {
@@ -64,6 +75,12 @@ export default function PublicPortal({ onSubmitSuccess, citizenUser, onOpenCitiz
     e.preventDefault();
     setErrorMsg(null);
 
+    // If user is not logged in, prompt authentication with redirect back to grievance
+    if (!user && complainantType !== 'ANONYMOUS') {
+      onRequireAuth('grievance');
+      return;
+    }
+
     if (!inputText || inputText.trim().length < 5) {
       setErrorMsg('Please describe what happened or record your voice statement before submitting.');
       return;
@@ -73,16 +90,16 @@ export default function PublicPortal({ onSubmitSuccess, citizenUser, onOpenCitiz
     try {
       const payload = {
         complainant_type: complainantType,
-        complainant_name: complainantType !== 'ANONYMOUS' ? (name || 'Citizen Complainant') : 'Anonymous',
-        complainant_phone: complainantType !== 'ANONYMOUS' ? phone : '',
-        complainant_email: complainantType !== 'ANONYMOUS' ? email : '',
+        complainant_name: complainantType !== 'ANONYMOUS' ? (name || profile?.full_name || 'Citizen Complainant') : 'Anonymous',
+        complainant_phone: complainantType !== 'ANONYMOUS' ? (phone || profile?.phone || '') : '',
+        complainant_email: complainantType !== 'ANONYMOUS' ? (email || user?.email || '') : '',
         state_region: stateRegion,
         category: category,
         input_mode: inputMode,
         raw_input_text: inputText
       };
 
-      const result = await submitComplaint(payload);
+      const result = await createGrievance(payload, user, profile);
       onSubmitSuccess(result);
     } catch (err) {
       setErrorMsg(err.message || 'Submission failed. Please try again.');
@@ -102,7 +119,7 @@ export default function PublicPortal({ onSubmitSuccess, citizenUser, onOpenCitiz
     }
 
     try {
-      const res = await trackComplaint(searchRefId.trim(), searchToken.trim());
+      const res = await trackGrievancePublic(searchRefId.trim(), searchToken.trim());
       setTrackedCase(res);
     } catch (err) {
       setTrackingError(err.message || 'Docket reference ID not found.');
@@ -133,10 +150,10 @@ export default function PublicPortal({ onSubmitSuccess, citizenUser, onOpenCitiz
             {/* Primary & Secondary Action Buttons */}
             <div className="flex flex-wrap items-center gap-3 pt-2">
               <button
-                onClick={scrollToForm}
-                className="px-6 py-3.5 bg-blue-600 hover:bg-blue-700 active:scale-95 text-white font-bold text-sm rounded-xl shadow-md hover:shadow-lg transition-all flex items-center space-x-2"
+                onClick={handleGetHelpClick}
+                className="px-6 py-3.5 bg-blue-600 hover:bg-blue-700 active:scale-95 text-white font-bold text-sm rounded-xl shadow-md hover:shadow-lg transition-all flex items-center space-x-2 cursor-pointer"
               >
-                <span>Get Help Now</span>
+                <span>Write a Grievance &bull; Get Help Now</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
 
@@ -168,7 +185,6 @@ export default function PublicPortal({ onSubmitSuccess, citizenUser, onOpenCitiz
 
           {/* Hero Right Visual: Elegant Abstract Illustration & Floating UI Cards */}
           <div className="lg:col-span-5 relative flex items-center justify-center">
-            {/* Center Human Reassurance Card */}
             <div className="w-full max-w-sm bg-white/90 backdrop-blur-md border border-slate-200 rounded-3xl p-6 shadow-soft-lg space-y-4">
               <div className="flex items-center justify-between pb-3 border-b border-slate-100">
                 <div className="flex items-center space-x-2.5">
@@ -215,7 +231,7 @@ export default function PublicPortal({ onSubmitSuccess, citizenUser, onOpenCitiz
         </div>
       </section>
 
-      {/* 2. Emergency Section - Clean, Calm & Impossible to Miss */}
+      {/* 2. Emergency Section */}
       <section className="bg-gradient-to-r from-red-50 via-rose-50 to-amber-50 border border-red-200/80 rounded-3xl p-6 sm:p-8 shadow-soft-sm">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-start space-x-4">
@@ -233,7 +249,6 @@ export default function PublicPortal({ onSubmitSuccess, citizenUser, onOpenCitiz
             </div>
           </div>
 
-          {/* Emergency Helpline Cards */}
           <div className="flex flex-wrap items-center gap-3 w-full md:w-auto">
             <a
               href="tel:14566"
@@ -278,14 +293,30 @@ export default function PublicPortal({ onSubmitSuccess, citizenUser, onOpenCitiz
               <div>
                 <span className="text-xs font-bold uppercase tracking-wider text-blue-600">Guided Filing</span>
                 <h2 className="text-xl sm:text-2xl font-extrabold text-slate-900 mt-0.5">
-                  File Incident Complaint
+                  File Incident Grievance Docket
                 </h2>
               </div>
               <div className="text-xs text-slate-400 font-medium hidden sm:flex items-center space-x-1">
                 <Lock className="w-3.5 h-3.5 text-slate-500" />
-                <span>Encrypted Submission</span>
+                <span>Supabase PostgreSQL + RLS Protected</span>
               </div>
             </div>
+
+            {/* If user is not logged in, show helpful banner */}
+            {!user && (
+              <div className="p-4 bg-blue-50/70 border border-blue-200 rounded-2xl text-xs text-blue-900 flex items-center justify-between">
+                <span>
+                  <strong>Tip:</strong> Sign in with your citizen account to automatically link and track this grievance in your personal dashboard.
+                </span>
+                <button
+                  type="button"
+                  onClick={() => onRequireAuth('grievance')}
+                  className="px-3 py-1.5 bg-blue-600 text-white font-bold rounded-xl text-[11px] shadow-soft-sm ml-2 flex-shrink-0"
+                >
+                  Sign In / Register &rarr;
+                </button>
+              </div>
+            )}
 
             {errorMsg && (
               <div className="p-4 bg-red-50 border border-red-200 rounded-2xl text-xs text-red-800 flex items-center space-x-3">
@@ -442,12 +473,12 @@ export default function PublicPortal({ onSubmitSuccess, citizenUser, onOpenCitiz
               {isSubmitting ? (
                 <span className="flex items-center space-x-2 animate-pulse">
                   <Sparkles className="w-4 h-4" />
-                  <span>Running Real-Time AI Distress Assessment...</span>
+                  <span>Running Real-Time AI Distress Assessment &bull; Saving to Database...</span>
                 </span>
               ) : (
                 <>
                   <Send className="w-4 h-4" />
-                  <span>Submit Complaint for Immediate AI Triage &rarr;</span>
+                  <span>Submit Grievance for Immediate AI Triage &rarr;</span>
                 </>
               )}
             </button>
@@ -503,7 +534,7 @@ export default function PublicPortal({ onSubmitSuccess, citizenUser, onOpenCitiz
                   <div>Category: <strong>{trackedCase.category}</strong></div>
                   <div>Region: <strong>{trackedCase.state_region}</strong></div>
                   <div className="text-slate-400">
-                    Logged: {new Date(trackedCase.submitted_at).toLocaleString()}
+                    Logged: {new Date(trackedCase.created_at || trackedCase.submitted_at).toLocaleString()}
                   </div>
                 </div>
 

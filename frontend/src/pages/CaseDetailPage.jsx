@@ -7,9 +7,17 @@ import { RiskBadge, StatusBadge, PriorityBadge } from '../components/Badge';
 import AIAssessmentCard from '../components/AIAssessmentCard';
 import AuditTrailView from '../components/AuditTrailView';
 import DisclaimerBanner from '../components/DisclaimerBanner';
-import { getComplaintDetail, updateComplaintStatus, scheduleFollowUp, getAuditTrail } from '../api';
+import { useAuth } from '../context/AuthContext';
+import { 
+  getGrievanceDetail, 
+  updateGrievanceStatus, 
+  scheduleCaseFollowUp, 
+  getCaseAuditTrail 
+} from '../services/grievanceService';
 
 export default function CaseDetailPage({ complaintId, onBack }) {
+  const { user, profile, isOfficer } = useAuth();
+
   const [caseData, setCaseData] = useState(null);
   const [auditLogs, setAuditLogs] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -34,8 +42,8 @@ export default function CaseDetailPage({ complaintId, onBack }) {
     setError(null);
     try {
       const [data, logs] = await Promise.all([
-        getComplaintDetail(complaintId),
-        getAuditTrail(complaintId)
+        getGrievanceDetail(complaintId),
+        getCaseAuditTrail(complaintId)
       ]);
       setCaseData(data);
       setAuditLogs(logs);
@@ -69,10 +77,10 @@ export default function CaseDetailPage({ complaintId, onBack }) {
     };
 
     try {
-      const updated = await updateComplaintStatus(complaintId, updatePayload);
+      const updated = await updateGrievanceStatus(complaintId, updatePayload, profile || user);
       setCaseData(updated);
-      setUpdateMsg('Case status, risk level, and officer notes updated successfully.');
-      const logs = await getAuditTrail(complaintId);
+      setUpdateMsg('Case status, risk classification, and officer notes updated in database.');
+      const logs = await getCaseAuditTrail(complaintId);
       setAuditLogs(logs);
     } catch (err) {
       setUpdateMsg(`Error: ${err.message}`);
@@ -87,10 +95,10 @@ export default function CaseDetailPage({ complaintId, onBack }) {
 
     setIsSchedulingFollowUp(true);
     try {
-      await scheduleFollowUp(complaintId, {
+      await scheduleCaseFollowUp(complaintId, {
         scheduled_date: new Date(followUpDate).toISOString(),
         notes: followUpNotes
-      });
+      }, profile || user);
       alert('Follow-up monitoring check scheduled successfully!');
       setFollowUpNotes('');
       fetchCaseDetails();
@@ -105,7 +113,7 @@ export default function CaseDetailPage({ complaintId, onBack }) {
     return (
       <div className="max-w-7xl mx-auto px-4 py-16 text-center text-slate-500 text-xs space-y-3 animate-pulse">
         <div className="w-8 h-8 border-2 border-blue-600 border-t-transparent rounded-full animate-spin mx-auto"></div>
-        <div>Loading comprehensive case dossier &amp; AI triage logs...</div>
+        <div>Loading comprehensive case dossier &amp; AI triage logs from Supabase...</div>
       </div>
     );
   }
@@ -136,7 +144,7 @@ export default function CaseDetailPage({ complaintId, onBack }) {
         </button>
 
         <div className="flex items-center space-x-2">
-          <span className="text-xs text-slate-500 font-mono">Case #{caseData.id}</span>
+          <span className="text-xs text-slate-500 font-mono">Ref #{caseData.reference_id}</span>
           <RiskBadge level={caseData.risk_level} score={caseData.risk_score} />
           <StatusBadge status={caseData.status} />
         </div>
@@ -149,7 +157,7 @@ export default function CaseDetailPage({ complaintId, onBack }) {
             <div className="flex items-center space-x-2 text-xs font-semibold text-slate-500 mb-1">
               <span>Ref ID: <strong className="font-mono text-blue-700">{caseData.reference_id}</strong></span>
               <span>&bull;</span>
-              <span>Logged: {new Date(caseData.submitted_at).toLocaleString()}</span>
+              <span>Logged: {new Date(caseData.created_at || caseData.submitted_at).toLocaleString()}</span>
             </div>
             <h2 className="text-xl sm:text-2xl font-extrabold text-slate-900">
               Category: {caseData.category.replace(/_/g, ' ')}
@@ -163,7 +171,7 @@ export default function CaseDetailPage({ complaintId, onBack }) {
             <span className="text-[11px] text-slate-400 font-medium">Assigned Duty Officer</span>
             <span className="text-xs font-bold text-slate-900 flex items-center space-x-1.5 mt-0.5">
               <UserCheck className="w-4 h-4 text-blue-600" />
-              <span>Inspector Rajesh Verma (SC/ST Cell)</span>
+              <span>{profile?.full_name || 'Inspector Rajesh Verma (SC/ST Cell)'}</span>
             </span>
           </div>
         </div>
@@ -331,24 +339,6 @@ export default function CaseDetailPage({ complaintId, onBack }) {
             Schedule
           </button>
         </form>
-
-        {/* Existing Follow-ups */}
-        {caseData.follow_ups?.length > 0 && (
-          <div className="mt-4 space-y-2 pt-2 border-t border-slate-100">
-            <span className="text-xs font-semibold text-slate-500 block">Scheduled Tasks:</span>
-            {caseData.follow_ups.map((f) => (
-              <div key={f.id} className="p-3 bg-slate-50 rounded-xl border border-slate-200 text-xs flex justify-between items-center">
-                <div>
-                  <strong className="text-slate-800">{new Date(f.scheduled_date).toLocaleString()}</strong>
-                  <span className="text-slate-600 ml-2">&bull; {f.notes || 'Routine check'}</span>
-                </div>
-                <span className="bg-amber-100 text-amber-800 text-[10px] px-2 py-0.5 rounded font-bold">
-                  {f.status}
-                </span>
-              </div>
-            ))}
-          </div>
-        )}
       </div>
 
       {/* Audit Trail Timeline View Component */}
