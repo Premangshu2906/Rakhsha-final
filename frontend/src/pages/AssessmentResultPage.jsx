@@ -1,5 +1,8 @@
 import React from 'react';
-import { CheckCircle2, ShieldAlert, PhoneCall, Copy, ArrowLeft, FileText, Lock } from 'lucide-react';
+import { 
+  CheckCircle2, ShieldAlert, PhoneCall, Copy, ArrowLeft, FileText, 
+  Lock, Printer, Download, Sparkles, Scale, AlertOctagon, UserCheck 
+} from 'lucide-react';
 import { RiskBadge, PriorityBadge } from '../components/Badge';
 import DisclaimerBanner from '../components/DisclaimerBanner';
 
@@ -12,26 +15,33 @@ export default function AssessmentResultPage({ complaint, onReset, onViewOfficer
   const riskScore = complaint.risk_score;
   const priority = complaint.priority;
 
-  const copyToClipboard = (text) => {
+  const copyToClipboard = (text, label) => {
     navigator.clipboard.writeText(text);
-    alert(`Copied to clipboard: ${text}`);
+    alert(`Copied ${label} to clipboard: ${text}`);
+  };
+
+  const handlePrintReceipt = () => {
+    window.print();
   };
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-8">
+    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6 text-slate-100">
       {/* Top Receipt Card */}
-      <div className="bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 shadow-xl text-slate-900 mb-6">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-100">
-          <div className="flex items-center space-x-3">
-            <div className="bg-emerald-100 text-emerald-700 p-3 rounded-2xl">
+      <div className="bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-8 shadow-2xl relative overflow-hidden">
+        {/* Decorative Top Stripe */}
+        <div className="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-amber-500 via-red-600 to-indigo-600"></div>
+
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-800">
+          <div className="flex items-center space-x-3.5">
+            <div className="bg-emerald-500/20 text-emerald-400 p-3.5 rounded-2xl border border-emerald-400/30">
               <CheckCircle2 className="w-8 h-8" />
             </div>
             <div>
-              <span className="text-xs font-bold text-emerald-800 uppercase tracking-wider bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
-                Complaint Registered Successfully
-              </span>
-              <h2 className="text-xl sm:text-2xl font-extrabold text-slate-900 mt-1">
-                Reference ID: <span className="font-mono text-indigo-700">{refId}</span>
+              <div className="inline-flex items-center space-x-1.5 text-xs font-bold text-emerald-300 uppercase tracking-wider bg-emerald-950/80 px-2.5 py-0.5 rounded-full border border-emerald-800">
+                <span>✓ Grievance Registered &amp; Encrypted</span>
+              </div>
+              <h2 className="text-xl sm:text-2xl font-extrabold text-white mt-1">
+                Official Docket Ref: <span className="font-mono text-indigo-400">{refId}</span>
               </h2>
             </div>
           </div>
@@ -43,16 +53,16 @@ export default function AssessmentResultPage({ complaint, onReset, onViewOfficer
         </div>
 
         {/* Reference Code & Tracking Key Box */}
-        <div className="my-6 p-4 sm:p-5 bg-slate-50 rounded-2xl border border-slate-200 grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+        <div className="my-6 p-5 bg-slate-950 rounded-2xl border border-slate-800 grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
           <div>
-            <span className="text-slate-500 font-medium block mb-1">Official Reference Code:</span>
+            <span className="text-slate-400 font-medium block mb-1.5">Official Reference Docket ID:</span>
             <div className="flex items-center space-x-2">
-              <span className="font-mono text-sm font-bold text-slate-900 bg-white px-3 py-1.5 rounded-lg border border-slate-300">
+              <span className="font-mono text-sm font-bold text-white bg-slate-900 px-3 py-2 rounded-xl border border-slate-700 select-all">
                 {refId}
               </span>
               <button
-                onClick={() => copyToClipboard(refId)}
-                className="p-1.5 text-slate-500 hover:text-indigo-600 bg-white rounded-lg border border-slate-200"
+                onClick={() => copyToClipboard(refId, 'Reference ID')}
+                className="p-2 text-slate-400 hover:text-white bg-slate-900 rounded-xl border border-slate-700 transition"
                 title="Copy Reference ID"
               >
                 <Copy className="w-4 h-4" />
@@ -61,14 +71,14 @@ export default function AssessmentResultPage({ complaint, onReset, onViewOfficer
           </div>
 
           <div>
-            <span className="text-slate-500 font-medium block mb-1">Private Tracking Token:</span>
+            <span className="text-slate-400 font-medium block mb-1.5">Private Verification Token:</span>
             <div className="flex items-center space-x-2">
-              <span className="font-mono text-sm font-bold text-slate-900 bg-white px-3 py-1.5 rounded-lg border border-slate-300">
+              <span className="font-mono text-sm font-bold text-amber-300 bg-slate-900 px-3 py-2 rounded-xl border border-slate-700 select-all">
                 {token}
               </span>
               <button
-                onClick={() => copyToClipboard(token)}
-                className="p-1.5 text-slate-500 hover:text-indigo-600 bg-white rounded-lg border border-slate-200"
+                onClick={() => copyToClipboard(token, 'Tracking Token')}
+                className="p-2 text-slate-400 hover:text-white bg-slate-900 rounded-xl border border-slate-700 transition"
                 title="Copy Tracking Token"
               >
                 <Copy className="w-4 h-4" />
@@ -79,26 +89,31 @@ export default function AssessmentResultPage({ complaint, onReset, onViewOfficer
 
         {/* AI Immediate Assessment Advisory Summary */}
         {complaint.ai_assessment && (
-          <div className="my-6 bg-slate-900 text-white rounded-2xl p-5 border border-slate-800 shadow-md">
-            <div className="flex items-center space-x-2 text-indigo-400 font-bold text-sm mb-3">
-              <ShieldAlert className="w-5 h-5 text-amber-400" />
-              <span>Real-Time AI Triage Assessment Results</span>
+          <div className="my-6 bg-slate-950 rounded-2xl p-5 border border-slate-800 shadow-inner">
+            <div className="flex items-center space-x-2 text-indigo-400 font-bold text-sm mb-4">
+              <Sparkles className="w-5 h-5 text-amber-400" />
+              <span>Real-Time AI Distress &amp; Threat Triage Result</span>
             </div>
 
-            <div className="text-xs space-y-2 text-slate-300 font-sans">
-              <div className="flex justify-between border-b border-slate-800 pb-2">
+            <div className="text-xs space-y-3 text-slate-300">
+              <div className="flex justify-between items-center border-b border-slate-800/80 pb-2.5">
                 <span>Calculated Distress Score:</span>
-                <span className="font-mono font-bold text-amber-300">{complaint.ai_assessment.distress_score}/100</span>
+                <span className="font-mono font-extrabold text-sm text-amber-400">
+                  {complaint.ai_assessment.distress_score}/100
+                </span>
               </div>
-              <div className="flex justify-between border-b border-slate-800 pb-2">
-                <span>Assigned Priority Flag:</span>
-                <span className="font-bold text-red-400">{complaint.priority}</span>
+              <div className="flex justify-between items-center border-b border-slate-800/80 pb-2.5">
+                <span>Assigned Statutory Priority:</span>
+                <span className="font-bold text-red-400 bg-red-950/80 px-2.5 py-0.5 rounded border border-red-800">
+                  {complaint.priority}
+                </span>
               </div>
+
               <div className="pt-2">
-                <span className="font-semibold text-slate-200 block mb-1">Key Risk Indicators Identified:</span>
-                <div className="flex flex-wrap gap-1.5">
+                <span className="font-semibold text-slate-200 block mb-2">Identified Risk &amp; Atrocity Indicators:</span>
+                <div className="flex flex-wrap gap-2">
                   {complaint.ai_assessment.identified_indicators?.map((ind, i) => (
-                    <span key={i} className="bg-slate-800 text-slate-200 px-2 py-0.5 rounded text-[11px] border border-slate-700">
+                    <span key={i} className="bg-slate-900 text-slate-200 px-2.5 py-1 rounded-lg text-[11px] border border-slate-700 font-medium">
                       • {ind}
                     </span>
                   ))}
@@ -108,37 +123,47 @@ export default function AssessmentResultPage({ complaint, onReset, onViewOfficer
           </div>
         )}
 
-        {/* Emergency Assistance Notice */}
-        <div className="my-6 bg-red-50 border border-red-200 rounded-2xl p-5 text-xs text-red-950">
-          <h4 className="font-bold text-red-900 text-sm flex items-center space-x-2 mb-2">
-            <PhoneCall className="w-4 h-4 text-red-600 animate-bounce" />
+        {/* Emergency Call Box */}
+        <div className="my-6 bg-red-950/70 border border-red-800/80 rounded-2xl p-5 text-xs text-red-200">
+          <h4 className="font-bold text-red-100 text-sm flex items-center space-x-2 mb-2">
+            <PhoneCall className="w-4 h-4 text-red-400 animate-bounce" />
             <span>Need Immediate Life-Safety Emergency Help?</span>
           </h4>
-          <p className="leading-relaxed">
-            If you are currently in physical danger, locked in, or facing violence, please call emergency services immediately:
-            <strong> Police / Emergency: 112</strong> | <strong>NHAA Helpline: 14566</strong> | <strong>Tele-MANAS: 14416</strong>.
+          <p className="leading-relaxed text-red-200">
+            If you are currently in physical danger, locked in, or facing active threats, call emergency dispatch immediately:
+            <strong className="text-white"> Police: 112</strong> | <strong className="text-white">NHAA Atrocities Helpline: 14566</strong>.
           </p>
         </div>
 
-        <DisclaimerBanner />
+        <DisclaimerBanner compact={true} />
 
-        {/* Buttons Bar */}
-        <div className="mt-8 flex flex-col sm:flex-row items-center justify-between gap-4 pt-6 border-t border-slate-100">
+        {/* Action Buttons Bar */}
+        <div className="mt-8 flex flex-wrap items-center justify-between gap-3 pt-6 border-t border-slate-800">
           <button
             onClick={onReset}
-            className="w-full sm:w-auto px-5 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-800 font-semibold text-xs rounded-xl flex items-center justify-center space-x-2 transition"
+            className="px-5 py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold text-xs rounded-xl flex items-center space-x-2 transition border border-slate-700"
           >
             <ArrowLeft className="w-4 h-4" />
-            <span>Submit Another Report</span>
+            <span>Submit Another Grievance</span>
           </button>
 
-          <button
-            onClick={onViewOfficer}
-            className="w-full sm:w-auto px-6 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs rounded-xl flex items-center justify-center space-x-2 shadow-md transition"
-          >
-            <FileText className="w-4 h-4" />
-            <span>View Case on Officer Control Room Dashboard</span>
-          </button>
+          <div className="flex items-center space-x-2">
+            <button
+              onClick={handlePrintReceipt}
+              className="px-4 py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold text-xs rounded-xl flex items-center space-x-1.5 transition border border-slate-700"
+            >
+              <Printer className="w-4 h-4" />
+              <span>Print Docket Slip</span>
+            </button>
+
+            <button
+              onClick={onViewOfficer}
+              className="px-5 py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs rounded-xl flex items-center space-x-2 shadow-lg transition"
+            >
+              <FileText className="w-4 h-4" />
+              <span>Inspect on Officer Console &rarr;</span>
+            </button>
+          </div>
         </div>
       </div>
     </div>
