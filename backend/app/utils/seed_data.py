@@ -17,28 +17,18 @@ def seed_database(db: Session):
 
     print("Seeding database with realistic NHAA 14566 demo cases...")
 
-    # 1. Create Demo Officers
+    # 1. Create Sole Authorized Officer
     officer1 = User(
-        username="officer_sharma",
-        email="priya.sharma@nhaa.gov.in",
-        password_hash=hash_password("password123"),
+        username="pc@gmail.com",
+        email="pc@gmail.com",
+        password_hash=hash_password("1234"),
         role="OFFICER",
-        full_name="Inspector Priya Sharma",
-        badge_number="NHAA-7841"
-    )
-    admin1 = User(
-        username="admin_nhrc",
-        email="admin@nhrc.gov.in",
-        password_hash=hash_password("adminpassword"),
-        role="ADMIN",
-        full_name="Senior Director Rajesh Kumar",
-        badge_number="NHRC-001"
+        full_name="Duty Officer PC",
+        badge_number="NHAA-OFF-101"
     )
     db.add(officer1)
-    db.add(admin1)
     db.commit()
     db.refresh(officer1)
-    db.refresh(admin1)
 
     ai_engine = get_ai_analyzer()
 

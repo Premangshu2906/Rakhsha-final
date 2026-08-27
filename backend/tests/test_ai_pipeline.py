@@ -10,7 +10,7 @@ def test_high_distress_scoring():
     assert res["distress_score"] >= 70.0
     assert res["priority_recommended"] in ["URGENT", "CRITICAL"]
     assert len(res["identified_indicators"]) > 0
-    assert "Immediate Physical Threat / Violence" in res["identified_indicators"][0]
+    assert any("Immediate Physical Threat" in ind for ind in res["identified_indicators"])
     assert res["disclaimer_notice"] == MANDATORY_DISCLAIMER
 
 def test_moderate_distress_scoring():

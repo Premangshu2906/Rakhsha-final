@@ -7,6 +7,7 @@ import CaseDetailPage from './pages/CaseDetailPage';
 import FollowUpMonitoringPage from './pages/FollowUpMonitoringPage';
 import MyGrievancesPage from './pages/MyGrievancesPage';
 import { CitizenAuthModal, OfficerAuthModal } from './components/AuthModals';
+import RAKHSHAAssistant from './components/RAKHSHAAssistant';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import { reseedDemoData } from './api';
 
@@ -123,9 +124,20 @@ function MainApp() {
               setCurrentView('public');
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
-            onViewOfficer={() => {
-              setCurrentView('officer');
-              window.scrollTo({ top: 0, behavior: 'smooth' });
+            onTrackComplaint={() => {
+              setCurrentView('public');
+              setTimeout(() => {
+                const el = document.querySelector('form');
+                if (el) el.scrollIntoView({ behavior: 'smooth' });
+              }, 100);
+            }}
+            onViewMyGrievances={() => {
+              if (user) {
+                setCurrentView('my_grievances');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              } else {
+                handleRequireAuth('my_grievances');
+              }
             }}
           />
         )}
@@ -164,26 +176,46 @@ function MainApp() {
         onSuccessRedirect={handleAuthSuccessRedirect}
       />
 
-      {/* Premium Government Digital Platform Footer */}
+      {/* RAKHSHA Assistant Floating Chatbot Widget */}
+      <RAKHSHAAssistant
+        onOpenCitizenAuth={() => {
+          setAuthInitialMode('login');
+          setAuthRedirectTarget(null);
+          setIsAuthModalOpen(true);
+        }}
+        onOpenOfficerAuth={() => {
+          setAuthInitialMode('login');
+          setAuthRedirectTarget('officer');
+          setIsAuthModalOpen(true);
+        }}
+        onNavigateToComplaint={() => {
+          setCurrentView('public');
+          setTimeout(() => {
+            const formElement = document.querySelector('form');
+            if (formElement) {
+              formElement.scrollIntoView({ behavior: 'smooth' });
+            }
+          }, 100);
+        }}
+      />
+
+      {/* Premium Digital Platform Footer */}
       <footer className="bg-slate-900 text-slate-300 py-12 border-t border-slate-800 text-xs">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div className="space-y-3">
               <div className="text-white font-extrabold text-base flex items-center space-x-2">
-                <span>🛡️ NHAA 14566 &bull; RAKSHA</span>
+                <span>🛡️ RAKHSHA</span>
               </div>
               <p className="text-slate-400 text-xs leading-relaxed">
-                National Helpline Against Atrocities, Ministry of Social Justice and Empowerment, Government of India.
+                AI-Assisted Victim Support &amp; Helpline System. 24x7 with you.
               </p>
-              <div className="text-[11px] text-slate-500 font-mono">
-                Smart India Hackathon (SIH 2026) &bull; PS 26093
-              </div>
             </div>
 
             <div>
               <h4 className="text-white font-bold mb-3">24x7 Helplines</h4>
               <ul className="space-y-2 text-slate-400">
-                <li><strong className="text-amber-400">14566</strong> &bull; NHAA Atrocities Toll-Free</li>
+                <li><strong className="text-amber-400">14566</strong> &bull; Atrocities Helpline</li>
                 <li><strong className="text-red-400">112</strong> &bull; Police SOS Dispatch</li>
                 <li><strong className="text-emerald-400">1091</strong> &bull; Women Helpline</li>
                 <li><strong className="text-blue-400">14416</strong> &bull; Tele-MANAS Counseling</li>
@@ -208,7 +240,7 @@ function MainApp() {
                     if (user && !isOfficer) setCurrentView('my_grievances');
                     else handleRequireAuth('my_grievances');
                   }} 
-                  className="text-left hover:text-white transition"
+                  className="text-left hover:text-white transition cursor-pointer"
                 >
                   &bull; Citizen Grievance Dashboard
                 </button>
@@ -217,12 +249,9 @@ function MainApp() {
                     if (isOfficer) setCurrentView('officer');
                     else handleRequireAuth('officer');
                   }} 
-                  className="text-left hover:text-white transition"
+                  className="text-left hover:text-white transition cursor-pointer"
                 >
                   &bull; Authorized Duty Officer Console
-                </button>
-                <button onClick={handleReseedDemo} className="text-left hover:text-amber-400 transition">
-                  &bull; Reset Demo Evaluation Cases
                 </button>
               </div>
             </div>
@@ -230,10 +259,10 @@ function MainApp() {
 
           <div className="pt-8 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px] text-slate-500">
             <div>
-              &copy; 2026 Ministry of Social Justice and Empowerment, Government of India. All rights reserved.
+              &copy; 2026 RAKHSHA. All rights reserved.
             </div>
             <div>
-              Supabase Auth + Row Level Security &bull; WCAG 2.1 AA Compliant
+              Encrypted Safety Portal &bull; 24x7 with you
             </div>
           </div>
         </div>

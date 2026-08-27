@@ -183,48 +183,62 @@ export default function PublicPortal({
             </div>
           </div>
 
-          {/* Hero Right Visual: Elegant Abstract Illustration & Floating UI Cards */}
-          <div className="lg:col-span-5 relative flex items-center justify-center">
-            <div className="w-full max-w-sm bg-white/90 backdrop-blur-md border border-slate-200 rounded-3xl p-6 shadow-soft-lg space-y-4">
-              <div className="flex items-center justify-between pb-3 border-b border-slate-100">
-                <div className="flex items-center space-x-2.5">
-                  <div className="w-3 h-3 rounded-full bg-emerald-500 live-pulse-dot"></div>
-                  <span className="text-xs font-bold text-slate-800">Support System Active</span>
-                </div>
-                <span className="text-[11px] font-mono text-blue-600 font-semibold">24x7 Ready</span>
-              </div>
+          {/* Hero Right Visual: "We Are With You" Circular Emblem Badge */}
+          <div className="lg:col-span-5 relative flex items-center justify-center p-2">
+            <div className="relative group">
+              <div className="absolute -inset-1.5 bg-gradient-to-r from-teal-500 via-blue-600 to-indigo-600 rounded-full blur-xl opacity-30 group-hover:opacity-50 transition duration-500"></div>
+              <img
+                src="/we-are-with-you.png"
+                alt="We Are With You • You Are Not Alone"
+                className="relative w-64 sm:w-72 lg:w-80 h-auto rounded-full shadow-2xl border-4 border-white/90 transform group-hover:scale-102 transition duration-300"
+              />
+            </div>
+          </div>
+        </div>
 
-              {/* Floating Card 1: AI-Assisted Assessment */}
-              <div className="p-3.5 bg-blue-50/80 rounded-2xl border border-blue-100 flex items-center space-x-3 transition-transform hover:-translate-y-0.5">
-                <div className="p-2 bg-blue-600 text-white rounded-xl shadow-soft-sm">
-                  <Sparkles className="w-4 h-4" />
-                </div>
-                <div>
-                  <h4 className="font-bold text-xs text-slate-900">AI-Assisted Distress Assessment</h4>
-                  <p className="text-[11px] text-slate-500">Real-time acoustic tremor &amp; threat detection</p>
-                </div>
-              </div>
+        {/* Horizontal Support System Active Strip */}
+        <div className="mt-10 pt-6 border-t border-slate-200/80">
+          <div className="flex items-center justify-between pb-3">
+            <div className="flex items-center space-x-2.5">
+              <div className="w-3 h-3 rounded-full bg-emerald-500 live-pulse-dot"></div>
+              <span className="text-xs font-bold text-slate-800 uppercase tracking-wider">Support System Active</span>
+            </div>
+            <span className="text-xs font-mono text-blue-700 font-bold bg-blue-50 px-3 py-1 rounded-full border border-blue-200 shadow-soft-sm">
+              24x7 Ready
+            </span>
+          </div>
 
-              {/* Floating Card 2: Human Officer Review */}
-              <div className="p-3.5 bg-teal-50/80 rounded-2xl border border-teal-100 flex items-center space-x-3 transition-transform hover:-translate-y-0.5">
-                <div className="p-2 bg-teal-600 text-white rounded-xl shadow-soft-sm">
-                  <HeartHandshake className="w-4 h-4" />
-                </div>
-                <div>
-                  <h4 className="font-bold text-xs text-slate-900">Dedicated Human Review</h4>
-                  <p className="text-[11px] text-slate-500">District Nodal Officers &amp; Special Prosecutors</p>
-                </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {/* Horizontal Card 1: AI-Assisted Assessment */}
+            <div className="p-4 bg-white/90 backdrop-blur-md rounded-2xl border border-slate-200/80 shadow-soft-sm flex items-center space-x-3.5 hover:border-blue-300 transition hover:shadow-md">
+              <div className="p-2.5 bg-blue-600 text-white rounded-xl shadow-soft-sm flex-shrink-0">
+                <Sparkles className="w-4 h-4" />
               </div>
+              <div>
+                <h4 className="font-bold text-xs text-slate-900">AI-Assisted Distress Assessment</h4>
+                <p className="text-[11px] text-slate-500">Real-time acoustic tremor &amp; threat detection</p>
+              </div>
+            </div>
 
-              {/* Floating Card 3: Secure Assistance */}
-              <div className="p-3.5 bg-indigo-50/80 rounded-2xl border border-indigo-100 flex items-center space-x-3 transition-transform hover:-translate-y-0.5">
-                <div className="p-2 bg-indigo-600 text-white rounded-xl shadow-soft-sm">
-                  <Lock className="w-4 h-4" />
-                </div>
-                <div>
-                  <h4 className="font-bold text-xs text-slate-900">End-to-End Secure Assistance</h4>
-                  <p className="text-[11px] text-slate-500">Victim privacy protected under Section 15A</p>
-                </div>
+            {/* Horizontal Card 2: Dedicated Human Review */}
+            <div className="p-4 bg-white/90 backdrop-blur-md rounded-2xl border border-slate-200/80 shadow-soft-sm flex items-center space-x-3.5 hover:border-teal-300 transition hover:shadow-md">
+              <div className="p-2.5 bg-teal-600 text-white rounded-xl shadow-soft-sm flex-shrink-0">
+                <HeartHandshake className="w-4 h-4" />
+              </div>
+              <div>
+                <h4 className="font-bold text-xs text-slate-900">Dedicated Human Review</h4>
+                <p className="text-[11px] text-slate-500">District Nodal Officers &amp; Special Prosecutors</p>
+              </div>
+            </div>
+
+            {/* Horizontal Card 3: End-to-End Secure Assistance */}
+            <div className="p-4 bg-white/90 backdrop-blur-md rounded-2xl border border-slate-200/80 shadow-soft-sm flex items-center space-x-3.5 hover:border-indigo-300 transition hover:shadow-md">
+              <div className="p-2.5 bg-indigo-600 text-white rounded-xl shadow-soft-sm flex-shrink-0">
+                <Lock className="w-4 h-4" />
+              </div>
+              <div>
+                <h4 className="font-bold text-xs text-slate-900">End-to-End Secure Assistance</h4>
+                <p className="text-[11px] text-slate-500">Victim privacy protected under Section 15A</p>
               </div>
             </div>
           </div>

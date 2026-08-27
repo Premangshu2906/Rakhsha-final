@@ -10,6 +10,7 @@ import DisclaimerBanner from '../components/DisclaimerBanner';
 import { useAuth } from '../context/AuthContext';
 import { getOfficerCases, getDashboardKPIs } from '../services/grievanceService';
 import { reseedDemoData } from '../api';
+import { getSlaInfo, SlaStatusBadge } from '../components/GrievanceActionWidgets';
 
 const TRIGGER_WORDS = [
   'kill', 'dead', 'die', 'murder', 'threat', 'threaten', 'dhamki', 'harm',
@@ -25,6 +26,42 @@ function highlightTriggers(text) {
     highlighted = highlighted.replace(reg, '<mark class="trigger-highlight">$1</mark>');
   });
   return highlighted;
+}
+
+function playSlaBreachAudioAlert() {
+  try {
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    if (!AudioContext) return;
+    const ctx = new AudioContext();
+    
+    // First warning beep
+    const osc1 = ctx.createOscillator();
+    const gain1 = ctx.createGain();
+    osc1.type = 'sine';
+    osc1.frequency.setValueAtTime(880, ctx.currentTime);
+    gain1.gain.setValueAtTime(0.3, ctx.currentTime);
+    gain1.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.25);
+    osc1.connect(gain1);
+    gain1.connect(ctx.destination);
+    osc1.start(ctx.currentTime);
+    osc1.stop(ctx.currentTime + 0.25);
+
+    // Second warning beep
+    setTimeout(() => {
+      const osc2 = ctx.createOscillator();
+      const gain2 = ctx.createGain();
+      osc2.type = 'sine';
+      osc2.frequency.setValueAtTime(880, ctx.currentTime);
+      gain2.gain.setValueAtTime(0.3, ctx.currentTime);
+      gain2.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.3);
+      osc2.connect(gain2);
+      gain2.connect(ctx.destination);
+      osc2.start(ctx.currentTime);
+      osc2.stop(ctx.currentTime + 0.3);
+    }, 300);
+  } catch (e) {
+    console.warn('Audio alert sound notice:', e);
+  }
 }
 
 export default function OfficerDashboard({ onSelectComplaint, onRequireOfficerAuth }) {
@@ -58,6 +95,12 @@ export default function OfficerDashboard({ onSelectComplaint, onRequireOfficerAu
       ]);
       setStats(statsRes);
       setComplaints(complaintsRes);
+
+      // Check if any complaint breached 12h SLA
+      const hasSlaBreach = complaintsRes.some(c => getSlaInfo(c).isExceeded12h);
+      if (hasSlaBreach) {
+        playSlaBreachAudioAlert();
+      }
     } catch (err) {
       setError(err.message || 'Failed to load officer dashboard data.');
     } finally {
@@ -153,6 +196,32 @@ export default function OfficerDashboard({ onSelectComplaint, onRequireOfficerAu
       </div>
 
       <DisclaimerBanner compact={true} />
+
+      {/* 12-Hour SLA Time Limit Exceeded Alarm Banner */}
+      {complaints.some(c => getSlaInfo(c).isExceeded12h) && (
+        <div className="p-4 bg-red-600 text-white rounded-3xl shadow-lg border-2 border-red-500 flex flex-wrap items-center justify-between gap-3 animate-pulse">
+          <div className="flex items-center space-x-3">
+            <div className="p-2 bg-white text-red-600 rounded-2xl">
+              <AlertTriangle className="w-6 h-6 animate-bounce" />
+            </div>
+            <div>
+              <h3 className="font-extrabold text-sm sm:text-base tracking-wide">
+                🚨 TIME LIMIT EXCEEDED ALERT (12h+ SLA BREACH)
+              </h3>
+              <p className="text-xs text-red-100 font-medium">
+                {complaints.filter(c => getSlaInfo(c).isExceeded12h).length} complaint(s) have passed the 12-hour resolution time limit. Immediate officer review required.
+              </p>
+            </div>
+          </div>
+
+          <button
+            onClick={() => playSlaBreachAudioAlert()}
+            className="px-4 py-2 bg-white text-red-700 hover:bg-red-50 text-xs font-bold rounded-xl shadow-soft-sm transition flex items-center space-x-1.5 cursor-pointer"
+          >
+            <span>🔊 Replay Alert Tone</span>
+          </button>
+        </div>
+      )}
 
       {/* KPI Stats Cards */}
       <StatsCards stats={stats} />
@@ -307,6 +376,11 @@ export default function OfficerDashboard({ onSelectComplaint, onRequireOfficerAu
                       <div className="text-[11px] text-slate-400 font-sans">
                         {new Date(c.created_at || c.submitted_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                       </div>
+                      {getSlaInfo(c).isExceeded12h && (
+                        <div className="mt-1">
+                          <SlaStatusBadge complaint={c} />
+                        </div>
+                      )}
                     </td>
 
                     <td className="py-3.5 px-4">
@@ -314,8 +388,18 @@ export default function OfficerDashboard({ onSelectComplaint, onRequireOfficerAu
                       <div className="text-[11px] text-slate-500">{c.state_region} &bull; {c.input_mode}</div>
                     </td>
 
-                    <td className="py-3.5 px-4 max-w-xs truncate text-[11px] text-slate-600">
-                      <span dangerouslySetInnerHTML={{ __html: highlightTriggers(c.raw_input_text || '') }} />
+                    <td className="py-3.5 px-4 max-w-xs text-[11px] text-slate-600">
+                      <div className="truncate" dangerouslySetInnerHTML={{ __html: highlightTriggers(c.raw_input_text || '') }} />
+                      {c.citizen_comment && (
+                        <div className="mt-1 text-[10px] font-bold text-amber-900 bg-amber-100 px-2 py-0.5 rounded-md inline-block">
+                          📩 15h Citizen Comment Submitted
+                        </div>
+                      )}
+                      {c.feedback_rating && (
+                        <div className="mt-1 text-[10px] font-bold text-emerald-900 bg-emerald-100 px-2 py-0.5 rounded-md inline-block ml-1">
+                          ⭐ Feedback: {c.feedback_rating}
+                        </div>
+                      )}
                     </td>
 
                     <td className="py-3.5 px-4">

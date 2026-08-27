@@ -14,6 +14,7 @@ import {
   scheduleCaseFollowUp, 
   getCaseAuditTrail 
 } from '../services/grievanceService';
+import { getSlaInfo, SlaStatusBadge } from '../components/GrievanceActionWidgets';
 
 export default function CaseDetailPage({ complaintId, onBack }) {
   const { user, profile, isOfficer } = useAuth();
@@ -178,14 +179,47 @@ export default function CaseDetailPage({ complaintId, onBack }) {
 
         {/* Original Complaint Statement Box */}
         <div className="bg-slate-50/80 p-5 rounded-2xl border border-slate-200">
-          <h4 className="text-xs font-bold text-slate-700 uppercase tracking-wider mb-2 flex items-center space-x-1.5">
-            <FileText className="w-4 h-4 text-blue-600" />
-            <span>Complainant Statement ({caseData.input_mode} Mode)</span>
+          <h4 className="font-bold text-xs text-slate-700 uppercase tracking-wider mb-2 flex items-center justify-between">
+            <span>Raw Complainant Statement</span>
+            {getSlaInfo(caseData).isExceeded12h && (
+              <SlaStatusBadge complaint={caseData} />
+            )}
           </h4>
-          <p className="text-xs sm:text-sm text-slate-900 whitespace-pre-wrap leading-relaxed font-sans">
+          <p className="text-slate-800 text-xs sm:text-sm leading-relaxed font-sans">
             "{caseData.raw_input_text}"
           </p>
         </div>
+
+        {/* 15-Hour Citizen Enquiry Comment (Visible to Officer) */}
+        {caseData.citizen_comment && (
+          <div className="p-5 bg-amber-50 border border-amber-300 rounded-2xl text-xs space-y-1 text-amber-950">
+            <h4 className="font-extrabold text-xs uppercase tracking-wider text-amber-900 flex items-center space-x-1.5">
+              <span>📩 Citizen 15-Hour Resolution Enquiry Comment</span>
+              <span className="text-[10px] font-normal text-amber-700">({new Date(caseData.citizen_comment_at || Date.now()).toLocaleString()})</span>
+            </h4>
+            <p className="text-slate-900 font-medium text-xs sm:text-sm italic pt-1">
+              "{caseData.citizen_comment}"
+            </p>
+          </div>
+        )}
+
+        {/* Citizen Post-Resolution Feedback Display */}
+        {caseData.feedback_rating && (
+          <div className="p-5 bg-emerald-50 border border-emerald-300 rounded-2xl text-xs space-y-1 text-emerald-950">
+            <h4 className="font-extrabold text-xs uppercase tracking-wider text-emerald-900 flex items-center space-x-1.5">
+              <span>⭐ Citizen Resolution Feedback</span>
+              <span className="text-[10px] font-normal text-emerald-700">({new Date(caseData.feedback_at || Date.now()).toLocaleString()})</span>
+            </h4>
+            <div className="pt-1 font-bold text-sm">
+              Rating: <strong className="text-emerald-800">{caseData.feedback_rating}</strong>
+            </div>
+            {caseData.feedback_comment && (
+              <p className="text-slate-900 font-medium text-xs sm:text-sm italic pt-1">
+                Comment: "{caseData.feedback_comment}"
+              </p>
+            )}
+          </div>
+        )}
       </div>
 
       {/* AI Assessment Card Component */}

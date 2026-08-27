@@ -7,7 +7,7 @@ from typing import Optional
 
 from app.database import get_db
 from app.models import Complaint, AIAssessment, AuditLog
-from app.schemas import ComplaintCreate, ComplaintResponse
+from app.schemas import ComplaintCreate, ComplaintResponse, CitizenCommentSubmit, FeedbackSubmit
 from app.ai.pipeline import get_ai_analyzer
 from app.ai.stt_service import stt_service
 
@@ -128,6 +128,59 @@ def track_complaint(reference_id: str, token: Optional[str] = None, db: Session 
     if token and complaint.tracking_token != token:
         raise HTTPException(status_code=403, detail="Invalid tracking token provided for this complaint.")
 
+    return complaint
+
+
+@router.post("/{complaint_id}/citizen-comment", response_model=ComplaintResponse)
+def submit_citizen_comment(complaint_id: int, payload: CitizenCommentSubmit, db: Session = Depends(get_db)):
+    """
+    Public Endpoint: Submit citizen enquiry comment after 15h of unresolved complaint.
+    Appends comment to complaint record and creates audit trail for officer visibility.
+    """
+    complaint = db.query(Complaint).filter(Complaint.id == complaint_id).first()
+    if not complaint:
+        raise HTTPException(status_code=404, detail="Complaint not found.")
+
+    complaint.citizen_comment = payload.comment
+    complaint.citizen_comment_at = datetime.datetime.utcnow()
+
+    # Log audit entry
+    audit = AuditLog(
+        complaint_id=complaint.id,
+        actor_name=complaint.complainant_name or "Citizen Complainant",
+        action="CITIZEN_COMMENT_ADDED",
+        details=f"Citizen submitted 15h resolution enquiry comment: '{payload.comment}'",
+        timestamp=datetime.datetime.utcnow()
+    )
+    db.add(audit)
+    db.commit()
+    db.refresh(complaint)
+    return complaint
+
+
+@router.post("/{complaint_id}/feedback", response_model=ComplaintResponse)
+def submit_complaint_feedback(complaint_id: int, payload: FeedbackSubmit, db: Session = Depends(get_db)):
+    """
+    Public Endpoint: Submit citizen feedback (Satisfied / Not Satisfied) after resolution.
+    """
+    complaint = db.query(Complaint).filter(Complaint.id == complaint_id).first()
+    if not complaint:
+        raise HTTPException(status_code=404, detail="Complaint not found.")
+
+    complaint.feedback_rating = payload.rating
+    complaint.feedback_comment = payload.comment
+    complaint.feedback_at = datetime.datetime.utcnow()
+
+    audit = AuditLog(
+        complaint_id=complaint.id,
+        actor_name=complaint.complainant_name or "Citizen Complainant",
+        action="FEEDBACK_SUBMITTED",
+        details=f"Citizen submitted resolution feedback: Rating={payload.rating}, Comment='{payload.comment or ''}'",
+        timestamp=datetime.datetime.utcnow()
+    )
+    db.add(audit)
+    db.commit()
+    db.refresh(complaint)
     return complaint
 
 

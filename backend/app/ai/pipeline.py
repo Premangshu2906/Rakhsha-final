@@ -2,6 +2,7 @@ import re
 import datetime
 from typing import Dict, List, Any, Tuple
 from app.config import settings
+from app.ai.dataset_loader import dataset_model
 
 # Mandatory Ethical Safety Disclaimer
 MANDATORY_DISCLAIMER = (
@@ -46,14 +47,19 @@ class DeterministicNLPAnalyzer:
     def analyze_complaint(self, text: str, category: str = "OTHER") -> Dict[str, Any]:
         text_lower = text.lower()
 
+        # Evaluate against trained English & Hinglish datasets (888 entries)
+        dataset_eval = dataset_model.evaluate_text(text)
+        dataset_distress = dataset_eval.get("distress_score", 0.0)
+        max_danger_score = dataset_eval.get("max_danger_score", 0)
+        dataset_matches = dataset_eval.get("matched_indicators", [])
+
         # Extract indicators & compute domain scores
         physical_hits = [p for p in PHYSICAL_DANGER_PATTERNS if re.search(p, text_lower)]
         distress_hits = [p for p in PSYCHOLOGICAL_DISTRESS_PATTERNS if re.search(p, text_lower)]
         coercion_hits = [p for p in COERCION_TRAFFICKING_PATTERNS if re.search(p, text_lower)]
         urgency_hits = [p for p in TEMPORAL_URGENCY_PATTERNS if re.search(p, text_lower)]
 
-        # Scoring calculation (Max 100.0)
-        # Weights: Physical Danger (40), Psych Distress (30), Coercion (20), Urgency (15)
+        # Combine base scoring with dataset-trained score
         physical_score = min(len(physical_hits) * 20.0, 40.0)
         distress_score_comp = min(len(distress_hits) * 15.0, 30.0)
         coercion_score = min(len(coercion_hits) * 15.0, 20.0)
@@ -64,7 +70,8 @@ class DeterministicNLPAnalyzer:
         caps_words = len([w for w in text.split() if w.isupper() and len(w) > 2])
         intensity_boost = min((exclamation_count * 2.5) + (caps_words * 2.5), 10.0)
 
-        total_score = round(min(physical_score + distress_score_comp + coercion_score + urgency_score_comp + intensity_boost, 100.0), 1)
+        base_total = physical_score + distress_score_comp + coercion_score + urgency_score_comp + intensity_boost
+        total_score = round(min(max(base_total, dataset_distress), 100.0), 1)
 
         # Baseline logic if text length is significant
         if total_score < 20.0 and len(text.split()) > 8:
@@ -74,11 +81,11 @@ class DeterministicNLPAnalyzer:
         if category in ["DOMESTIC_ABUSE", "TRAFFICKING", "PHYSICAL_ASSAULT"] and total_score < 40.0:
             total_score = round(total_score + 15.0, 1)
 
-        # Risk Classification Logic
-        if total_score >= 65.0 or len(physical_hits) >= 2 or ("kill" in text_lower or "dead" in text_lower or "suicid" in text_lower):
+        # Elevated Risk Classification based on trained dataset danger score (Scores 4 & 5)
+        if total_score >= 65.0 or max_danger_score >= 4 or len(physical_hits) >= 2 or ("kill" in text_lower or "dead" in text_lower or "suicid" in text_lower):
             risk_level = "HIGH"
-            priority = "CRITICAL" if total_score >= 80.0 else "URGENT"
-        elif total_score >= 35.0 or len(physical_hits) == 1 or len(coercion_hits) >= 1:
+            priority = "CRITICAL" if (total_score >= 80.0 or max_danger_score == 5) else "URGENT"
+        elif total_score >= 35.0 or max_danger_score >= 2 or len(physical_hits) == 1 or len(coercion_hits) >= 1:
             risk_level = "MODERATE"
             priority = "URGENT" if total_score >= 50.0 else "NORMAL"
         else:
@@ -87,6 +94,10 @@ class DeterministicNLPAnalyzer:
 
         # Assemble Identified Trauma & Stress Indicators
         indicators = []
+        if dataset_matches:
+            top_matches = [f"'{m['phrase']}' ({m['severity']} - Score {m['danger_score']}/5)" for m in dataset_matches[:3]]
+            indicators.append(f"Trained Lexicon Threat Matches ({len(dataset_matches)} detected): {', '.join(top_matches)}")
+
         if physical_hits:
             indicators.append(f"Immediate Physical Threat / Violence ({len(physical_hits)} key markers)")
         if distress_hits:
@@ -105,7 +116,7 @@ class DeterministicNLPAnalyzer:
             indicators = ["Standard Grievance / Non-Acute Stress Indicators"]
 
         # Clean key phrases for UI display
-        clean_key_phrases = []
+        clean_key_phrases = [m['phrase'] for m in dataset_matches[:4]]
         for p in (physical_hits + distress_hits + coercion_hits + urgency_hits):
             clean_p = p.replace(r'\b', '').replace('.*', ' ')
             if clean_p not in clean_key_phrases:
@@ -137,7 +148,16 @@ class DeterministicNLPAnalyzer:
             "sentiment_breakdown": sentiment_breakdown,
             "ai_case_summary": ai_case_summary,
             "recommended_actions": recommended_actions,
-            "model_version": self.version,
+            "dataset_evaluation": {
+                "english_dataset_active": True,
+                "hinglish_dataset_active": True,
+                "total_vocabulary_trained": len(dataset_model.phrase_patterns),
+                "matched_count": dataset_eval["matched_count"],
+                "max_danger_score": dataset_eval["max_danger_score"],
+                "hinglish_detected": dataset_eval["hinglish_detected"],
+                "english_detected": dataset_eval["english_detected"]
+            },
+            "model_version": f"{self.version} (Trained on 888 Fearful/Hinglish Danger Lexicon)",
             "disclaimer_notice": MANDATORY_DISCLAIMER
         }
 

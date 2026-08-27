@@ -1,0 +1,5587 @@
+{
+  "english": {
+    "case": {
+      "word": "case",
+      "score": 1,
+      "severity": "Mild",
+      "lang": "English"
+    },
+    "child": {
+      "word": "child",
+      "score": 1,
+      "severity": "Mild",
+      "lang": "English"
+    },
+    "children": {
+      "word": "children",
+      "score": 1,
+      "severity": "Mild",
+      "lang": "English"
+    },
+    "complain": {
+      "word": "complain",
+      "score": 1,
+      "severity": "Mild",
+      "lang": "English"
+    },
+    "complainant": {
+      "word": "complainant",
+      "score": 1,
+      "severity": "Mild",
+      "lang": "English"
+    },
+    "complaining": {
+      "word": "complaining",
+      "score": 1,
+      "severity": "Mild",
+      "lang": "English"
+    },
+    "complaint": {
+      "word": "complaint",
+      "score": 1,
+      "severity": "Mild",
+      "lang": "English"
+    },
+    "concerned": {
+      "word": "concerned",
+      "score": 1,
+      "severity": "Mild",
+      "lang": "English"
+    },
+    "confused": {
+      "word": "confused",
+      "score": 1,
+      "severity": "Mild",
+      "lang": "English"
+    },
+    "consent": {
+      "word": "consent",
+      "score": 1,
+      "severity": "Mild",
+      "lang": "English"
+    },
+    "court": {
+      "word": "court",
+      "score": 1,
+      "severity": "Mild",
+      "lang": "English"
+    },
+    "crowd": {
+      "word": "crowd",
+      "score": 1,
+      "severity": "Mild",
+      "lang": "English"
+    },
+    "elder": {
+      "word": "elder",
+      "score": 1,
+      "severity": "Mild",
+      "lang": "English"
+    },
+    "evidence": {
+      "word": "evidence",
+      "score": 1,
+      "severity": "Mild",
+      "lang": "English"
+    },
+    "family": {
+      "word": "family",
+      "score": 1,
+      "severity": "Mild",
+      "lang": "English"
+    },
+    "incident": {
+      "word": "incident",
+      "score": 1,
+      "severity": "Mild",
+      "lang": "English"
+    },
+    "investigation": {
+      "word": "investigation",
+      "score": 1,
+      "severity": "Mild",
+      "lang": "English"
+    },
+    "justice": {
+      "word": "justice",
+      "score": 1,
+      "severity": "Mild",
+      "lang": "English"
+    },
+    "labor": {
+      "word": "labor",
+      "score": 1,
+      "severity": "Mild",
+      "lang": "English"
+    },
+    "legal": {
+      "word": "legal",
+      "score": 1,
+      "severity": "Mild",
+      "lang": "English"
+    },
+    "minor": {
+      "word": "minor",
+      "score": 1,
+      "severity": "Mild",
+      "lang": "English"
+    },
+    "nervous": {
+      "word": "nervous",
+      "score": 1,
+      "severity": "Mild",
+      "lang": "English"
+    },
+    "parent": {
+      "word": "parent",
+      "score": 1,
+      "severity": "Mild",
+      "lang": "English"
+    },
+    "partner": {
+      "word": "partner",
+      "score": 1,
+      "severity": "Mild",
+      "lang": "English"
+    },
+    "police": {
+      "word": "police",
+      "score": 1,
+      "severity": "Mild",
+      "lang": "English"
+    },
+    "privacy": {
+      "word": "privacy",
+      "score": 1,
+      "severity": "Mild",
+      "lang": "English"
+    },
+    "proof": {
+      "word": "proof",
+      "score": 1,
+      "severity": "Mild",
+      "lang": "English"
+    },
+    "protect": {
+      "word": "protect",
+      "score": 1,
+      "severity": "Mild",
+      "lang": "English"
+    },
+    "protection": {
+      "word": "protection",
+      "score": 1,
+      "severity": "Mild",
+      "lang": "English"
+    },
+    "report": {
+      "word": "report",
+      "score": 1,
+      "severity": "Mild",
+      "lang": "English"
+    },
+    "reported": {
+      "word": "reported",
+      "score": 1,
+      "severity": "Mild",
+      "lang": "English"
+    },
+    "restless": {
+      "word": "restless",
+      "score": 1,
+      "severity": "Mild",
+      "lang": "English"
+    },
+    "sad": {
+      "word": "sad",
+      "score": 1,
+      "severity": "Mild",
+      "lang": "English"
+    },
+    "safeguard": {
+      "word": "safeguard",
+      "score": 1,
+      "severity": "Mild",
+      "lang": "English"
+    },
+    "safety": {
+      "word": "safety",
+      "score": 1,
+      "severity": "Mild",
+      "lang": "English"
+    },
+    "social": {
+      "word": "social",
+      "score": 1,
+      "severity": "Mild",
+      "lang": "English"
+    },
+    "statement": {
+      "word": "statement",
+      "score": 1,
+      "severity": "Mild",
+      "lang": "English"
+    },
+    "statemented": {
+      "word": "statemented",
+      "score": 1,
+      "severity": "Mild",
+      "lang": "English"
+    },
+    "tears": {
+      "word": "tears",
+      "score": 1,
+      "severity": "Mild",
+      "lang": "English"
+    },
+    "tense": {
+      "word": "tense",
+      "score": 1,
+      "severity": "Mild",
+      "lang": "English"
+    },
+    "testified": {
+      "word": "testified",
+      "score": 1,
+      "severity": "Mild",
+      "lang": "English"
+    },
+    "testify": {
+      "word": "testify",
+      "score": 1,
+      "severity": "Mild",
+      "lang": "English"
+    },
+    "testimony": {
+      "word": "testimony",
+      "score": 1,
+      "severity": "Mild",
+      "lang": "English"
+    },
+    "troubled": {
+      "word": "troubled",
+      "score": 1,
+      "severity": "Mild",
+      "lang": "English"
+    },
+    "uneasy": {
+      "word": "uneasy",
+      "score": 1,
+      "severity": "Mild",
+      "lang": "English"
+    },
+    "unhappy": {
+      "word": "unhappy",
+      "score": 1,
+      "severity": "Mild",
+      "lang": "English"
+    },
+    "upset": {
+      "word": "upset",
+      "score": 1,
+      "severity": "Mild",
+      "lang": "English"
+    },
+    "verdict": {
+      "word": "verdict",
+      "score": 1,
+      "severity": "Mild",
+      "lang": "English"
+    },
+    "witness": {
+      "word": "witness",
+      "score": 1,
+      "severity": "Mild",
+      "lang": "English"
+    },
+    "workplace": {
+      "word": "workplace",
+      "score": 1,
+      "severity": "Mild",
+      "lang": "English"
+    },
+    "worried": {
+      "word": "worried",
+      "score": 1,
+      "severity": "Mild",
+      "lang": "English"
+    },
+    "accused": {
+      "word": "accused",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "afraid": {
+      "word": "afraid",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "alarm": {
+      "word": "alarm",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "alarmed": {
+      "word": "alarmed",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "allegation": {
+      "word": "allegation",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "alleged": {
+      "word": "alleged",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "anxiety": {
+      "word": "anxiety",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "argument": {
+      "word": "argument",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "betray": {
+      "word": "betray",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "betrayal": {
+      "word": "betrayal",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "bias": {
+      "word": "bias",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "bully": {
+      "word": "bully",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "bullying": {
+      "word": "bullying",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "chasing": {
+      "word": "chasing",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "cheat": {
+      "word": "cheat",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "coerce": {
+      "word": "coerce",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "compulsion": {
+      "word": "compulsion",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "confusion": {
+      "word": "confusion",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "control": {
+      "word": "control",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "controlling": {
+      "word": "controlling",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "convict": {
+      "word": "convict",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "conviction": {
+      "word": "conviction",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "crime": {
+      "word": "crime",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "criminal": {
+      "word": "criminal",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "criminality": {
+      "word": "criminality",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "crying": {
+      "word": "crying",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "custody": {
+      "word": "custody",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "damage": {
+      "word": "damage",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "damaged": {
+      "word": "damaged",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "danger": {
+      "word": "danger",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "deceive": {
+      "word": "deceive",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "deception": {
+      "word": "deception",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "disbelief": {
+      "word": "disbelief",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "dispute": {
+      "word": "dispute",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "distress": {
+      "word": "distress",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "disturbed": {
+      "word": "disturbed",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "disturbing": {
+      "word": "disturbing",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "domestic": {
+      "word": "domestic",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "dominate": {
+      "word": "dominate",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "dread": {
+      "word": "dread",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "embarrass": {
+      "word": "embarrass",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "embarrassment": {
+      "word": "embarrassment",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "fear": {
+      "word": "fear",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "fearful": {
+      "word": "fearful",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "followed": {
+      "word": "followed",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "fraud": {
+      "word": "fraud",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "fraudulent": {
+      "word": "fraudulent",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "fright": {
+      "word": "fright",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "grievance": {
+      "word": "grievance",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "harass": {
+      "word": "harass",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "harassment": {
+      "word": "harassment",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "hide": {
+      "word": "hide",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "hiding": {
+      "word": "hiding",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "homeless": {
+      "word": "homeless",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "homelessness": {
+      "word": "homelessness",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "horrified": {
+      "word": "horrified",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "humiliate": {
+      "word": "humiliate",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "humiliation": {
+      "word": "humiliation",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "immediate": {
+      "word": "immediate",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "insecure": {
+      "word": "insecure",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "insult": {
+      "word": "insult",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "insulted": {
+      "word": "insulted",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "intimidate": {
+      "word": "intimidate",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "intrusion": {
+      "word": "intrusion",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "isolate": {
+      "word": "isolate",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "isolation": {
+      "word": "isolation",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "locked": {
+      "word": "locked",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "loneliness": {
+      "word": "loneliness",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "lonely": {
+      "word": "lonely",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "loss": {
+      "word": "loss",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "manipulate": {
+      "word": "manipulate",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "manipulation": {
+      "word": "manipulation",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "nightmare": {
+      "word": "nightmare",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "numb": {
+      "word": "numb",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "numbness": {
+      "word": "numbness",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "offender": {
+      "word": "offender",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "offense": {
+      "word": "offense",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "panic": {
+      "word": "panic",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "panicked": {
+      "word": "panicked",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "peerpressure": {
+      "word": "peerpressure",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "pornography": {
+      "word": "pornography",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "prejudice": {
+      "word": "prejudice",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "pressure": {
+      "word": "pressure",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "pressured": {
+      "word": "pressured",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "prosecuted": {
+      "word": "prosecuted",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "prosecution": {
+      "word": "prosecution",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "prostitution": {
+      "word": "prostitution",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "provocation": {
+      "word": "provocation",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "provoked": {
+      "word": "provoked",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "punished": {
+      "word": "punished",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "punishment": {
+      "word": "punishment",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "quarrel": {
+      "word": "quarrel",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "refugee": {
+      "word": "refugee",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "rejected": {
+      "word": "rejected",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "rejection": {
+      "word": "rejection",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "risk": {
+      "word": "risk",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "risky": {
+      "word": "risky",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "scared": {
+      "word": "scared",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "sentence": {
+      "word": "sentence",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "shaken": {
+      "word": "shaken",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "shame": {
+      "word": "shame",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "shout": {
+      "word": "shout",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "shouting": {
+      "word": "shouting",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "spousal": {
+      "word": "spousal",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "startled": {
+      "word": "startled",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "stress": {
+      "word": "stress",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "struggle": {
+      "word": "struggle",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "struggled": {
+      "word": "struggled",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "struggling": {
+      "word": "struggling",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "surveillance": {
+      "word": "surveillance",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "survival": {
+      "word": "survival",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "survivor": {
+      "word": "survivor",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "survivors": {
+      "word": "survivors",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "suspect": {
+      "word": "suspect",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "threat": {
+      "word": "threat",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "threaten": {
+      "word": "threaten",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "trigger": {
+      "word": "trigger",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "unsafe": {
+      "word": "unsafe",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "unwelcome": {
+      "word": "unwelcome",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "vulnerability": {
+      "word": "vulnerability",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "vulnerable": {
+      "word": "vulnerable",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "warning": {
+      "word": "warning",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "witnessed": {
+      "word": "witnessed",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "worry": {
+      "word": "worry",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "English"
+    },
+    "abandoned": {
+      "word": "abandoned",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "abandonment": {
+      "word": "abandonment",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "abuse": {
+      "word": "abuse",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "abused": {
+      "word": "abused",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "abusive": {
+      "word": "abusive",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "acute": {
+      "word": "acute",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "aggression": {
+      "word": "aggression",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "aggressive": {
+      "word": "aggressive",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "agitated": {
+      "word": "agitated",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "alarming": {
+      "word": "alarming",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "assault": {
+      "word": "assault",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "assaulted": {
+      "word": "assaulted",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "assaultive": {
+      "word": "assaultive",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "attack": {
+      "word": "attack",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "attacker": {
+      "word": "attacker",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "attacking": {
+      "word": "attacking",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "banished": {
+      "word": "banished",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "beaten": {
+      "word": "beaten",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "beg": {
+      "word": "beg",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "begging": {
+      "word": "begging",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "blade": {
+      "word": "blade",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "body": {
+      "word": "body",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "bondage": {
+      "word": "bondage",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "bound": {
+      "word": "bound",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "brawl": {
+      "word": "brawl",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "breakdown": {
+      "word": "breakdown",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "broken": {
+      "word": "broken",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "chains": {
+      "word": "chains",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "chaos": {
+      "word": "chaos",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "chased": {
+      "word": "chased",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "coerced": {
+      "word": "coerced",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "coercion": {
+      "word": "coercion",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "coercive": {
+      "word": "coercive",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "compelled": {
+      "word": "compelled",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "confined": {
+      "word": "confined",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "confinement": {
+      "word": "confinement",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "conflict": {
+      "word": "conflict",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "confrontation": {
+      "word": "confrontation",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "confronted": {
+      "word": "confronted",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "cornered": {
+      "word": "cornered",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "corrupt": {
+      "word": "corrupt",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "corruption": {
+      "word": "corruption",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "cut": {
+      "word": "cut",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "cyberbullying": {
+      "word": "cyberbullying",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "dangerous": {
+      "word": "dangerous",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "defenseless": {
+      "word": "defenseless",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "defenselessness": {
+      "word": "defenselessness",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "deprivation": {
+      "word": "deprivation",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "deprived": {
+      "word": "deprived",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "despair": {
+      "word": "despair",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "desperate": {
+      "word": "desperate",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "detained": {
+      "word": "detained",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "detention": {
+      "word": "detention",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "discriminated": {
+      "word": "discriminated",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "discrimination": {
+      "word": "discrimination",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "displaced": {
+      "word": "displaced",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "displacement": {
+      "word": "displacement",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "dissociate": {
+      "word": "dissociate",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "dissociation": {
+      "word": "dissociation",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "dox": {
+      "word": "dox",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "doxxing": {
+      "word": "doxxing",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "escape": {
+      "word": "escape",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "escaped": {
+      "word": "escaped",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "evacuate": {
+      "word": "evacuate",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "evacuation": {
+      "word": "evacuation",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "exile": {
+      "word": "exile",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "exploit": {
+      "word": "exploit",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "exploitation": {
+      "word": "exploitation",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "exploited": {
+      "word": "exploited",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "exposed": {
+      "word": "exposed",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "extreme": {
+      "word": "extreme",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "felony": {
+      "word": "felony",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "fight": {
+      "word": "fight",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "fighting": {
+      "word": "fighting",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "flashback": {
+      "word": "flashback",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "fled": {
+      "word": "fled",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "flee": {
+      "word": "flee",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "forced": {
+      "word": "forced",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "frightening": {
+      "word": "frightening",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "furious": {
+      "word": "furious",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "gaslight": {
+      "word": "gaslight",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "gaslighting": {
+      "word": "gaslighting",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "grief": {
+      "word": "grief",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "grieving": {
+      "word": "grieving",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "grooming": {
+      "word": "grooming",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "harassed": {
+      "word": "harassed",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "harasser": {
+      "word": "harasser",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "harm": {
+      "word": "harm",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "harmed": {
+      "word": "harmed",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "harmful": {
+      "word": "harmful",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "hate": {
+      "word": "hate",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "hateful": {
+      "word": "hateful",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "hazard": {
+      "word": "hazard",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "hazardous": {
+      "word": "hazardous",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "helpless": {
+      "word": "helpless",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "helplessness": {
+      "word": "helplessness",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "horrifying": {
+      "word": "horrifying",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "horror": {
+      "word": "horror",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "hostile": {
+      "word": "hostile",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "hostility": {
+      "word": "hostility",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "hurt": {
+      "word": "hurt",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "injured": {
+      "word": "injured",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "injurious": {
+      "word": "injurious",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "injury": {
+      "word": "injury",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "intimidated": {
+      "word": "intimidated",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "intimidation": {
+      "word": "intimidation",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "invasion": {
+      "word": "invasion",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "jail": {
+      "word": "jail",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "knife": {
+      "word": "knife",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "leak": {
+      "word": "leak",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "leaked": {
+      "word": "leaked",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "lockedup": {
+      "word": "lockedup",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "menace": {
+      "word": "menace",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "menacing": {
+      "word": "menacing",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "missing": {
+      "word": "missing",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "mob": {
+      "word": "mob",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "mobbed": {
+      "word": "mobbed",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "molest": {
+      "word": "molest",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "molestation": {
+      "word": "molestation",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "mourning": {
+      "word": "mourning",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "neglect": {
+      "word": "neglect",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "neglected": {
+      "word": "neglected",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "oppress": {
+      "word": "oppress",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "oppression": {
+      "word": "oppression",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "ostracized": {
+      "word": "ostracized",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "overwhelmed": {
+      "word": "overwhelmed",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "pain": {
+      "word": "pain",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "painful": {
+      "word": "painful",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "penetration": {
+      "word": "penetration",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "peril": {
+      "word": "peril",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "perilous": {
+      "word": "perilous",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "perpetrator": {
+      "word": "perpetrator",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "perpetrators": {
+      "word": "perpetrators",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "plead": {
+      "word": "plead",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "pleading": {
+      "word": "pleading",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "powerless": {
+      "word": "powerless",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "powerlessness": {
+      "word": "powerlessness",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "prison": {
+      "word": "prison",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "pursued": {
+      "word": "pursued",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "racism": {
+      "word": "racism",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "rage": {
+      "word": "rage",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "restrain": {
+      "word": "restrain",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "restrained": {
+      "word": "restrained",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "retaliate": {
+      "word": "retaliate",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "retaliated": {
+      "word": "retaliated",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "retaliation": {
+      "word": "retaliation",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "revenge": {
+      "word": "revenge",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "revengeful": {
+      "word": "revengeful",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "scream": {
+      "word": "scream",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "screaming": {
+      "word": "screaming",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "serious": {
+      "word": "serious",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "severe": {
+      "word": "severe",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "severity": {
+      "word": "severity",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "sexism": {
+      "word": "sexism",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "sexual": {
+      "word": "sexual",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "shock": {
+      "word": "shock",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "shocked": {
+      "word": "shocked",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "silenced": {
+      "word": "silenced",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "slur": {
+      "word": "slur",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "stalk": {
+      "word": "stalk",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "stalker": {
+      "word": "stalker",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "stalking": {
+      "word": "stalking",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "suffer": {
+      "word": "suffer",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "suffering": {
+      "word": "suffering",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "surrounded": {
+      "word": "surrounded",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "terrified": {
+      "word": "terrified",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "terror": {
+      "word": "terror",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "threatened": {
+      "word": "threatened",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "threatening": {
+      "word": "threatening",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "trapped": {
+      "word": "trapped",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "trauma": {
+      "word": "trauma",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "traumatic": {
+      "word": "traumatic",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "traumatized": {
+      "word": "traumatized",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "triggered": {
+      "word": "triggered",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "unprotected": {
+      "word": "unprotected",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "unwanted": {
+      "word": "unwanted",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "urgency": {
+      "word": "urgency",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "urgent": {
+      "word": "urgent",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "vengeance": {
+      "word": "vengeance",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "verbalabuse": {
+      "word": "verbalabuse",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "victim": {
+      "word": "victim",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "victimization": {
+      "word": "victimization",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "victimized": {
+      "word": "victimized",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "victims": {
+      "word": "victims",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "violate": {
+      "word": "violate",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "violated": {
+      "word": "violated",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "violating": {
+      "word": "violating",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "violation": {
+      "word": "violation",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "violator": {
+      "word": "violator",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "violence": {
+      "word": "violence",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "violent": {
+      "word": "violent",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "weapon": {
+      "word": "weapon",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "weapons": {
+      "word": "weapons",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "workplaceabuse": {
+      "word": "workplaceabuse",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "worthless": {
+      "word": "worthless",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "English"
+    },
+    "abducted": {
+      "word": "abducted",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "abduction": {
+      "word": "abduction",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "abuser": {
+      "word": "abuser",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "abusers": {
+      "word": "abusers",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "agony": {
+      "word": "agony",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "ambush": {
+      "word": "ambush",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "ambushed": {
+      "word": "ambushed",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "ammunition": {
+      "word": "ammunition",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "assail": {
+      "word": "assail",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "assailant": {
+      "word": "assailant",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "attacked": {
+      "word": "attacked",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "barbaric": {
+      "word": "barbaric",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "battle": {
+      "word": "battle",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "beating": {
+      "word": "beating",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "blackmail": {
+      "word": "blackmail",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "blast": {
+      "word": "blast",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "bleeding": {
+      "word": "bleeding",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "blood": {
+      "word": "blood",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "bomb": {
+      "word": "bomb",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "bombing": {
+      "word": "bombing",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "brutal": {
+      "word": "brutal",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "brutality": {
+      "word": "brutality",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "burn": {
+      "word": "burn",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "burned": {
+      "word": "burned",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "burning": {
+      "word": "burning",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "captivity": {
+      "word": "captivity",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "captor": {
+      "word": "captor",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "captured": {
+      "word": "captured",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "catastrophe": {
+      "word": "catastrophe",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "catastrophic": {
+      "word": "catastrophic",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "chained": {
+      "word": "chained",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "choke": {
+      "word": "choke",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "choking": {
+      "word": "choking",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "combat": {
+      "word": "combat",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "concussion": {
+      "word": "concussion",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "consentless": {
+      "word": "consentless",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "crisis": {
+      "word": "crisis",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "critical": {
+      "word": "critical",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "criticality": {
+      "word": "criticality",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "cruel": {
+      "word": "cruel",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "cruelty": {
+      "word": "cruelty",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "cutting": {
+      "word": "cutting",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "dehumanization": {
+      "word": "dehumanization",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "dehumanize": {
+      "word": "dehumanize",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "dehumanized": {
+      "word": "dehumanized",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "destroy": {
+      "word": "destroy",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "destroyed": {
+      "word": "destroyed",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "destruction": {
+      "word": "destruction",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "dire": {
+      "word": "dire",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "disappearance": {
+      "word": "disappearance",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "disappeared": {
+      "word": "disappeared",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "disaster": {
+      "word": "disaster",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "disastrous": {
+      "word": "disastrous",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "domesticviolence": {
+      "word": "domesticviolence",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "doomed": {
+      "word": "doomed",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "doomsday": {
+      "word": "doomsday",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "electrocute": {
+      "word": "electrocute",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "electrocuted": {
+      "word": "electrocuted",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "emergency": {
+      "word": "emergency",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "eradicate": {
+      "word": "eradicate",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "explode": {
+      "word": "explode",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "explosion": {
+      "word": "explosion",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "extortion": {
+      "word": "extortion",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "firearm": {
+      "word": "firearm",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "forcedlabor": {
+      "word": "forcedlabor",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "fracture": {
+      "word": "fracture",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "gagged": {
+      "word": "gagged",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "grave": {
+      "word": "grave",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "grenade": {
+      "word": "grenade",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "gun": {
+      "word": "gun",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "gunfire": {
+      "word": "gunfire",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "gunshot": {
+      "word": "gunshot",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "hatred": {
+      "word": "hatred",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "hopeless": {
+      "word": "hopeless",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "hopelessness": {
+      "word": "hopelessness",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "hostage": {
+      "word": "hostage",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "hostages": {
+      "word": "hostages",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "imprisoned": {
+      "word": "imprisoned",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "imprisonment": {
+      "word": "imprisonment",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "inhuman": {
+      "word": "inhuman",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "inhumane": {
+      "word": "inhumane",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "jumping": {
+      "word": "jumping",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "kidnap": {
+      "word": "kidnap",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "kidnapped": {
+      "word": "kidnapped",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "kidnapper": {
+      "word": "kidnapper",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "kidnapping": {
+      "word": "kidnapping",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "maim": {
+      "word": "maim",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "maimed": {
+      "word": "maimed",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "mayhem": {
+      "word": "mayhem",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "missile": {
+      "word": "missile",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "molested": {
+      "word": "molested",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "molesting": {
+      "word": "molesting",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "mutilate": {
+      "word": "mutilate",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "mutilation": {
+      "word": "mutilation",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "nonconsensual": {
+      "word": "nonconsensual",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "persecuted": {
+      "word": "persecuted",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "persecution": {
+      "word": "persecution",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "pistol": {
+      "word": "pistol",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "predator": {
+      "word": "predator",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "predators": {
+      "word": "predators",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "predatory": {
+      "word": "predatory",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "rapist": {
+      "word": "rapist",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "rescue": {
+      "word": "rescue",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "rescued": {
+      "word": "rescued",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "retraumatization": {
+      "word": "retraumatization",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "revengeporn": {
+      "word": "revengeporn",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "revictimization": {
+      "word": "revictimization",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "rifle": {
+      "word": "rifle",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "riot": {
+      "word": "riot",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "savage": {
+      "word": "savage",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "savagery": {
+      "word": "savagery",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "servitude": {
+      "word": "servitude",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "shoot": {
+      "word": "shoot",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "shooting": {
+      "word": "shooting",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "shot": {
+      "word": "shot",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "sniper": {
+      "word": "sniper",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "stab": {
+      "word": "stab",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "stabbed": {
+      "word": "stabbed",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "stabbing": {
+      "word": "stabbing",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "starvation": {
+      "word": "starvation",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "starved": {
+      "word": "starved",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "strangle": {
+      "word": "strangle",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "struck": {
+      "word": "struck",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "terrorism": {
+      "word": "terrorism",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "terrorist": {
+      "word": "terrorist",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "terrorized": {
+      "word": "terrorized",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "torture": {
+      "word": "torture",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "tortured": {
+      "word": "tortured",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "torturing": {
+      "word": "torturing",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "unconscious": {
+      "word": "unconscious",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "war": {
+      "word": "war",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "warfare": {
+      "word": "warfare",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "wound": {
+      "word": "wound",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "wounded": {
+      "word": "wounded",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "English"
+    },
+    "annihilate": {
+      "word": "annihilate",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "English"
+    },
+    "annihilation": {
+      "word": "annihilation",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "English"
+    },
+    "assassinated": {
+      "word": "assassinated",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "English"
+    },
+    "assassination": {
+      "word": "assassination",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "English"
+    },
+    "atrocities": {
+      "word": "atrocities",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "English"
+    },
+    "atrocity": {
+      "word": "atrocity",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "English"
+    },
+    "beheading": {
+      "word": "beheading",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "English"
+    },
+    "bloodshed": {
+      "word": "bloodshed",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "English"
+    },
+    "butcher": {
+      "word": "butcher",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "English"
+    },
+    "butchered": {
+      "word": "butchered",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "English"
+    },
+    "carnage": {
+      "word": "carnage",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "English"
+    },
+    "corpse": {
+      "word": "corpse",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "English"
+    },
+    "dead": {
+      "word": "dead",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "English"
+    },
+    "deadly": {
+      "word": "deadly",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "English"
+    },
+    "death": {
+      "word": "death",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "English"
+    },
+    "deathly": {
+      "word": "deathly",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "English"
+    },
+    "decapitate": {
+      "word": "decapitate",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "English"
+    },
+    "die": {
+      "word": "die",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "English"
+    },
+    "died": {
+      "word": "died",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "English"
+    },
+    "drowning": {
+      "word": "drowning",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "English"
+    },
+    "dying": {
+      "word": "dying",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "English"
+    },
+    "enslavement": {
+      "word": "enslavement",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "English"
+    },
+    "execute": {
+      "word": "execute",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "English"
+    },
+    "executed": {
+      "word": "executed",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "English"
+    },
+    "execution": {
+      "word": "execution",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "English"
+    },
+    "fatal": {
+      "word": "fatal",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "English"
+    },
+    "fatality": {
+      "word": "fatality",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "English"
+    },
+    "genocide": {
+      "word": "genocide",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "English"
+    },
+    "hanging": {
+      "word": "hanging",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "English"
+    },
+    "hemorrhage": {
+      "word": "hemorrhage",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "English"
+    },
+    "homicide": {
+      "word": "homicide",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "English"
+    },
+    "incest": {
+      "word": "incest",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "English"
+    },
+    "kill": {
+      "word": "kill",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "English"
+    },
+    "killed": {
+      "word": "killed",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "English"
+    },
+    "killer": {
+      "word": "killer",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "English"
+    },
+    "killing": {
+      "word": "killing",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "English"
+    },
+    "lethal": {
+      "word": "lethal",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "English"
+    },
+    "life-threatening": {
+      "word": "life-threatening",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "English"
+    },
+    "lifethreatening": {
+      "word": "lifethreatening",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "English"
+    },
+    "lynch": {
+      "word": "lynch",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "English"
+    },
+    "lynching": {
+      "word": "lynching",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "English"
+    },
+    "manslaughter": {
+      "word": "manslaughter",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "English"
+    },
+    "massacre": {
+      "word": "massacre",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "English"
+    },
+    "mortal": {
+      "word": "mortal",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "English"
+    },
+    "murder": {
+      "word": "murder",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "English"
+    },
+    "murdered": {
+      "word": "murdered",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "English"
+    },
+    "murderer": {
+      "word": "murderer",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "English"
+    },
+    "murdering": {
+      "word": "murdering",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "English"
+    },
+    "obliterate": {
+      "word": "obliterate",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "English"
+    },
+    "overdose": {
+      "word": "overdose",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "English"
+    },
+    "poison": {
+      "word": "poison",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "English"
+    },
+    "poisoned": {
+      "word": "poisoned",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "English"
+    },
+    "poisoning": {
+      "word": "poisoning",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "English"
+    },
+    "rape": {
+      "word": "rape",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "English"
+    },
+    "raped": {
+      "word": "raped",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "English"
+    },
+    "self-harm": {
+      "word": "self-harm",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "English"
+    },
+    "selfharm": {
+      "word": "selfharm",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "English"
+    },
+    "sextrafficking": {
+      "word": "sextrafficking",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "English"
+    },
+    "sexualassault": {
+      "word": "sexualassault",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "English"
+    },
+    "sexualviolence": {
+      "word": "sexualviolence",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "English"
+    },
+    "slain": {
+      "word": "slain",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "English"
+    },
+    "slaughter": {
+      "word": "slaughter",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "English"
+    },
+    "slaughtered": {
+      "word": "slaughtered",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "English"
+    },
+    "slavery": {
+      "word": "slavery",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "English"
+    },
+    "slay": {
+      "word": "slay",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "English"
+    },
+    "strangulation": {
+      "word": "strangulation",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "English"
+    },
+    "suicidal": {
+      "word": "suicidal",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "English"
+    },
+    "suicidality": {
+      "word": "suicidality",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "English"
+    },
+    "suicide": {
+      "word": "suicide",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "English"
+    },
+    "terminal": {
+      "word": "terminal",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "English"
+    },
+    "trafficking": {
+      "word": "trafficking",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "English"
+    },
+    "unresponsive": {
+      "word": "unresponsive",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "English"
+    },
+    "warcrime": {
+      "word": "warcrime",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "English"
+    },
+    "warcrimes": {
+      "word": "warcrimes",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "English"
+    }
+  },
+  "hinglish": {
+    "mar": {
+      "word": "mar",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "Hinglish"
+    },
+    "maar": {
+      "word": "maar",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "Hinglish"
+    },
+    "marna": {
+      "word": "marna",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "Hinglish"
+    },
+    "marunga": {
+      "word": "marunga",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "Hinglish"
+    },
+    "marenge": {
+      "word": "marenge",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "Hinglish"
+    },
+    "maarunga": {
+      "word": "maarunga",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "Hinglish"
+    },
+    "maarenge": {
+      "word": "maarenge",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "Hinglish"
+    },
+    "mar diya": {
+      "word": "mar diya",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "Hinglish"
+    },
+    "maar diya": {
+      "word": "maar diya",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "Hinglish"
+    },
+    "jaan se maar": {
+      "word": "jaan se maar",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "Hinglish"
+    },
+    "jaan se maarna": {
+      "word": "jaan se maarna",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "Hinglish"
+    },
+    "murder": {
+      "word": "murder",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "Hinglish"
+    },
+    "qatl": {
+      "word": "qatl",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "Hinglish"
+    },
+    "katal": {
+      "word": "katal",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "Hinglish"
+    },
+    "hatya": {
+      "word": "hatya",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "Hinglish"
+    },
+    "khun": {
+      "word": "khun",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "Hinglish"
+    },
+    "khoon": {
+      "word": "khoon",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "Hinglish"
+    },
+    "goli": {
+      "word": "goli",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "Hinglish"
+    },
+    "goli maar": {
+      "word": "goli maar",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "Hinglish"
+    },
+    "goli marna": {
+      "word": "goli marna",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "Hinglish"
+    },
+    "shoot": {
+      "word": "shoot",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "Hinglish"
+    },
+    "shoot karna": {
+      "word": "shoot karna",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "Hinglish"
+    },
+    "stab": {
+      "word": "stab",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "Hinglish"
+    },
+    "chaku": {
+      "word": "chaku",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "Hinglish"
+    },
+    "chaaku": {
+      "word": "chaaku",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "Hinglish"
+    },
+    "chaku maar": {
+      "word": "chaku maar",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "Hinglish"
+    },
+    "chaku marna": {
+      "word": "chaku marna",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "Hinglish"
+    },
+    "zinda jala": {
+      "word": "zinda jala",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "Hinglish"
+    },
+    "jala dena": {
+      "word": "jala dena",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "Hinglish"
+    },
+    "jala dunga": {
+      "word": "jala dunga",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "Hinglish"
+    },
+    "jala denge": {
+      "word": "jala denge",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "Hinglish"
+    },
+    "zeher": {
+      "word": "zeher",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "Hinglish"
+    },
+    "zahar": {
+      "word": "zahar",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "Hinglish"
+    },
+    "poison": {
+      "word": "poison",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "Hinglish"
+    },
+    "zeher dena": {
+      "word": "zeher dena",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "Hinglish"
+    },
+    "khudkushi": {
+      "word": "khudkushi",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "Hinglish"
+    },
+    "suicide": {
+      "word": "suicide",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "Hinglish"
+    },
+    "suicidal": {
+      "word": "suicidal",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "Hinglish"
+    },
+    "aatmahatya": {
+      "word": "aatmahatya",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "Hinglish"
+    },
+    "mar jaunga": {
+      "word": "mar jaunga",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "Hinglish"
+    },
+    "mar jaungi": {
+      "word": "mar jaungi",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "Hinglish"
+    },
+    "mar jaana": {
+      "word": "mar jaana",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "Hinglish"
+    },
+    "mar jana": {
+      "word": "mar jana",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "Hinglish"
+    },
+    "khud ko maar": {
+      "word": "khud ko maar",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "Hinglish"
+    },
+    "khud ko marna": {
+      "word": "khud ko marna",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "Hinglish"
+    },
+    "khud ko nuksan": {
+      "word": "khud ko nuksan",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "Hinglish"
+    },
+    "apne aap ko maar": {
+      "word": "apne aap ko maar",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "Hinglish"
+    },
+    "apne aap ko nuksan": {
+      "word": "apne aap ko nuksan",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "Hinglish"
+    },
+    "dhamki": {
+      "word": "dhamki",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "Hinglish"
+    },
+    "dhamki dena": {
+      "word": "dhamki dena",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "Hinglish"
+    },
+    "dhamki di": {
+      "word": "dhamki di",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "Hinglish"
+    },
+    "dhamki milna": {
+      "word": "dhamki milna",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "Hinglish"
+    },
+    "dhamki mili": {
+      "word": "dhamki mili",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "Hinglish"
+    },
+    "dhamka": {
+      "word": "dhamka",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "Hinglish"
+    },
+    "dhamkana": {
+      "word": "dhamkana",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "Hinglish"
+    },
+    "dhamkaya": {
+      "word": "dhamkaya",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "Hinglish"
+    },
+    "threat": {
+      "word": "threat",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "Hinglish"
+    },
+    "threaten": {
+      "word": "threaten",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "Hinglish"
+    },
+    "threatened": {
+      "word": "threatened",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "Hinglish"
+    },
+    "threatening": {
+      "word": "threatening",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "Hinglish"
+    },
+    "blackmail": {
+      "word": "blackmail",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "Hinglish"
+    },
+    "blackmail karna": {
+      "word": "blackmail karna",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "Hinglish"
+    },
+    "blackmail kiya": {
+      "word": "blackmail kiya",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "Hinglish"
+    },
+    "extortion": {
+      "word": "extortion",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "Hinglish"
+    },
+    "vasooli": {
+      "word": "vasooli",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "Hinglish"
+    },
+    "zabardasti": {
+      "word": "zabardasti",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "Hinglish"
+    },
+    "zabardasti karna": {
+      "word": "zabardasti karna",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "Hinglish"
+    },
+    "force karna": {
+      "word": "force karna",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "Hinglish"
+    },
+    "majboor karna": {
+      "word": "majboor karna",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "Hinglish"
+    },
+    "darana": {
+      "word": "darana",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "Hinglish"
+    },
+    "daraana": {
+      "word": "daraana",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "Hinglish"
+    },
+    "dara diya": {
+      "word": "dara diya",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "Hinglish"
+    },
+    "dara dhamka": {
+      "word": "dara dhamka",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "Hinglish"
+    },
+    "intimidate": {
+      "word": "intimidate",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "Hinglish"
+    },
+    "intimidation": {
+      "word": "intimidation",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "Hinglish"
+    },
+    "stalk": {
+      "word": "stalk",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "Hinglish"
+    },
+    "stalking": {
+      "word": "stalking",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "Hinglish"
+    },
+    "peecha karna": {
+      "word": "peecha karna",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "Hinglish"
+    },
+    "peecha": {
+      "word": "peecha",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "Hinglish"
+    },
+    "pakadna": {
+      "word": "pakadna",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "Hinglish"
+    },
+    "pakad liya": {
+      "word": "pakad liya",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "Hinglish"
+    },
+    "utha lena": {
+      "word": "utha lena",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "Hinglish"
+    },
+    "utha le jana": {
+      "word": "utha le jana",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "Hinglish"
+    },
+    "kidnap": {
+      "word": "kidnap",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "Hinglish"
+    },
+    "kidnapping": {
+      "word": "kidnapping",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "Hinglish"
+    },
+    "apaharan": {
+      "word": "apaharan",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "Hinglish"
+    },
+    "bandi banana": {
+      "word": "bandi banana",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "Hinglish"
+    },
+    "band kar dena": {
+      "word": "band kar dena",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "Hinglish"
+    },
+    "rokna": {
+      "word": "rokna",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "Hinglish"
+    },
+    "gherna": {
+      "word": "gherna",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "Hinglish"
+    },
+    "ghera": {
+      "word": "ghera",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "Hinglish"
+    },
+    "attack": {
+      "word": "attack",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "Hinglish"
+    },
+    "attacked": {
+      "word": "attacked",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "Hinglish"
+    },
+    "hamla": {
+      "word": "hamla",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "Hinglish"
+    },
+    "hamla karna": {
+      "word": "hamla karna",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "Hinglish"
+    },
+    "hamla kiya": {
+      "word": "hamla kiya",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "Hinglish"
+    },
+    "assault": {
+      "word": "assault",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "Hinglish"
+    },
+    "assaulted": {
+      "word": "assaulted",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "Hinglish"
+    },
+    "violent": {
+      "word": "violent",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "Hinglish"
+    },
+    "violence": {
+      "word": "violence",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "Hinglish"
+    },
+    "hinsa": {
+      "word": "hinsa",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "Hinglish"
+    },
+    "maarpeet": {
+      "word": "maarpeet",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "Hinglish"
+    },
+    "maar peet": {
+      "word": "maar peet",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "Hinglish"
+    },
+    "pitai": {
+      "word": "pitai",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "Hinglish"
+    },
+    "peetna": {
+      "word": "peetna",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "Hinglish"
+    },
+    "peeta": {
+      "word": "peeta",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "Hinglish"
+    },
+    "peetenge": {
+      "word": "peetenge",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "Hinglish"
+    },
+    "peetne": {
+      "word": "peetne",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "Hinglish"
+    },
+    "rape": {
+      "word": "rape",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "Hinglish"
+    },
+    "sexual assault": {
+      "word": "sexual assault",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "Hinglish"
+    },
+    "balatkar": {
+      "word": "balatkar",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "Hinglish"
+    },
+    "chedna": {
+      "word": "chedna",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "Hinglish"
+    },
+    "chhedkhani": {
+      "word": "chhedkhani",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "Hinglish"
+    },
+    "harassment": {
+      "word": "harassment",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "Hinglish"
+    },
+    "sexual harassment": {
+      "word": "sexual harassment",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "Hinglish"
+    },
+    "molestation": {
+      "word": "molestation",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "Hinglish"
+    },
+    "abuse": {
+      "word": "abuse",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "Hinglish"
+    },
+    "abuse karna": {
+      "word": "abuse karna",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "Hinglish"
+    },
+    "zulm": {
+      "word": "zulm",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "Hinglish"
+    },
+    "atyachar": {
+      "word": "atyachar",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "Hinglish"
+    },
+    "dar": {
+      "word": "dar",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "Hinglish"
+    },
+    "darr": {
+      "word": "darr",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "Hinglish"
+    },
+    "darna": {
+      "word": "darna",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "Hinglish"
+    },
+    "dara hua": {
+      "word": "dara hua",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "Hinglish"
+    },
+    "dari hui": {
+      "word": "dari hui",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "Hinglish"
+    },
+    "dare hue": {
+      "word": "dare hue",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "Hinglish"
+    },
+    "scared": {
+      "word": "scared",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "Hinglish"
+    },
+    "afraid": {
+      "word": "afraid",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "Hinglish"
+    },
+    "fear": {
+      "word": "fear",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "Hinglish"
+    },
+    "fearful": {
+      "word": "fearful",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "Hinglish"
+    },
+    "frightened": {
+      "word": "frightened",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "Hinglish"
+    },
+    "terrified": {
+      "word": "terrified",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "Hinglish"
+    },
+    "terror": {
+      "word": "terror",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "Hinglish"
+    },
+    "ghabrahat": {
+      "word": "ghabrahat",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "Hinglish"
+    },
+    "ghabrana": {
+      "word": "ghabrana",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "Hinglish"
+    },
+    "ghabra gaya": {
+      "word": "ghabra gaya",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "Hinglish"
+    },
+    "ghabra gayi": {
+      "word": "ghabra gayi",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "Hinglish"
+    },
+    "panic": {
+      "word": "panic",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "Hinglish"
+    },
+    "panic attack": {
+      "word": "panic attack",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "Hinglish"
+    },
+    "bechain": {
+      "word": "bechain",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "Hinglish"
+    },
+    "bechaini": {
+      "word": "bechaini",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "Hinglish"
+    },
+    "pareshaan": {
+      "word": "pareshaan",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "Hinglish"
+    },
+    "pareshan": {
+      "word": "pareshan",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "Hinglish"
+    },
+    "pareshani": {
+      "word": "pareshani",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "Hinglish"
+    },
+    "tension": {
+      "word": "tension",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "Hinglish"
+    },
+    "tensed": {
+      "word": "tensed",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "Hinglish"
+    },
+    "stress": {
+      "word": "stress",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "Hinglish"
+    },
+    "stressed": {
+      "word": "stressed",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "Hinglish"
+    },
+    "stress mein": {
+      "word": "stress mein",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "Hinglish"
+    },
+    "chinta": {
+      "word": "chinta",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "Hinglish"
+    },
+    "chintit": {
+      "word": "chintit",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "Hinglish"
+    },
+    "fikar": {
+      "word": "fikar",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "Hinglish"
+    },
+    "fikr": {
+      "word": "fikr",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "Hinglish"
+    },
+    "worried": {
+      "word": "worried",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "Hinglish"
+    },
+    "worry": {
+      "word": "worry",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "Hinglish"
+    },
+    "nervous": {
+      "word": "nervous",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "Hinglish"
+    },
+    "nervousness": {
+      "word": "nervousness",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "Hinglish"
+    },
+    "ashant": {
+      "word": "ashant",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "Hinglish"
+    },
+    "ashanti": {
+      "word": "ashanti",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "Hinglish"
+    },
+    "sahma": {
+      "word": "sahma",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "Hinglish"
+    },
+    "sehmi": {
+      "word": "sehmi",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "Hinglish"
+    },
+    "sahme": {
+      "word": "sahme",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "Hinglish"
+    },
+    "kanpna": {
+      "word": "kanpna",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "Hinglish"
+    },
+    "kaapna": {
+      "word": "kaapna",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "Hinglish"
+    },
+    "kaanp raha": {
+      "word": "kaanp raha",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "Hinglish"
+    },
+    "kaanp rahi": {
+      "word": "kaanp rahi",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "Hinglish"
+    },
+    "raat ko darr": {
+      "word": "raat ko darr",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "Hinglish"
+    },
+    "neend nahi": {
+      "word": "neend nahi",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "Hinglish"
+    },
+    "so nahi pa raha": {
+      "word": "so nahi pa raha",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "Hinglish"
+    },
+    "so nahi pa rahi": {
+      "word": "so nahi pa rahi",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "Hinglish"
+    },
+    "dar lagta": {
+      "word": "dar lagta",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "Hinglish"
+    },
+    "bahut dar": {
+      "word": "bahut dar",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "Hinglish"
+    },
+    "bahut darr": {
+      "word": "bahut darr",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "Hinglish"
+    },
+    "khauf": {
+      "word": "khauf",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "Hinglish"
+    },
+    "khaufnaak": {
+      "word": "khaufnaak",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "Hinglish"
+    },
+    "bhay": {
+      "word": "bhay",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "Hinglish"
+    },
+    "bhaybheet": {
+      "word": "bhaybheet",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "Hinglish"
+    },
+    "ghutan": {
+      "word": "ghutan",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "Hinglish"
+    },
+    "ghut raha": {
+      "word": "ghut raha",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "Hinglish"
+    },
+    "ghut rahi": {
+      "word": "ghut rahi",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "Hinglish"
+    },
+    "restless": {
+      "word": "restless",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "Hinglish"
+    },
+    "uneasy": {
+      "word": "uneasy",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "Hinglish"
+    },
+    "unsafe": {
+      "word": "unsafe",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "Hinglish"
+    },
+    "surakshit nahi": {
+      "word": "surakshit nahi",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "Hinglish"
+    },
+    "safe nahi": {
+      "word": "safe nahi",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "Hinglish"
+    },
+    "dukhi": {
+      "word": "dukhi",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "Hinglish"
+    },
+    "dukh": {
+      "word": "dukh",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "Hinglish"
+    },
+    "udaas": {
+      "word": "udaas",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "Hinglish"
+    },
+    "udas": {
+      "word": "udas",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "Hinglish"
+    },
+    "sad": {
+      "word": "sad",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "Hinglish"
+    },
+    "sadness": {
+      "word": "sadness",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "Hinglish"
+    },
+    "ro raha": {
+      "word": "ro raha",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "Hinglish"
+    },
+    "ro rahi": {
+      "word": "ro rahi",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "Hinglish"
+    },
+    "rona": {
+      "word": "rona",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "Hinglish"
+    },
+    "aansu": {
+      "word": "aansu",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "Hinglish"
+    },
+    "crying": {
+      "word": "crying",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "Hinglish"
+    },
+    "cry": {
+      "word": "cry",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "Hinglish"
+    },
+    "toot gaya": {
+      "word": "toot gaya",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "Hinglish"
+    },
+    "toot gayi": {
+      "word": "toot gayi",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "Hinglish"
+    },
+    "toot chuka": {
+      "word": "toot chuka",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "Hinglish"
+    },
+    "toot chuki": {
+      "word": "toot chuki",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "Hinglish"
+    },
+    "dil toot": {
+      "word": "dil toot",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "Hinglish"
+    },
+    "dil dukha": {
+      "word": "dil dukha",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "Hinglish"
+    },
+    "hurt": {
+      "word": "hurt",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "Hinglish"
+    },
+    "hurt hua": {
+      "word": "hurt hua",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "Hinglish"
+    },
+    "hurt hui": {
+      "word": "hurt hui",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "Hinglish"
+    },
+    "takleef": {
+      "word": "takleef",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "Hinglish"
+    },
+    "dard": {
+      "word": "dard",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "Hinglish"
+    },
+    "mann dukhi": {
+      "word": "mann dukhi",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "Hinglish"
+    },
+    "mann udaas": {
+      "word": "mann udaas",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "Hinglish"
+    },
+    "akela": {
+      "word": "akela",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "Hinglish"
+    },
+    "akeli": {
+      "word": "akeli",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "Hinglish"
+    },
+    "akelapan": {
+      "word": "akelapan",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "Hinglish"
+    },
+    "alone": {
+      "word": "alone",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "Hinglish"
+    },
+    "lonely": {
+      "word": "lonely",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "Hinglish"
+    },
+    "tanha": {
+      "word": "tanha",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "Hinglish"
+    },
+    "tanhai": {
+      "word": "tanhai",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "Hinglish"
+    },
+    "bebas": {
+      "word": "bebas",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "Hinglish"
+    },
+    "bebasi": {
+      "word": "bebasi",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "Hinglish"
+    },
+    "majboor": {
+      "word": "majboor",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "Hinglish"
+    },
+    "majboori": {
+      "word": "majboori",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "Hinglish"
+    },
+    "laachaar": {
+      "word": "laachaar",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "Hinglish"
+    },
+    "lachaar": {
+      "word": "lachaar",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "Hinglish"
+    },
+    "helpless": {
+      "word": "helpless",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "Hinglish"
+    },
+    "helplessness": {
+      "word": "helplessness",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "Hinglish"
+    },
+    "nirash": {
+      "word": "nirash",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "Hinglish"
+    },
+    "niraash": {
+      "word": "niraash",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "Hinglish"
+    },
+    "nirasha": {
+      "word": "nirasha",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "Hinglish"
+    },
+    "hopeless": {
+      "word": "hopeless",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "Hinglish"
+    },
+    "hopelessness": {
+      "word": "hopelessness",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "Hinglish"
+    },
+    "umeed nahi": {
+      "word": "umeed nahi",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "Hinglish"
+    },
+    "koi madad nahi": {
+      "word": "koi madad nahi",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "Hinglish"
+    },
+    "madad nahi milti": {
+      "word": "madad nahi milti",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "Hinglish"
+    },
+    "support nahi": {
+      "word": "support nahi",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "Hinglish"
+    },
+    "unsupported": {
+      "word": "unsupported",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "Hinglish"
+    },
+    "thak gaya": {
+      "word": "thak gaya",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "Hinglish"
+    },
+    "thak gayi": {
+      "word": "thak gayi",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "Hinglish"
+    },
+    "thak chuka": {
+      "word": "thak chuka",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "Hinglish"
+    },
+    "thak chuki": {
+      "word": "thak chuki",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "Hinglish"
+    },
+    "exhausted": {
+      "word": "exhausted",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "Hinglish"
+    },
+    "exhaustion": {
+      "word": "exhaustion",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "Hinglish"
+    },
+    "overwhelmed": {
+      "word": "overwhelmed",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "Hinglish"
+    },
+    "overwhelm": {
+      "word": "overwhelm",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "Hinglish"
+    },
+    "pressure": {
+      "word": "pressure",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "Hinglish"
+    },
+    "dabav": {
+      "word": "dabav",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "Hinglish"
+    },
+    "dabaav": {
+      "word": "dabaav",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "Hinglish"
+    },
+    "bojh": {
+      "word": "bojh",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "Hinglish"
+    },
+    "mann par bojh": {
+      "word": "mann par bojh",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "Hinglish"
+    },
+    "pareshan hoon": {
+      "word": "pareshan hoon",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "Hinglish"
+    },
+    "pareshaan hoon": {
+      "word": "pareshaan hoon",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "Hinglish"
+    },
+    "confused": {
+      "word": "confused",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "Hinglish"
+    },
+    "confusion": {
+      "word": "confusion",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "Hinglish"
+    },
+    "uljhan": {
+      "word": "uljhan",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "Hinglish"
+    },
+    "uljhan mein": {
+      "word": "uljhan mein",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "Hinglish"
+    },
+    "shock": {
+      "word": "shock",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "Hinglish"
+    },
+    "sadma": {
+      "word": "sadma",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "Hinglish"
+    },
+    "trauma": {
+      "word": "trauma",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "Hinglish"
+    },
+    "traumatic": {
+      "word": "traumatic",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "Hinglish"
+    },
+    "yaad aata": {
+      "word": "yaad aata",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "Hinglish"
+    },
+    "bura sapna": {
+      "word": "bura sapna",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "Hinglish"
+    },
+    "nightmare": {
+      "word": "nightmare",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "Hinglish"
+    },
+    "safe": {
+      "word": "safe",
+      "score": 1,
+      "severity": "Mild",
+      "lang": "Hinglish"
+    },
+    "surakshit": {
+      "word": "surakshit",
+      "score": 1,
+      "severity": "Mild",
+      "lang": "Hinglish"
+    },
+    "theek": {
+      "word": "theek",
+      "score": 1,
+      "severity": "Mild",
+      "lang": "Hinglish"
+    },
+    "thik": {
+      "word": "thik",
+      "score": 1,
+      "severity": "Mild",
+      "lang": "Hinglish"
+    },
+    "normal": {
+      "word": "normal",
+      "score": 1,
+      "severity": "Mild",
+      "lang": "Hinglish"
+    },
+    "shaant": {
+      "word": "shaant",
+      "score": 1,
+      "severity": "Mild",
+      "lang": "Hinglish"
+    },
+    "shant": {
+      "word": "shant",
+      "score": 1,
+      "severity": "Mild",
+      "lang": "Hinglish"
+    },
+    "sukoon": {
+      "word": "sukoon",
+      "score": 1,
+      "severity": "Mild",
+      "lang": "Hinglish"
+    },
+    "sukhi": {
+      "word": "sukhi",
+      "score": 1,
+      "severity": "Mild",
+      "lang": "Hinglish"
+    },
+    "khush": {
+      "word": "khush",
+      "score": 1,
+      "severity": "Mild",
+      "lang": "Hinglish"
+    },
+    "khushi": {
+      "word": "khushi",
+      "score": 1,
+      "severity": "Mild",
+      "lang": "Hinglish"
+    },
+    "madad": {
+      "word": "madad",
+      "score": 1,
+      "severity": "Mild",
+      "lang": "Hinglish"
+    },
+    "support": {
+      "word": "support",
+      "score": 1,
+      "severity": "Mild",
+      "lang": "Hinglish"
+    },
+    "sahara": {
+      "word": "sahara",
+      "score": 1,
+      "severity": "Mild",
+      "lang": "Hinglish"
+    },
+    "bharosa": {
+      "word": "bharosa",
+      "score": 1,
+      "severity": "Mild",
+      "lang": "Hinglish"
+    },
+    "vishwas": {
+      "word": "vishwas",
+      "score": 1,
+      "severity": "Mild",
+      "lang": "Hinglish"
+    },
+    "trust": {
+      "word": "trust",
+      "score": 1,
+      "severity": "Mild",
+      "lang": "Hinglish"
+    },
+    "suraksha": {
+      "word": "suraksha",
+      "score": 1,
+      "severity": "Mild",
+      "lang": "Hinglish"
+    },
+    "bachav": {
+      "word": "bachav",
+      "score": 1,
+      "severity": "Mild",
+      "lang": "Hinglish"
+    },
+    "raksha": {
+      "word": "raksha",
+      "score": 1,
+      "severity": "Mild",
+      "lang": "Hinglish"
+    },
+    "aaraam": {
+      "word": "aaraam",
+      "score": 1,
+      "severity": "Mild",
+      "lang": "Hinglish"
+    },
+    "aram": {
+      "word": "aram",
+      "score": 1,
+      "severity": "Mild",
+      "lang": "Hinglish"
+    },
+    "relaxed": {
+      "word": "relaxed",
+      "score": 1,
+      "severity": "Mild",
+      "lang": "Hinglish"
+    },
+    "calm": {
+      "word": "calm",
+      "score": 1,
+      "severity": "Mild",
+      "lang": "Hinglish"
+    },
+    "peaceful": {
+      "word": "peaceful",
+      "score": 1,
+      "severity": "Mild",
+      "lang": "Hinglish"
+    },
+    "peace": {
+      "word": "peace",
+      "score": 1,
+      "severity": "Mild",
+      "lang": "Hinglish"
+    },
+    "comfortable": {
+      "word": "comfortable",
+      "score": 1,
+      "severity": "Mild",
+      "lang": "Hinglish"
+    },
+    "comfort": {
+      "word": "comfort",
+      "score": 1,
+      "severity": "Mild",
+      "lang": "Hinglish"
+    },
+    "theek hoon": {
+      "word": "theek hoon",
+      "score": 1,
+      "severity": "Mild",
+      "lang": "Hinglish"
+    },
+    "surakshit hoon": {
+      "word": "surakshit hoon",
+      "score": 1,
+      "severity": "Mild",
+      "lang": "Hinglish"
+    },
+    "madad mili": {
+      "word": "madad mili",
+      "score": 1,
+      "severity": "Mild",
+      "lang": "Hinglish"
+    },
+    "support mila": {
+      "word": "support mila",
+      "score": 1,
+      "severity": "Mild",
+      "lang": "Hinglish"
+    },
+    "support mili": {
+      "word": "support mili",
+      "score": 1,
+      "severity": "Mild",
+      "lang": "Hinglish"
+    },
+    "dost": {
+      "word": "dost",
+      "score": 1,
+      "severity": "Mild",
+      "lang": "Hinglish"
+    },
+    "parivaar": {
+      "word": "parivaar",
+      "score": 1,
+      "severity": "Mild",
+      "lang": "Hinglish"
+    },
+    "family": {
+      "word": "family",
+      "score": 1,
+      "severity": "Mild",
+      "lang": "Hinglish"
+    },
+    "saathi": {
+      "word": "saathi",
+      "score": 1,
+      "severity": "Mild",
+      "lang": "Hinglish"
+    },
+    "sahara mila": {
+      "word": "sahara mila",
+      "score": 1,
+      "severity": "Mild",
+      "lang": "Hinglish"
+    },
+    "surakshit jagah": {
+      "word": "surakshit jagah",
+      "score": 1,
+      "severity": "Mild",
+      "lang": "Hinglish"
+    },
+    "safe place": {
+      "word": "safe place",
+      "score": 1,
+      "severity": "Mild",
+      "lang": "Hinglish"
+    },
+    "madadgar": {
+      "word": "madadgar",
+      "score": 1,
+      "severity": "Mild",
+      "lang": "Hinglish"
+    },
+    "umeed": {
+      "word": "umeed",
+      "score": 1,
+      "severity": "Mild",
+      "lang": "Hinglish"
+    },
+    "aasha": {
+      "word": "aasha",
+      "score": 1,
+      "severity": "Mild",
+      "lang": "Hinglish"
+    },
+    "hope": {
+      "word": "hope",
+      "score": 1,
+      "severity": "Mild",
+      "lang": "Hinglish"
+    },
+    "bharosa hai": {
+      "word": "bharosa hai",
+      "score": 1,
+      "severity": "Mild",
+      "lang": "Hinglish"
+    },
+    "akela nahi": {
+      "word": "akela nahi",
+      "score": 1,
+      "severity": "Mild",
+      "lang": "Hinglish"
+    },
+    "akeli nahi": {
+      "word": "akeli nahi",
+      "score": 1,
+      "severity": "Mild",
+      "lang": "Hinglish"
+    },
+    "main theek hoon": {
+      "word": "main theek hoon",
+      "score": 1,
+      "severity": "Mild",
+      "lang": "Hinglish"
+    },
+    "sab theek": {
+      "word": "sab theek",
+      "score": 1,
+      "severity": "Mild",
+      "lang": "Hinglish"
+    },
+    "जान से मार": {
+      "word": "जान से मार",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "Hindi (Devanagari)"
+    },
+    "मार डालूंगा": {
+      "word": "मार डालूंगा",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "Hindi (Devanagari)"
+    },
+    "मार देंगे": {
+      "word": "मार देंगे",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "Hindi (Devanagari)"
+    },
+    "मार दूंगा": {
+      "word": "मार दूंगा",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "Hindi (Devanagari)"
+    },
+    "हत्या": {
+      "word": "हत्या",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "Hindi (Devanagari)"
+    },
+    "जान का खतरा": {
+      "word": "जान का खतरा",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "Hindi (Devanagari)"
+    },
+    "तेजाब": {
+      "word": "तेजाब",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "Hindi (Devanagari)"
+    },
+    "एसिड": {
+      "word": "एसिड",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "Hindi (Devanagari)"
+    },
+    "आत्महत्या": {
+      "word": "आत्महत्या",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "Hindi (Devanagari)"
+    },
+    "फांसी": {
+      "word": "फांसी",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "Hindi (Devanagari)"
+    },
+    "जहर": {
+      "word": "जहर",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "Hindi (Devanagari)"
+    },
+    "ज़हर": {
+      "word": "ज़हर",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "Hindi (Devanagari)"
+    },
+    "गोली": {
+      "word": "गोली",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "Hindi (Devanagari)"
+    },
+    "बंदूक": {
+      "word": "बंदूक",
+      "score": 5,
+      "severity": "Critical",
+      "lang": "Hindi (Devanagari)"
+    },
+    "मारपीट": {
+      "word": "मारपीट",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "Hindi (Devanagari)"
+    },
+    "मारना": {
+      "word": "मारना",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "Hindi (Devanagari)"
+    },
+    "पीट": {
+      "word": "पीट",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "Hindi (Devanagari)"
+    },
+    "पीटा": {
+      "word": "पीटा",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "Hindi (Devanagari)"
+    },
+    "चाकू": {
+      "word": "चाकू",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "Hindi (Devanagari)"
+    },
+    "तलवार": {
+      "word": "तलवार",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "Hindi (Devanagari)"
+    },
+    "खून": {
+      "word": "खून",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "Hindi (Devanagari)"
+    },
+    "घायल": {
+      "word": "घायल",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "Hindi (Devanagari)"
+    },
+    "जला": {
+      "word": "जला",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "Hindi (Devanagari)"
+    },
+    "कमरे में बंद": {
+      "word": "कमरे में बंद",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "Hindi (Devanagari)"
+    },
+    "ताला": {
+      "word": "ताला",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "Hindi (Devanagari)"
+    },
+    "बंधक": {
+      "word": "बंधक",
+      "score": 4,
+      "severity": "Severe",
+      "lang": "Hindi (Devanagari)"
+    },
+    "धमकी": {
+      "word": "धमकी",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "Hindi (Devanagari)"
+    },
+    "खतरा": {
+      "word": "खतरा",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "Hindi (Devanagari)"
+    },
+    "डर": {
+      "word": "डर",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "Hindi (Devanagari)"
+    },
+    "गाली": {
+      "word": "गाली",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "Hindi (Devanagari)"
+    },
+    "गालियां": {
+      "word": "गालियां",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "Hindi (Devanagari)"
+    },
+    "बचाओ": {
+      "word": "बचाओ",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "Hindi (Devanagari)"
+    },
+    "मदद": {
+      "word": "मदद",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "Hindi (Devanagari)"
+    },
+    "परेशान": {
+      "word": "परेशान",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "Hindi (Devanagari)"
+    },
+    "प्रताड़ित": {
+      "word": "प्रताड़ित",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "Hindi (Devanagari)"
+    },
+    "दहेज": {
+      "word": "दहेज",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "Hindi (Devanagari)"
+    },
+    "ब्लैकमेल": {
+      "word": "ब्लैकमेल",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "Hindi (Devanagari)"
+    },
+    "जाति": {
+      "word": "जाति",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "Hindi (Devanagari)"
+    },
+    "अपमान": {
+      "word": "अपमान",
+      "score": 3,
+      "severity": "Serious",
+      "lang": "Hindi (Devanagari)"
+    },
+    "झगड़ा": {
+      "word": "झगड़ा",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "Hindi (Devanagari)"
+    },
+    "छेड़छाड़": {
+      "word": "छेड़छाड़",
+      "score": 2,
+      "severity": "Moderate",
+      "lang": "Hindi (Devanagari)"
+    },
+    "शिकायत": {
+      "word": "शिकायत",
+      "score": 1,
+      "severity": "Mild",
+      "lang": "Hindi (Devanagari)"
+    }
+  },
+  "total_entries": 930
+}

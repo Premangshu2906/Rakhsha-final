@@ -46,6 +46,13 @@ class Complaint(Base):
     officer_notes = Column(Text, nullable=True)
     assigned_officer_id = Column(Integer, ForeignKey("users.id"), nullable=True)
     
+    # 15-Hour Citizen Enquiry Comment & Post-Resolution Feedback
+    citizen_comment = Column(Text, nullable=True)
+    citizen_comment_at = Column(DateTime, nullable=True)
+    feedback_rating = Column(String, nullable=True) # SATISFIED, NOT_SATISFIED
+    feedback_comment = Column(Text, nullable=True)
+    feedback_at = Column(DateTime, nullable=True)
+
     submitted_at = Column(DateTime, default=datetime.datetime.utcnow)
     updated_at = Column(DateTime, default=datetime.datetime.utcnow, onupdate=datetime.datetime.utcnow)
 

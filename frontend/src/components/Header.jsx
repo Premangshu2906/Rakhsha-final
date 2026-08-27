@@ -26,12 +26,12 @@ export default function Header({
       {/* 1. National Tricolor Accent Top Bar */}
       <div className="tricolor-stripe"></div>
 
-      {/* 2. Top Emergency & Government Identification Bar */}
+      {/* 2. Top Emergency Bar */}
       <div className="bg-slate-900 text-slate-200 px-4 sm:px-6 lg:px-8 py-1.5 text-xs flex flex-wrap items-center justify-between gap-2 font-sans">
         <div className="flex items-center space-x-3 text-[11px] sm:text-xs">
           <span className="font-semibold text-white flex items-center space-x-1.5">
-            <span>🇮🇳</span>
-            <span>Government of India &bull; Ministry of Social Justice and Empowerment</span>
+            <span>🛡️</span>
+            <span>RAKHSHA &bull; AI-Assisted Victim Support System</span>
           </span>
           <span className="hidden md:inline text-slate-600">|</span>
           <span className="hidden md:flex items-center space-x-1.5 text-amber-300 font-bold bg-amber-500/10 px-2 py-0.5 rounded-full border border-amber-500/20">
@@ -40,20 +40,6 @@ export default function Header({
           </span>
           <span className="hidden lg:inline text-slate-600">|</span>
           <span className="hidden lg:inline text-red-300 font-semibold">Police SOS: 112</span>
-        </div>
-
-        <div className="flex items-center space-x-2 text-[11px]">
-          <span className="bg-slate-800 text-slate-300 px-2 py-0.5 rounded border border-slate-700 font-mono hidden sm:inline">
-            PS 26093 &bull; SIH 2026
-          </span>
-          <button
-            onClick={onReseedDemo}
-            title="Reset demo cases for evaluation"
-            className="flex items-center space-x-1 bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/30 px-2 py-0.5 rounded font-semibold transition"
-          >
-            <LifeBuoy className="w-3 h-3 text-amber-400" />
-            <span>Reset Demo Data</span>
-          </button>
         </div>
       </div>
 
@@ -68,16 +54,11 @@ export default function Header({
             <Shield className="w-5 h-5 text-blue-200" />
           </div>
           <div>
-            <div className="flex items-center space-x-2">
-              <h1 className="text-base sm:text-lg font-extrabold tracking-tight text-slate-900 flex items-center gap-1.5">
-                <span>NHAA 14566 &bull; RAKSHA</span>
-                <span className="text-[10px] font-bold px-2 py-0.5 bg-blue-50 text-blue-700 border border-blue-200 rounded-md uppercase tracking-wider">
-                  National Portal
-                </span>
-              </h1>
-            </div>
-            <p className="text-[11px] text-slate-500 font-medium">
-              Supabase Auth + PostgreSQL RLS &bull; SC/ST (PoA) Act Safeguard
+            <h1 className="text-xl sm:text-2xl font-extrabold tracking-tight text-slate-900">
+              RAKHSHA
+            </h1>
+            <p className="text-xs text-slate-500 font-bold tracking-wide">
+              24x7 with you.
             </p>
           </div>
         </div>

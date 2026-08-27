@@ -284,32 +284,27 @@ export function AuthProvider({ children }) {
         setLoading(false);
       }
     } else {
-      // Mock Officer Login
+      // Mock Officer Login - Strictly Enforce pc@gmail.com and password 1234
       const cleanEmail = email.trim().toLowerCase();
-      const profiles = JSON.parse(localStorage.getItem(MOCK_STORAGE_KEYS.PROFILES) || '[]');
-      let userProf = profiles.find(p => p.email.toLowerCase() === cleanEmail && p.role === 'officer');
+      const cleanPassword = password.trim();
 
-      if (!userProf && cleanEmail.includes('officer')) {
-        userProf = {
-          id: '11111111-1111-4111-a111-111111111111',
-          full_name: 'Inspector Rajesh Verma',
-          email: cleanEmail,
-          phone: '9876543210',
-          role: 'officer',
-          state_region: 'Uttar Pradesh',
-          badge_number: 'NHAA-OFF-101',
-          created_at: new Date().toISOString()
-        };
-        profiles.push(userProf);
-        localStorage.setItem(MOCK_STORAGE_KEYS.PROFILES, JSON.stringify(profiles));
-      }
-
-      if (!userProf || userProf.role !== 'officer') {
-        const deniedErr = new Error('Access Denied: Unauthorized officer credentials.');
+      if (cleanEmail !== 'pc@gmail.com' || cleanPassword !== '1234') {
+        const deniedErr = new Error('Access Denied: Officer access is strictly restricted to pc@gmail.com with password 1234.');
         setAuthError(deniedErr.message);
         setLoading(false);
         throw deniedErr;
       }
+
+      const userProf = {
+        id: '11111111-1111-4111-a111-111111111111',
+        full_name: 'Duty Officer PC',
+        email: 'pc@gmail.com',
+        phone: '9876543210',
+        role: 'officer',
+        state_region: 'Delhi NCR',
+        badge_number: 'NHAA-OFF-101',
+        created_at: new Date().toISOString()
+      };
 
       const mockUser = { id: userProf.id, email: userProf.email };
       const mockSession = { user: mockUser, profile: userProf };

@@ -7,7 +7,9 @@ import {
   updateComplaintStatus as apiUpdateStatus, 
   scheduleFollowUp as apiScheduleFollowUp, 
   getAuditTrail as apiGetAuditTrail,
-  trackComplaint as apiTrackComplaint
+  trackComplaint as apiTrackComplaint,
+  submitCitizenComment as apiSubmitCitizenComment,
+  submitComplaintFeedback as apiSubmitFeedback
 } from '../api';
 
 const MOCK_STORAGE_KEYS = {
@@ -607,4 +609,69 @@ export async function getDashboardKPIs() {
     resolved_count: resolved,
     category_distribution: catCounts
   };
+}
+
+/**
+ * 10. Submit Citizen 15h Enquiry Comment
+ */
+export async function addCitizenComment(complaintId, commentText) {
+  try {
+    const backendRes = await apiSubmitCitizenComment(complaintId, commentText);
+    if (backendRes) return backendRes;
+  } catch (e) {}
+
+  const grievances = getStored(MOCK_STORAGE_KEYS.GRIEVANCES, []);
+  const idx = grievances.findIndex(g => String(g.id) === String(complaintId) || g.reference_id === String(complaintId));
+  if (idx !== -1) {
+    const timestamp = new Date().toISOString();
+    grievances[idx].citizen_comment = commentText;
+    grievances[idx].citizen_comment_at = timestamp;
+    setStored(MOCK_STORAGE_KEYS.GRIEVANCES, grievances);
+
+    const auditLogs = getStored(MOCK_STORAGE_KEYS.AUDIT_LOGS, []);
+    auditLogs.unshift({
+      id: `aud-${Date.now()}`,
+      grievance_id: grievances[idx].id,
+      actor_name: grievances[idx].complainant_name || 'Citizen Complainant',
+      action: 'CITIZEN_COMMENT_ADDED',
+      details: `Citizen submitted 15h enquiry comment: '${commentText}'`,
+      timestamp
+    });
+    setStored(MOCK_STORAGE_KEYS.AUDIT_LOGS, auditLogs);
+    return grievances[idx];
+  }
+  throw new Error('Complaint not found.');
+}
+
+/**
+ * 11. Submit Citizen Post-Resolution Feedback
+ */
+export async function addComplaintFeedback(complaintId, rating, commentText = null) {
+  try {
+    const backendRes = await apiSubmitFeedback(complaintId, rating, commentText);
+    if (backendRes) return backendRes;
+  } catch (e) {}
+
+  const grievances = getStored(MOCK_STORAGE_KEYS.GRIEVANCES, []);
+  const idx = grievances.findIndex(g => String(g.id) === String(complaintId) || g.reference_id === String(complaintId));
+  if (idx !== -1) {
+    const timestamp = new Date().toISOString();
+    grievances[idx].feedback_rating = rating;
+    grievances[idx].feedback_comment = commentText;
+    grievances[idx].feedback_at = timestamp;
+    setStored(MOCK_STORAGE_KEYS.GRIEVANCES, grievances);
+
+    const auditLogs = getStored(MOCK_STORAGE_KEYS.AUDIT_LOGS, []);
+    auditLogs.unshift({
+      id: `aud-${Date.now()}`,
+      grievance_id: grievances[idx].id,
+      actor_name: grievances[idx].complainant_name || 'Citizen Complainant',
+      action: 'FEEDBACK_SUBMITTED',
+      details: `Citizen submitted resolution feedback: Rating=${rating}, Comment='${commentText || ''}'`,
+      timestamp
+    });
+    setStored(MOCK_STORAGE_KEYS.AUDIT_LOGS, auditLogs);
+    return grievances[idx];
+  }
+  throw new Error('Complaint not found.');
 }

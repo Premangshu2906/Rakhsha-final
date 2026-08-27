@@ -118,6 +118,11 @@ class ComplaintResponse(BaseModel):
     risk_score: float
     officer_notes: Optional[str]
     assigned_officer_id: Optional[int]
+    citizen_comment: Optional[str] = None
+    citizen_comment_at: Optional[datetime.datetime] = None
+    feedback_rating: Optional[str] = None
+    feedback_comment: Optional[str] = None
+    feedback_at: Optional[datetime.datetime] = None
     submitted_at: datetime.datetime
     updated_at: datetime.datetime
     ai_assessment: Optional[AIAssessmentResponse] = None
@@ -125,6 +130,15 @@ class ComplaintResponse(BaseModel):
 
     class Config:
         from_attributes = True
+
+# Citizen 15h Enquiry Comment Input
+class CitizenCommentSubmit(BaseModel):
+    comment: str = Field(..., min_length=2, description="Enquiry comment regarding delayed resolution")
+
+# Citizen Post-Resolution Feedback Input
+class FeedbackSubmit(BaseModel):
+    rating: str = Field(..., description="SATISFIED or NOT_SATISFIED")
+    comment: Optional[str] = None
 
 # Complaint Update / Override Schema
 class ComplaintUpdate(BaseModel):

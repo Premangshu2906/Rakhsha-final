@@ -33,6 +33,14 @@ export const trackComplaint = async (refId, token = '') => {
   return await api.get(`/complaints/track/${refId}`, { params: { token } });
 };
 
+export const submitCitizenComment = async (id, comment) => {
+  return await api.post(`/complaints/${id}/citizen-comment`, { comment });
+};
+
+export const submitComplaintFeedback = async (id, rating, comment = null) => {
+  return await api.post(`/complaints/${id}/feedback`, { rating, comment });
+};
+
 export const getHelplines = async () => {
   return await api.get('/complaints/helplines');
 };

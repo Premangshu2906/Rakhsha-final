@@ -1,16 +1,12 @@
 services:
   - type: web
-    name: nhaa-backend
-    runtime: python
-    region: singapore
-    plan: free
+    name: rakhsha-backend
+    env: python
     rootDir: backend
     buildCommand: pip install -r requirements.txt
     startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
     envVars:
-      - key: PYTHON_VERSION
-        value: 3.10.12
-      - key: AI_PROVIDER
-        value: deterministic
-      - key: SECRET_KEY
-        generateValue: true
+      - key: PORT
+        value: 10000
+      - key: DATABASE_URL
+        value: sqlite:///./nhaa_stress.db

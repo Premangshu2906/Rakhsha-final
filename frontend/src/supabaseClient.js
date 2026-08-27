@@ -62,11 +62,11 @@ export const initMockStorage = () => {
     const initialProfiles = [
       {
         id: demoOfficerId,
-        full_name: 'Inspector Rajesh Verma',
-        email: 'officer@nhaa.gov.in',
+        full_name: 'Duty Officer PC',
+        email: 'pc@gmail.com',
         phone: '9876543210',
         role: 'officer',
-        state_region: 'Uttar Pradesh',
+        state_region: 'Delhi NCR',
         category: 'N/A',
         badge_number: 'NHAA-OFF-101',
         created_at: new Date().toISOString()

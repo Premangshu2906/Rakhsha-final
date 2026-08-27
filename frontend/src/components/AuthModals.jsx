@@ -45,8 +45,8 @@ export function CitizenAuthModal({
 
   const handleDemoOfficer = () => {
     setUserType('officer');
-    setEmail('officer@nhaa.gov.in');
-    setPassword('officer123');
+    setEmail('pc@gmail.com');
+    setPassword('1234');
     setFormError(null);
   };
 
@@ -221,30 +221,6 @@ export function CitizenAuthModal({
 
         {/* Content Box */}
         <div className="p-6 space-y-4">
-          {/* Quick Demo Pre-fill Pill */}
-          <div className="p-3 bg-slate-50 border border-slate-200 rounded-2xl flex items-center justify-between text-xs">
-            <span className="text-slate-600 font-medium flex items-center space-x-1">
-              <Zap className="w-3.5 h-3.5 text-amber-500" />
-              <span>SIH Demo Account:</span>
-            </span>
-            {userType === 'citizen' ? (
-              <button
-                type="button"
-                onClick={handleDemoCitizen}
-                className="px-2.5 py-1 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-lg text-[11px] transition shadow-soft-sm"
-              >
-                Rameshwar Paswan (SC)
-              </button>
-            ) : (
-              <button
-                type="button"
-                onClick={handleDemoOfficer}
-                className="px-2.5 py-1 bg-slate-900 hover:bg-blue-600 text-white font-bold rounded-lg text-[11px] transition shadow-soft-sm"
-              >
-                Inspector Rajesh Verma
-              </button>
-            )}
-          </div>
 
           {/* Feedback Messages */}
           {formError && (

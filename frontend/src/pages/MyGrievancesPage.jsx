@@ -6,6 +6,7 @@ import {
 import { useAuth } from '../context/AuthContext';
 import { getMyGrievances } from '../services/grievanceService';
 import { RiskBadge, StatusBadge, PriorityBadge } from '../components/Badge';
+import { SlaStatusBadge, CitizenEnquiryBox, CitizenFeedbackCard } from '../components/GrievanceActionWidgets';
 
 export default function MyGrievancesPage({ onNewGrievance, onSelectGrievance }) {
   const { user, profile } = useAuth();
@@ -174,6 +175,7 @@ export default function MyGrievancesPage({ onNewGrievance, onSelectGrievance }) 
                 </div>
 
                 <div className="flex items-center space-x-2">
+                  <SlaStatusBadge complaint={g} />
                   <RiskBadge level={g.risk_level} score={g.risk_score} />
                   <StatusBadge status={g.status} />
                 </div>
@@ -285,6 +287,18 @@ export default function MyGrievancesPage({ onNewGrievance, onSelectGrievance }) 
                   </div>
                 </div>
               </div>
+
+              {/* 15-Hour Citizen Enquiry Comment Box */}
+              <CitizenEnquiryBox
+                complaint={selectedCase}
+                onCommentSubmitted={(updated) => setSelectedCase(updated)}
+              />
+
+              {/* Post-Resolution Feedback Card (Satisfied / Not Satisfied) */}
+              <CitizenFeedbackCard
+                complaint={selectedCase}
+                onFeedbackSubmitted={(updated) => setSelectedCase(updated)}
+              />
 
               {/* Emergency Hotline Banner */}
               <div className="p-4 bg-red-50 border border-red-100 rounded-2xl text-xs text-red-900">
