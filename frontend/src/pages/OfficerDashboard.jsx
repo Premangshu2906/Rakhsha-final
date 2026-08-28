@@ -390,7 +390,7 @@ export default function OfficerDashboard({ onSelectComplaint, onRequireOfficerAu
 
                     <td className="py-3.5 px-4 max-w-xs text-[11px] text-slate-600">
                       <div className="truncate" dangerouslySetInnerHTML={{ __html: highlightTriggers(c.raw_input_text || '') }} />
-                      {c.citizen_comment && (
+                      {c.citizen_comment && !c.citizen_comment.startsWith('[Category Clarification Answers]') && (
                         <div className="mt-1 text-[10px] font-bold text-amber-900 bg-amber-100 px-2 py-0.5 rounded-md inline-block">
                           📩 15h Citizen Comment Submitted
                         </div>

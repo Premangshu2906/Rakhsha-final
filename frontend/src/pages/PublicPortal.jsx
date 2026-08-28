@@ -74,6 +74,7 @@ export default function PublicPortal({
   const [categoryAnswers, setCategoryAnswers] = useState({});
   const [inputMode, setInputMode] = useState('VOICE');
   const [inputText, setInputText] = useState('');
+  const [formStage, setFormStage] = useState(1); // 1: Statement & Category, 2: Questions
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMsg, setErrorMsg] = useState(null);
 
@@ -103,6 +104,16 @@ export default function PublicPortal({
 
   const scrollToTrack = () => {
     trackRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  const handleNextToQuestions = (e) => {
+    if (e) e.preventDefault();
+    setErrorMsg(null);
+    if (!inputText || inputText.trim().length < 5) {
+      setErrorMsg('Please describe what happened or record your voice statement before proceeding to questions.');
+      return;
+    }
+    setFormStage(2);
   };
 
   const handleSubmit = async (e) => {
@@ -368,163 +379,241 @@ export default function PublicPortal({
               </div>
             )}
 
-            {/* Step 1: Complainant Identity Selection */}
-            <div className="space-y-3">
-              <label className="block text-xs font-bold uppercase tracking-wider text-slate-700">
-                Step 1: Who is reporting this incident?
-              </label>
-              <div className="grid grid-cols-3 gap-3">
-                {[
-                  { id: 'VICTIM', label: 'Victim / Self', desc: 'Direct applicant' },
-                  { id: 'THIRD_PARTY', label: 'Relative / Witness', desc: 'On behalf of victim' },
-                  { id: 'ANONYMOUS', label: 'Anonymous Reporter', desc: 'Identity withheld' }
-                ].map((type) => (
-                  <button
-                    key={type.id}
-                    type="button"
-                    onClick={() => setComplainantType(type.id)}
-                    className={`py-3 px-3.5 rounded-2xl text-xs font-bold border text-left transition ${
-                      complainantType === type.id
-                        ? 'bg-blue-50/80 border-blue-600 text-blue-900 shadow-soft-sm ring-1 ring-blue-600'
-                        : 'bg-slate-50/70 border-slate-200 text-slate-700 hover:bg-slate-100'
-                    }`}
-                  >
-                    <span className="block font-bold text-slate-900">{type.label}</span>
-                    <span className="text-[11px] text-slate-500 font-normal">{type.desc}</span>
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            {/* Complainant Personal Fields if not anonymous */}
-            {complainantType !== 'ANONYMOUS' && (
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 p-5 bg-slate-50/70 rounded-2xl border border-slate-200">
-                <div>
-                  <label className="block text-xs font-semibold text-slate-700 mb-1.5">Full Legal Name</label>
-                  <input
-                    type="text"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    placeholder="Enter your name"
-                    className="w-full bg-white text-xs sm:text-sm p-3 rounded-xl border border-slate-200 text-slate-900 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 focus:outline-none transition"
-                  />
+            {/* STAGE 1: STATEMENT & CATEGORY INTAKE */}
+            {formStage === 1 && (
+              <>
+                {/* Step 1: Complainant Identity Selection */}
+                <div className="space-y-3">
+                  <label className="block text-xs font-bold uppercase tracking-wider text-slate-700">
+                    Step 1: Who is reporting this incident?
+                  </label>
+                  <div className="grid grid-cols-3 gap-3">
+                    {[
+                      { id: 'VICTIM', label: 'Victim / Self', desc: 'Direct applicant' },
+                      { id: 'THIRD_PARTY', label: 'Relative / Witness', desc: 'On behalf of victim' },
+                      { id: 'ANONYMOUS', label: 'Anonymous Reporter', desc: 'Identity withheld' }
+                    ].map((type) => (
+                      <button
+                        key={type.id}
+                        type="button"
+                        onClick={() => setComplainantType(type.id)}
+                        className={`py-3 px-3.5 rounded-2xl text-xs font-bold border text-left transition ${
+                          complainantType === type.id
+                            ? 'bg-blue-50/80 border-blue-600 text-blue-900 shadow-soft-sm ring-1 ring-blue-600'
+                            : 'bg-slate-50/70 border-slate-200 text-slate-700 hover:bg-slate-100'
+                        }`}
+                      >
+                        <span className="block font-bold text-slate-900">{type.label}</span>
+                        <span className="text-[11px] text-slate-500 font-normal">{type.desc}</span>
+                      </button>
+                    ))}
+                  </div>
                 </div>
-                <div>
-                  <label className="block text-xs font-semibold text-slate-700 mb-1.5">Mobile Contact No.</label>
-                  <input
-                    type="text"
-                    value={phone}
-                    onChange={(e) => setPhone(e.target.value)}
-                    placeholder="+91 98765 43210"
-                    className="w-full bg-white text-xs sm:text-sm p-3 rounded-xl border border-slate-200 text-slate-900 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 focus:outline-none transition"
-                  />
+
+                {/* Complainant Personal Fields if not anonymous */}
+                {complainantType !== 'ANONYMOUS' && (
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 p-5 bg-slate-50/70 rounded-2xl border border-slate-200">
+                    <div>
+                      <label className="block text-xs font-semibold text-slate-700 mb-1.5">Full Legal Name</label>
+                      <input
+                        type="text"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        placeholder="Enter your name"
+                        className="w-full bg-white text-xs sm:text-sm p-3 rounded-xl border border-slate-200 text-slate-900 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 focus:outline-none transition"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-semibold text-slate-700 mb-1.5">Mobile Contact No.</label>
+                      <input
+                        type="text"
+                        value={phone}
+                        onChange={(e) => setPhone(e.target.value)}
+                        placeholder="+91 98765 43210"
+                        className="w-full bg-white text-xs sm:text-sm p-3 rounded-xl border border-slate-200 text-slate-900 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 focus:outline-none transition"
+                      />
+                    </div>
+                  </div>
+                )}
+
+                {/* Region & Incident Category */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-xs font-semibold text-slate-700 mb-1.5">State / UT in India</label>
+                    <select
+                      value={stateRegion}
+                      onChange={(e) => setStateRegion(e.target.value)}
+                      className="w-full bg-white text-xs sm:text-sm p-3 rounded-xl border border-slate-200 text-slate-900 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 focus:outline-none transition"
+                    >
+                      {INDIAN_STATES.map((st) => (
+                        <option key={st} value={st}>{st}</option>
+                      ))}
+                    </select>
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-semibold text-slate-700 mb-1.5">Incident Category (SC/ST PoA Act)</label>
+                    <select
+                      value={category}
+                      onChange={(e) => setCategory(e.target.value)}
+                      className="w-full bg-white text-xs sm:text-sm p-3 rounded-xl border border-slate-200 text-slate-900 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 focus:outline-none transition"
+                    >
+                      {CATEGORIES.map((cat) => (
+                        <option key={cat.id} value={cat.id}>{cat.label}</option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
+
+                {/* Step 2: Choose Statement Input Mode */}
+                <div className="space-y-4 pt-4 border-t border-slate-100">
+                  <label className="block text-xs font-bold uppercase tracking-wider text-slate-700">
+                    Step 2: Choose Statement Mode (Voice or Text)
+                  </label>
+
+                  <div className="flex space-x-3">
+                    <button
+                      type="button"
+                      onClick={() => setInputMode('VOICE')}
+                      className={`flex-1 py-3 px-4 rounded-2xl text-xs font-bold border flex items-center justify-center space-x-2 transition ${
+                        inputMode === 'VOICE'
+                          ? 'bg-blue-600 text-white border-blue-600 shadow-md'
+                          : 'bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100'
+                      }`}
+                    >
+                      <Mic className="w-4 h-4" />
+                      <span>Voice Statement (Speech-to-Text)</span>
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={() => setInputMode('TEXT')}
+                      className={`flex-1 py-3 px-4 rounded-2xl text-xs font-bold border flex items-center justify-center space-x-2 transition ${
+                        inputMode === 'TEXT'
+                          ? 'bg-blue-600 text-white border-blue-600 shadow-md'
+                          : 'bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100'
+                      }`}
+                    >
+                      <FileText className="w-4 h-4" />
+                      <span>Type Written Statement</span>
+                    </button>
+                  </div>
+
+                  {/* Voice Recorder Component */}
+                  {inputMode === 'VOICE' && (
+                    <div className="pt-2">
+                      <VoiceRecorder onTranscriptChange={(text) => setInputText(text)} />
+                    </div>
+                  )}
+
+                  {/* Statement Text Area */}
+                  <div>
+                    <label className="block text-xs font-semibold text-slate-700 mb-1.5">
+                      Full Statement &amp; Incident Description:
+                    </label>
+                    <textarea
+                      rows={5}
+                      value={inputText}
+                      onChange={(e) => setInputText(e.target.value)}
+                      placeholder="Describe what happened, persons involved, threats or physical harm faced, location, and immediate assistance needed..."
+                      className="w-full bg-white text-slate-900 placeholder-slate-400 text-xs sm:text-sm p-4 rounded-2xl border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 focus:outline-none transition shadow-inner"
+                    />
+                  </div>
+                </div>
+
+                {/* Continue to Questions Button */}
+                <button
+                  type="button"
+                  onClick={handleNextToQuestions}
+                  className="w-full py-4 bg-blue-600 hover:bg-blue-700 active:scale-[0.99] text-white font-bold text-sm sm:text-base rounded-2xl shadow-md hover:shadow-lg transition flex items-center justify-center space-x-2 cursor-pointer"
+                >
+                  <span>Continue &amp; Answer Incident Questions &rarr;</span>
+                </button>
+              </>
+            )}
+
+            {/* STAGE 2: CATEGORY QUESTIONS & FINAL SUBMISSION */}
+            {formStage === 2 && (
+              <div className="space-y-6 animate-fadeIn">
+                <div className="p-4 bg-blue-50/80 border border-blue-200 rounded-2xl space-y-2">
+                  <div className="flex items-center space-x-2">
+                    <Sparkles className="w-4 h-4 text-blue-600" />
+                    <h3 className="font-extrabold text-sm text-blue-950 uppercase tracking-wider">
+                      Step 3: Answer Incident Questions
+                    </h3>
+                  </div>
+                  <p className="text-xs text-slate-600">
+                    Answering these 3 quick questions for <strong>{CATEGORIES.find(c => c.id === category)?.label}</strong> improves real-time AI triage accuracy.
+                  </p>
+                </div>
+
+                {/* Question List */}
+                {CATEGORY_QUESTIONS[category] && (
+                  <div className="space-y-3">
+                    {CATEGORY_QUESTIONS[category].map((q, idx) => (
+                      <div key={q.id} className="bg-white p-4 rounded-2xl border border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-soft-sm">
+                        <span className="text-xs sm:text-sm font-semibold text-slate-800">
+                          {idx + 1}. {q.text}
+                        </span>
+                        <div className="flex items-center space-x-2 flex-shrink-0">
+                          <button
+                            type="button"
+                            onClick={() => setCategoryAnswers(prev => ({ ...prev, [q.id]: 'Yes' }))}
+                            className={`px-4 py-2 rounded-xl text-xs font-bold transition cursor-pointer ${
+                              categoryAnswers[q.id] === 'Yes'
+                                ? 'bg-blue-600 text-white shadow-soft-sm ring-2 ring-blue-600'
+                                : 'bg-slate-100 hover:bg-slate-200 text-slate-700'
+                            }`}
+                          >
+                            Yes
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => setCategoryAnswers(prev => ({ ...prev, [q.id]: 'No' }))}
+                            className={`px-4 py-2 rounded-xl text-xs font-bold transition cursor-pointer ${
+                              categoryAnswers[q.id] === 'No'
+                                ? 'bg-slate-800 text-white shadow-soft-sm ring-2 ring-slate-800'
+                                : 'bg-slate-100 hover:bg-slate-200 text-slate-700'
+                            }`}
+                          >
+                            No
+                          </button>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                {/* Final Submit & Back Actions */}
+                <div className="flex flex-col sm:flex-row items-center gap-3 pt-2">
+                  <button
+                    type="button"
+                    onClick={() => setFormStage(1)}
+                    className="w-full sm:w-auto px-5 py-3.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold rounded-2xl transition cursor-pointer"
+                  >
+                    &larr; Back to Edit Statement
+                  </button>
+
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="flex-1 w-full py-4 bg-blue-600 hover:bg-blue-700 active:scale-[0.99] text-white font-bold text-sm sm:text-base rounded-2xl shadow-md hover:shadow-lg transition flex items-center justify-center space-x-2 cursor-pointer"
+                  >
+                    {isSubmitting ? (
+                      <span className="flex items-center space-x-2 animate-pulse">
+                        <Sparkles className="w-4 h-4" />
+                        <span>Running AI Assessment &bull; Saving Grievance...</span>
+                      </span>
+                    ) : (
+                      <>
+                        <Send className="w-4 h-4" />
+                        <span>Submit Final Grievance Docket &rarr;</span>
+                      </>
+                    )}
+                  </button>
                 </div>
               </div>
             )}
-
-            {/* Region & Incident Category */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div>
-                <label className="block text-xs font-semibold text-slate-700 mb-1.5">State / UT in India</label>
-                <select
-                  value={stateRegion}
-                  onChange={(e) => setStateRegion(e.target.value)}
-                  className="w-full bg-white text-xs sm:text-sm p-3 rounded-xl border border-slate-200 text-slate-900 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 focus:outline-none transition"
-                >
-                  {INDIAN_STATES.map((st) => (
-                    <option key={st} value={st}>{st}</option>
-                  ))}
-                </select>
-              </div>
-
-              <div>
-                <label className="block text-xs font-semibold text-slate-700 mb-1.5">Incident Category (SC/ST PoA Act)</label>
-                <select
-                  value={category}
-                  onChange={(e) => setCategory(e.target.value)}
-                  className="w-full bg-white text-xs sm:text-sm p-3 rounded-xl border border-slate-200 text-slate-900 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 focus:outline-none transition"
-                >
-                  {CATEGORIES.map((cat) => (
-                    <option key={cat.id} value={cat.id}>{cat.label}</option>
-                  ))}
-                </select>
-              </div>
-            </div>
-
-            {/* Step 2: Choose Statement Input Mode */}
-            <div className="space-y-4 pt-4 border-t border-slate-100">
-              <label className="block text-xs font-bold uppercase tracking-wider text-slate-700">
-                Step 2: Choose Statement Mode (Voice or Text)
-              </label>
-
-              <div className="flex space-x-3">
-                <button
-                  type="button"
-                  onClick={() => setInputMode('VOICE')}
-                  className={`flex-1 py-3 px-4 rounded-2xl text-xs font-bold border flex items-center justify-center space-x-2 transition ${
-                    inputMode === 'VOICE'
-                      ? 'bg-blue-600 text-white border-blue-600 shadow-md'
-                      : 'bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100'
-                  }`}
-                >
-                  <Mic className="w-4 h-4" />
-                  <span>Voice Statement (Speech-to-Text)</span>
-                </button>
-
-                <button
-                  type="button"
-                  onClick={() => setInputMode('TEXT')}
-                  className={`flex-1 py-3 px-4 rounded-2xl text-xs font-bold border flex items-center justify-center space-x-2 transition ${
-                    inputMode === 'TEXT'
-                      ? 'bg-blue-600 text-white border-blue-600 shadow-md'
-                      : 'bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100'
-                  }`}
-                >
-                  <FileText className="w-4 h-4" />
-                  <span>Type Written Statement</span>
-                </button>
-              </div>
-
-              {/* Voice Recorder Component */}
-              {inputMode === 'VOICE' && (
-                <div className="pt-2">
-                  <VoiceRecorder onTranscriptChange={(text) => setInputText(text)} />
-                </div>
-              )}
-
-              {/* Statement Text Area */}
-              <div>
-                <label className="block text-xs font-semibold text-slate-700 mb-1.5">
-                  Full Statement &amp; Incident Description:
-                </label>
-                <textarea
-                  rows={5}
-                  value={inputText}
-                  onChange={(e) => setInputText(e.target.value)}
-                  placeholder="Describe what happened, persons involved, threats or physical harm faced, location, and immediate assistance needed..."
-                  className="w-full bg-white text-slate-900 placeholder-slate-400 text-xs sm:text-sm p-4 rounded-2xl border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 focus:outline-none transition shadow-inner"
-                />
-              </div>
-            </div>
-
-            {/* Submit Button */}
-            <button
-              type="submit"
-              disabled={isSubmitting}
-              className="w-full py-4 bg-blue-600 hover:bg-blue-700 active:scale-[0.99] text-white font-bold text-sm sm:text-base rounded-2xl shadow-md hover:shadow-lg transition flex items-center justify-center space-x-2 cursor-pointer"
-            >
-              {isSubmitting ? (
-                <span className="flex items-center space-x-2 animate-pulse">
-                  <Sparkles className="w-4 h-4" />
-                  <span>Running Real-Time AI Distress Assessment &bull; Saving to Database...</span>
-                </span>
-              ) : (
-                <>
-                  <Send className="w-4 h-4" />
-                  <span>Submit Grievance for Immediate AI Triage &rarr;</span>
-                </>
-              )}
-            </button>
           </form>
         </div>
 

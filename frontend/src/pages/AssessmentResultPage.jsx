@@ -150,7 +150,11 @@ export default function AssessmentResultPage({
   const complaintId = complaint.reference_id || 'RAK-2026-001284';
 
   // Format Submitted Date/Time (e.g. 27 August 2026 · 8:42 PM)
-  const dateObj = complaint.created_at ? new Date(complaint.created_at) : new Date();
+  let dateStr = complaint.submitted_at || complaint.created_at;
+  if (dateStr && typeof dateStr === 'string' && !dateStr.endsWith('Z') && !dateStr.includes('+')) {
+    dateStr += 'Z';
+  }
+  const dateObj = dateStr ? new Date(dateStr) : new Date();
   const formattedDate = dateObj.toLocaleDateString('en-GB', {
     day: 'numeric',
     month: 'long',
@@ -249,7 +253,6 @@ export default function AssessmentResultPage({
         </div>
 
         {/* 15-Hour Citizen Enquiry Comment Box & Post-Resolution Feedback */}
-        <CategoryClarificationCard complaint={complaint} />
         <CitizenEnquiryBox complaint={complaint} />
         <CitizenFeedbackCard complaint={complaint} />
 

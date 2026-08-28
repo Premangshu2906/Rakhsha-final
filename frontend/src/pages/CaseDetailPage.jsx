@@ -16,6 +16,18 @@ import {
 } from '../services/grievanceService';
 import { getSlaInfo, SlaStatusBadge } from '../components/GrievanceActionWidgets';
 
+function formatLocalTimestamp(ts) {
+  if (!ts) return new Date().toLocaleString();
+  let str = String(ts);
+  if (!str.endsWith('Z') && !str.includes('+') && !str.includes('T')) {
+    str = str.replace(' ', 'T') + 'Z';
+  } else if (!str.endsWith('Z') && !str.includes('+')) {
+    str += 'Z';
+  }
+  const d = new Date(str);
+  return isNaN(d.getTime()) ? String(ts) : d.toLocaleString();
+}
+
 export default function CaseDetailPage({ complaintId, onBack }) {
   const { user, profile, isOfficer } = useAuth();
 
@@ -210,11 +222,11 @@ export default function CaseDetailPage({ complaintId, onBack }) {
         )}
 
         {/* 15-Hour Citizen Enquiry Comment (Visible to Officer) */}
-        {caseData.citizen_comment && (
+        {caseData.citizen_comment && !caseData.citizen_comment.startsWith('[Category Clarification Answers]') && (
           <div className="p-5 bg-amber-50 border border-amber-300 rounded-2xl text-xs space-y-1 text-amber-950">
             <h4 className="font-extrabold text-xs uppercase tracking-wider text-amber-900 flex items-center space-x-1.5">
               <span>📩 Citizen 15-Hour Resolution Enquiry Comment</span>
-              <span className="text-[10px] font-normal text-amber-700">({new Date(caseData.citizen_comment_at || Date.now()).toLocaleString()})</span>
+              <span className="text-[10px] font-normal text-amber-700">({formatLocalTimestamp(caseData.citizen_comment_at)})</span>
             </h4>
             <p className="text-slate-900 font-medium text-xs sm:text-sm italic pt-1">
               "{caseData.citizen_comment}"
