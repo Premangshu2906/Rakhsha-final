@@ -451,52 +451,6 @@ export default function PublicPortal({
               </div>
             </div>
 
-            {/* Category Questionnaire Card (Yes/No Questions) */}
-            {CATEGORY_QUESTIONS[category] && (
-              <div className="p-4 bg-blue-50/70 border border-blue-200 rounded-2xl space-y-3">
-                <div className="flex items-center space-x-2">
-                  <Sparkles className="w-4 h-4 text-blue-600" />
-                  <span className="text-xs font-extrabold text-blue-950 uppercase tracking-wider">
-                    Category Clarification Questions (Increases AI Accuracy)
-                  </span>
-                </div>
-
-                <div className="space-y-3 pt-1">
-                  {CATEGORY_QUESTIONS[category].map((q, idx) => (
-                    <div key={q.id} className="bg-white p-3 rounded-xl border border-blue-100 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-                      <span className="text-xs font-semibold text-slate-800">
-                        {idx + 1}. {q.text}
-                      </span>
-                      <div className="flex items-center space-x-2 flex-shrink-0">
-                        <button
-                          type="button"
-                          onClick={() => setCategoryAnswers(prev => ({ ...prev, [q.id]: 'Yes' }))}
-                          className={`px-3 py-1 rounded-lg text-xs font-bold transition ${
-                            categoryAnswers[q.id] === 'Yes'
-                              ? 'bg-blue-600 text-white shadow-soft-sm'
-                              : 'bg-slate-100 hover:bg-slate-200 text-slate-700'
-                          }`}
-                        >
-                          Yes
-                        </button>
-                        <button
-                          type="button"
-                          onClick={() => setCategoryAnswers(prev => ({ ...prev, [q.id]: 'No' }))}
-                          className={`px-3 py-1 rounded-lg text-xs font-bold transition ${
-                            categoryAnswers[q.id] === 'No'
-                              ? 'bg-slate-800 text-white shadow-soft-sm'
-                              : 'bg-slate-100 hover:bg-slate-200 text-slate-700'
-                          }`}
-                        >
-                          No
-                        </button>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
-
             {/* Step 2: Choose Statement Input Mode */}
             <div className="space-y-4 pt-4 border-t border-slate-100">
               <label className="block text-xs font-bold uppercase tracking-wider text-slate-700">

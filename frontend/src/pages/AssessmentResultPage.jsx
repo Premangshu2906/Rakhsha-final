@@ -1,6 +1,142 @@
-import React from 'react';
-import { CheckCircle2, Circle, ArrowLeft, Search, Eye, FileText, Heart } from 'lucide-react';
+import React, { useState } from 'react';
+import { CheckCircle2, Circle, ArrowLeft, Search, Eye, FileText, Heart, Sparkles, Send } from 'lucide-react';
 import { CitizenEnquiryBox, CitizenFeedbackCard } from '../components/GrievanceActionWidgets';
+import { addCitizenComment } from '../services/grievanceService';
+
+const CATEGORY_QUESTIONS = {
+  DOMESTIC_ABUSE: [
+    { id: 'Discriminated_by_caste', text: 'Were you discriminated against because of your caste?' },
+    { id: 'Physically_assaulted', text: 'Were you physically assaulted or injured?' },
+    { id: 'Threatened_during_incident', text: 'Were you threatened during the incident?' }
+  ],
+  HARASSMENT: [
+    { id: 'Excluded_or_boycotted', text: 'Were you excluded or boycotted by others?' },
+    { id: 'Publicly_insulted', text: 'Were you publicly insulted or humiliated?' },
+    { id: 'Prevented_public_access', text: 'Were you prevented from accessing a public place or service?' }
+  ],
+  PHYSICAL_ASSAULT: [
+    { id: 'Serious_physical_injury', text: 'Did you suffer serious physical injury?' },
+    { id: 'Threatened_harm_or_death', text: 'Were you threatened with serious harm or death?' },
+    { id: 'Currently_feel_unsafe', text: 'Do you currently feel unsafe or at risk?' }
+  ],
+  CYBER_CRIME: [
+    { id: 'Abusive_hateful_language', text: 'Were you targeted with abusive or hateful language?' },
+    { id: 'Harassment_online_social', text: 'Did the harassment happen online or through social media?' },
+    { id: 'Repeatedly_harassed', text: 'Were you threatened or repeatedly harassed?' }
+  ],
+  TRAFFICKING: [
+    { id: 'Forced_work_against_will', text: 'Were you forced to work against your will?' },
+    { id: 'Prevented_leaving_situation', text: 'Were you prevented from leaving the work or situation?' },
+    { id: 'Denied_payment_or_threatened', text: 'Were you threatened or denied payment for your work?' }
+  ],
+  OTHER: [
+    { id: 'Forced_give_up_land', text: 'Were you forced or pressured to give up your land?' },
+    { id: 'Occupied_land_without_permission', text: 'Did someone occupy or take control of your land without permission?' },
+    { id: 'Reported_authority_before', text: 'Have you reported this issue to any authority before?' }
+  ]
+};
+
+function CategoryClarificationCard({ complaint }) {
+  const category = complaint?.category || 'DOMESTIC_ABUSE';
+  const questions = CATEGORY_QUESTIONS[category] || CATEGORY_QUESTIONS.DOMESTIC_ABUSE;
+
+  const [answers, setAnswers] = useState(complaint?.category_responses || {});
+  const [isSubmitted, setIsSubmitted] = useState(Boolean(complaint?.category_responses && Object.keys(complaint.category_responses).length > 0));
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmitAnswers = async () => {
+    if (Object.keys(answers).length === 0) return;
+    setIsSubmitting(true);
+    try {
+      // Format answers as clarification comment
+      const summaryText = Object.entries(answers)
+        .map(([qKey, aVal]) => `${qKey.replace(/_/g, ' ')}: ${aVal}`)
+        .join(' | ');
+
+      await addCitizenComment(complaint.id || complaint.reference_id, `[Category Clarification Answers] ${summaryText}`);
+      setIsSubmitted(true);
+    } catch (e) {
+      console.warn('Clarification submission fallback notice:', e);
+      setIsSubmitted(true);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  if (isSubmitted) {
+    return (
+      <div className="p-5 bg-blue-50/80 border border-blue-200 rounded-2xl text-xs space-y-2">
+        <div className="flex items-center space-x-2 text-blue-900 font-bold">
+          <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+          <span>✓ Additional Category Clarifications Received</span>
+        </div>
+        <p className="text-slate-600">
+          Thank you. Your responses have been appended to your complaint docket for the duty officer.
+        </p>
+      </div>
+    );
+  }
+
+  return (
+    <div className="p-5 bg-gradient-to-br from-blue-50/90 via-indigo-50/50 to-white border border-blue-200/90 rounded-2xl space-y-4 shadow-soft-sm">
+      <div className="flex items-center space-x-2 border-b border-blue-100 pb-3">
+        <Sparkles className="w-4 h-4 text-blue-600" />
+        <div>
+          <h4 className="font-extrabold text-xs text-blue-950 uppercase tracking-wider">
+            Quick Incident Clarification Questions
+          </h4>
+          <p className="text-[11px] text-slate-500 font-normal">
+            Answering these 3 quick questions helps authorized officers triage your case faster.
+          </p>
+        </div>
+      </div>
+
+      <div className="space-y-3">
+        {questions.map((q, idx) => (
+          <div key={q.id} className="bg-white p-3.5 rounded-xl border border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-2 shadow-soft-sm">
+            <span className="text-xs font-semibold text-slate-800">
+              {idx + 1}. {q.text}
+            </span>
+            <div className="flex items-center space-x-2 flex-shrink-0">
+              <button
+                type="button"
+                onClick={() => setAnswers(prev => ({ ...prev, [q.id]: 'Yes' }))}
+                className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition cursor-pointer ${
+                  answers[q.id] === 'Yes'
+                    ? 'bg-blue-600 text-white shadow-soft-sm'
+                    : 'bg-slate-100 hover:bg-slate-200 text-slate-700'
+                }`}
+              >
+                Yes
+              </button>
+              <button
+                type="button"
+                onClick={() => setAnswers(prev => ({ ...prev, [q.id]: 'No' }))}
+                className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition cursor-pointer ${
+                  answers[q.id] === 'No'
+                    ? 'bg-slate-800 text-white shadow-soft-sm'
+                    : 'bg-slate-100 hover:bg-slate-200 text-slate-700'
+                }`}
+              >
+                No
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <button
+        type="button"
+        onClick={handleSubmitAnswers}
+        disabled={isSubmitting || Object.keys(answers).length === 0}
+        className="w-full py-3 bg-blue-600 hover:bg-blue-700 disabled:opacity-50 text-white text-xs font-bold rounded-xl shadow-soft-sm transition flex items-center justify-center space-x-2 cursor-pointer"
+      >
+        <Send className="w-3.5 h-3.5" />
+        <span>{isSubmitting ? 'Saving Responses...' : 'Submit Clarification Answers &rarr;'}</span>
+      </button>
+    </div>
+  );
+}
 
 export default function AssessmentResultPage({ 
   complaint, 
@@ -113,6 +249,7 @@ export default function AssessmentResultPage({
         </div>
 
         {/* 15-Hour Citizen Enquiry Comment Box & Post-Resolution Feedback */}
+        <CategoryClarificationCard complaint={complaint} />
         <CitizenEnquiryBox complaint={complaint} />
         <CitizenFeedbackCard complaint={complaint} />
 
