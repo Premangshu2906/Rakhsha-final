@@ -271,46 +271,28 @@ export async function trackGrievancePublic(refId, token = '') {
  * 4. Get Officer Cases Queue
  */
 export async function getOfficerCases(filters = {}) {
-  // 1. Try FastAPI Backend
+  let allCases = [];
+
+  // 1. Fetch from FastAPI Backend
   try {
     const backendData = await apiGetOfficerComplaints(filters);
-    if (backendData && Array.isArray(backendData) && backendData.length > 0) {
-      // Sync to local cache so inspection always finds them
-      const stored = getStored(MOCK_STORAGE_KEYS.GRIEVANCES, []);
-      const merged = [...backendData];
-      stored.forEach(s => {
-        if (!merged.find(m => String(m.id) === String(s.id) || m.reference_id === s.reference_id)) {
-          merged.push(s);
-        }
-      });
-      setStored(MOCK_STORAGE_KEYS.GRIEVANCES, merged);
-      return backendData;
+    if (backendData && Array.isArray(backendData)) {
+      allCases = [...backendData];
     }
   } catch (e) {
     console.warn('Backend getOfficerComplaints unavailable:', e.message);
   }
 
-  // 2. Try Supabase
-  if (isSupabaseConfigured()) {
-    try {
-      let query = supabase
-        .from('grievances')
-        .select('*')
-        .order('risk_score', { ascending: false })
-        .order('created_at', { ascending: false });
+  // 2. Fetch & merge from Local Storage
+  const stored = getStored(MOCK_STORAGE_KEYS.GRIEVANCES, []);
+  stored.forEach(s => {
+    if (!allCases.find(m => String(m.id) === String(s.id) || (m.reference_id && m.reference_id === s.reference_id))) {
+      allCases.push(s);
+    }
+  });
 
-      if (filters.risk_level) query = query.eq('risk_level', filters.risk_level);
-      if (filters.category) query = query.eq('category', filters.category);
-      if (filters.status) query = query.eq('status', filters.status);
-      if (filters.urgent_only) query = query.or('risk_level.eq.HIGH,priority.in.(URGENT,CRITICAL)');
-
-      const { data, error } = await query;
-      if (!error && data && data.length > 0) return data;
-    } catch (err) {}
-  }
-
-  // 3. Fallback to Local Storage
-  let cases = getStored(MOCK_STORAGE_KEYS.GRIEVANCES, []);
+  // Apply filters
+  let cases = allCases;
   if (filters.urgent_only) {
     cases = cases.filter(c => c.risk_level === 'HIGH' || c.priority === 'CRITICAL' || c.priority === 'URGENT');
   }
@@ -331,6 +313,10 @@ export async function getOfficerCases(filters = {}) {
       c.raw_input_text?.toLowerCase().includes(s)
     );
   }
+
+  // Sort by created_at descending
+  cases.sort((a, b) => new Date(b.created_at || b.submitted_at || Date.now()) - new Date(a.created_at || a.submitted_at || Date.now()));
+
   return cases;
 }
 
@@ -546,46 +532,7 @@ export async function getCaseAuditTrail(grievanceId) {
  * 9. Get Dashboard KPI Stats
  */
 export async function getDashboardKPIs() {
-  // Try FastAPI backend
-  try {
-    const stats = await apiGetDashboardStats();
-    if (stats && stats.total_complaints !== undefined) return stats;
-  } catch (e) {}
-
-  // Try Supabase
-  if (isSupabaseConfigured()) {
-    try {
-      const { data: allCases, error } = await supabase.from('grievances').select('risk_level, priority, status, category');
-      if (!error && allCases) {
-        const total = allCases.length;
-        const highRisk = allCases.filter(c => c.risk_level === 'HIGH').length;
-        const modRisk = allCases.filter(c => c.risk_level === 'MODERATE').length;
-        const lowRisk = allCases.filter(c => c.risk_level === 'LOW').length;
-        const urgentPrio = allCases.filter(c => c.priority === 'URGENT' || c.priority === 'CRITICAL').length;
-        const actionReq = allCases.filter(c => c.status === 'NEW' || c.status === 'ACTION_REQUIRED' || c.status === 'ESCALATED').length;
-        const resolved = allCases.filter(c => c.status === 'RESOLVED').length;
-
-        const catCounts = {};
-        allCases.forEach(c => {
-          catCounts[c.category] = (catCounts[c.category] || 0) + 1;
-        });
-
-        return {
-          total_complaints: total,
-          high_risk_count: highRisk,
-          moderate_risk_count: modRisk,
-          low_risk_count: lowRisk,
-          urgent_priority_count: urgentPrio,
-          action_required_count: actionReq,
-          resolved_count: resolved,
-          category_distribution: catCounts
-        };
-      }
-    } catch (e) {}
-  }
-
-  // Fallback to Local Storage
-  const cases = getStored(MOCK_STORAGE_KEYS.GRIEVANCES, []);
+  const cases = await getOfficerCases();
   const total = cases.length;
   const highRisk = cases.filter(c => c.risk_level === 'HIGH').length;
   const modRisk = cases.filter(c => c.risk_level === 'MODERATE').length;
