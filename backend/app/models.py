@@ -31,6 +31,9 @@ class Complaint(Base):
     complainant_phone = Column(String, nullable=True)
     complainant_email = Column(String, nullable=True)
     state_region = Column(String, default="Delhi NCR")
+    city_district = Column(String, nullable=True)
+    incident_address = Column(String, nullable=True)
+    pincode = Column(String, nullable=True)
     
     category = Column(String, default="DOMESTIC_ABUSE") # DOMESTIC_ABUSE, HARASSMENT, TRAFFICKING, CYBER_CRIME, PHYSICAL_ASSAULT, OTHER
     category_responses = Column(JSON, nullable=True) # Category specific Q&A responses

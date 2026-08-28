@@ -178,6 +178,13 @@ export default function CaseDetailPage({ complaintId, onBack }) {
             <p className="text-xs text-slate-600 mt-1">
               Complainant: <strong>{caseData.complainant_name || 'Anonymous'}</strong> ({caseData.complainant_type}) &bull; State: {caseData.state_region}
             </p>
+            {(caseData.city_district || caseData.incident_address || caseData.pincode) && (
+              <div className="mt-2 text-xs bg-slate-50 p-3 rounded-xl border border-slate-200 text-slate-700 flex flex-wrap items-center gap-3">
+                {caseData.city_district && <span>City/District: <strong>{caseData.city_district}</strong></span>}
+                {caseData.pincode && <span>Pincode: <strong>{caseData.pincode}</strong></span>}
+                {caseData.incident_address && <span>Address: <strong>{caseData.incident_address}</strong></span>}
+              </div>
+            )}
           </div>
 
           <div className="flex flex-col md:items-end justify-center">

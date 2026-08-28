@@ -70,6 +70,9 @@ export default function PublicPortal({
   const [phone, setPhone] = useState(profile?.phone || '');
   const [email, setEmail] = useState(user?.email || '');
   const [stateRegion, setStateRegion] = useState(profile?.state_region || 'Uttar Pradesh');
+  const [cityDistrict, setCityDistrict] = useState('');
+  const [incidentAddress, setIncidentAddress] = useState('');
+  const [pincode, setPincode] = useState('');
   const [category, setCategory] = useState('DOMESTIC_ABUSE');
   const [categoryAnswers, setCategoryAnswers] = useState({});
   const [inputMode, setInputMode] = useState('VOICE');
@@ -133,6 +136,9 @@ export default function PublicPortal({
         complainant_phone: complainantType !== 'ANONYMOUS' ? (phone || profile?.phone || '') : '',
         complainant_email: complainantType !== 'ANONYMOUS' ? (email || user?.email || '') : '',
         state_region: stateRegion,
+        city_district: cityDistrict,
+        incident_address: incidentAddress,
+        pincode: pincode,
         category: category,
         category_responses: categoryAnswers,
         input_mode: inputMode,
@@ -462,6 +468,42 @@ export default function PublicPortal({
                         <option key={cat.id} value={cat.id}>{cat.label}</option>
                       ))}
                     </select>
+                  </div>
+                </div>
+
+                {/* City/District, Address & Pincode */}
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 p-5 bg-slate-50/70 rounded-2xl border border-slate-200">
+                  <div>
+                    <label className="block text-xs font-semibold text-slate-700 mb-1.5">City / District</label>
+                    <input
+                      type="text"
+                      value={cityDistrict}
+                      onChange={(e) => setCityDistrict(e.target.value)}
+                      placeholder="e.g. Lucknow / Patna"
+                      className="w-full bg-white text-xs sm:text-sm p-3 rounded-xl border border-slate-200 text-slate-900 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 focus:outline-none transition"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-semibold text-slate-700 mb-1.5">Pincode</label>
+                    <input
+                      type="text"
+                      value={pincode}
+                      onChange={(e) => setPincode(e.target.value)}
+                      placeholder="e.g. 226001"
+                      className="w-full bg-white text-xs sm:text-sm p-3 rounded-xl border border-slate-200 text-slate-900 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 focus:outline-none transition"
+                    />
+                  </div>
+
+                  <div className="sm:col-span-3">
+                    <label className="block text-xs font-semibold text-slate-700 mb-1.5">Incident Location Address / Landmark</label>
+                    <input
+                      type="text"
+                      value={incidentAddress}
+                      onChange={(e) => setIncidentAddress(e.target.value)}
+                      placeholder="Street, Village / Ward, Police Station Area, Landmark..."
+                      className="w-full bg-white text-xs sm:text-sm p-3 rounded-xl border border-slate-200 text-slate-900 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 focus:outline-none transition"
+                    />
                   </div>
                 </div>
 

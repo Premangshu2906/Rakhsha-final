@@ -17,10 +17,9 @@ export default function MyGrievancesPage({ onNewGrievance, onSelectGrievance }) 
   const [searchQuery, setSearchQuery] = useState('');
 
   const loadGrievances = async () => {
-    if (!user?.id) return;
     setIsLoading(true);
     try {
-      const data = await getMyGrievances(user.id);
+      const data = await getMyGrievances(user?.id, user?.email);
       setGrievances(data);
     } catch (err) {
       console.error('Error loading citizen grievances:', err);
@@ -31,7 +30,7 @@ export default function MyGrievancesPage({ onNewGrievance, onSelectGrievance }) 
 
   useEffect(() => {
     loadGrievances();
-  }, [user?.id]);
+  }, [user?.id, user?.email]);
 
   const filtered = grievances.filter(g => {
     const matchesStatus = filterStatus === 'ALL' || g.status === filterStatus;

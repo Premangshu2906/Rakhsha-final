@@ -190,22 +190,30 @@ export async function createGrievance(payload, currentUser, currentProfile) {
     }
   }
 
-  // Also sync to local Mock Storage for offline persistence
+  // Sync to local Mock Storage for offline persistence & track user submitted refs
   const grievances = getStored(MOCK_STORAGE_KEYS.GRIEVANCES, []);
   grievances.unshift(createdRecord);
   setStored(MOCK_STORAGE_KEYS.GRIEVANCES, grievances);
+
+  if (createdRecord.reference_id) {
+    const myRefs = getStored('nhaa_my_submitted_refs', []);
+    if (!myRefs.includes(createdRecord.reference_id)) {
+      myRefs.push(createdRecord.reference_id);
+      setStored('nhaa_my_submitted_refs', myRefs);
+    }
+  }
 
   return createdRecord;
 }
 
 /**
- * 2. Get Citizen's Own Grievances (Isolated to auth.uid())
+ * 2. Get Citizen's Own Grievances (Isolated to auth.uid() & submitted refs)
  */
-export async function getMyGrievances(citizenId) {
-  if (!citizenId) return [];
+export async function getMyGrievances(citizenId, userEmail) {
+  const myRefs = getStored('nhaa_my_submitted_refs', []);
 
   // Try Supabase first
-  if (isSupabaseConfigured()) {
+  if (isSupabaseConfigured() && citizenId) {
     try {
       const { data, error } = await supabase
         .from('grievances')
@@ -219,9 +227,30 @@ export async function getMyGrievances(citizenId) {
     }
   }
 
-  // Fallback to local storage
-  const grievances = getStored(MOCK_STORAGE_KEYS.GRIEVANCES, []);
-  const citizenCases = grievances.filter(g => String(g.citizen_id) === String(citizenId) || (g.complainant_email && citizenId && String(g.complainant_email).toLowerCase() === String(citizenId).toLowerCase()));
+  // Fetch all stored & backend cases
+  let allCases = [];
+  try {
+    const backendData = await apiGetOfficerComplaints();
+    if (backendData && Array.isArray(backendData)) {
+      allCases = [...backendData];
+    }
+  } catch (e) {}
+
+  const localStored = getStored(MOCK_STORAGE_KEYS.GRIEVANCES, []);
+  localStored.forEach(s => {
+    if (!allCases.find(m => String(m.id) === String(s.id) || (m.reference_id && m.reference_id === s.reference_id))) {
+      allCases.push(s);
+    }
+  });
+
+  const citizenCases = allCases.filter(g => 
+    (citizenId && String(g.citizen_id) === String(citizenId)) ||
+    (userEmail && g.complainant_email && String(g.complainant_email).toLowerCase() === String(userEmail).toLowerCase()) ||
+    (g.reference_id && myRefs.includes(g.reference_id))
+  );
+
+  citizenCases.sort((a, b) => new Date(b.created_at || b.submitted_at || Date.now()) - new Date(a.created_at || a.submitted_at || Date.now()));
+
   return citizenCases;
 }
 
