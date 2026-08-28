@@ -190,9 +190,23 @@ export async function createGrievance(payload, currentUser, currentProfile) {
     }
   }
 
+  // Ensure citizen identity and email are attached to createdRecord for tracking
+  if (currentUser?.id || currentUser?.email) {
+    createdRecord.citizen_id = createdRecord.citizen_id || currentUser.id || currentUser.email;
+    if (!createdRecord.complainant_email && currentUser.email) {
+      createdRecord.complainant_email = currentUser.email;
+    }
+  }
+
   // Sync to local Mock Storage for offline persistence & track user submitted refs
   const grievances = getStored(MOCK_STORAGE_KEYS.GRIEVANCES, []);
-  grievances.unshift(createdRecord);
+  // Deduplicate if already present
+  const existingIdx = grievances.findIndex(g => String(g.id) === String(createdRecord.id) || g.reference_id === createdRecord.reference_id);
+  if (existingIdx !== -1) {
+    grievances[existingIdx] = { ...grievances[existingIdx], ...createdRecord };
+  } else {
+    grievances.unshift(createdRecord);
+  }
   setStored(MOCK_STORAGE_KEYS.GRIEVANCES, grievances);
 
   if (createdRecord.reference_id) {

@@ -17,6 +17,29 @@ async def lifespan(app: FastAPI):
     logger.info("Initializing NHAA Database tables...")
     Base.metadata.create_all(bind=engine)
     
+    # Auto-migrate missing columns for existing SQLite/Postgres tables
+    try:
+        from sqlalchemy import text
+        with engine.connect() as conn:
+            for col_name, col_type in [
+                ("category_responses", "JSON"),
+                ("city_district", "VARCHAR"),
+                ("incident_address", "VARCHAR"),
+                ("pincode", "VARCHAR"),
+                ("citizen_comment", "TEXT"),
+                ("citizen_comment_at", "TIMESTAMP"),
+                ("feedback_rating", "VARCHAR"),
+                ("feedback_comment", "TEXT"),
+                ("feedback_at", "TIMESTAMP")
+            ]:
+                try:
+                    conn.execute(text(f"ALTER TABLE complaints ADD COLUMN {col_name} {col_type}"))
+                    conn.commit()
+                except Exception:
+                    pass
+    except Exception as e:
+        logger.warn(f"Schema auto-migration check notice: {e}")
+
     db = SessionLocal()
     try:
         seed_database(db)
