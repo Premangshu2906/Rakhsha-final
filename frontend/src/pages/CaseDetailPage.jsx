@@ -190,6 +190,25 @@ export default function CaseDetailPage({ complaintId, onBack }) {
           </p>
         </div>
 
+        {/* Category Clarification Questionnaire Answers */}
+        {caseData.category_responses && Object.keys(caseData.category_responses).length > 0 && (
+          <div className="bg-blue-50/80 p-5 rounded-2xl border border-blue-200 text-xs space-y-2">
+            <h4 className="font-extrabold text-xs uppercase tracking-wider text-blue-900 flex items-center space-x-2">
+              <span>📋 Category Clarification Answers (AI Accuracy Inputs)</span>
+            </h4>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 pt-1">
+              {Object.entries(caseData.category_responses).map(([k, v]) => (
+                <div key={k} className="p-2.5 bg-white rounded-xl border border-blue-100 flex items-center justify-between">
+                  <span className="font-medium text-slate-700">{k.replace(/_/g, ' ')}:</span>
+                  <strong className={v === 'Yes' ? 'text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded font-bold' : 'text-slate-500 bg-slate-100 px-2 py-0.5 rounded'}>
+                    {v}
+                  </strong>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
         {/* 15-Hour Citizen Enquiry Comment (Visible to Officer) */}
         {caseData.citizen_comment && (
           <div className="p-5 bg-amber-50 border border-amber-300 rounded-2xl text-xs space-y-1 text-amber-950">

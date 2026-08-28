@@ -33,7 +33,7 @@ def submit_complaint(payload: ComplaintCreate, db: Session = Depends(get_db)):
 
     # 1. Run AI Assessment Engine
     ai_engine = get_ai_analyzer()
-    ai_res = ai_engine.analyze_complaint(payload.raw_input_text, payload.category)
+    ai_res = ai_engine.analyze_complaint(payload.raw_input_text, payload.category, payload.category_responses)
 
     # 2. Persist Complaint
     complaint = Complaint(
@@ -45,6 +45,7 @@ def submit_complaint(payload: ComplaintCreate, db: Session = Depends(get_db)):
         complainant_email=payload.complainant_email if payload.complainant_type != "ANONYMOUS" else None,
         state_region=payload.state_region,
         category=payload.category,
+        category_responses=payload.category_responses,
         input_mode=payload.input_mode,
         raw_input_text=payload.raw_input_text,
         voice_file_path=payload.voice_file_path,

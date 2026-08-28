@@ -1,6 +1,6 @@
 import re
 import datetime
-from typing import Dict, List, Any, Tuple
+from typing import Dict, List, Any, Tuple, Optional
 from app.config import settings
 from app.ai.dataset_loader import dataset_model
 
@@ -44,7 +44,7 @@ class DeterministicNLPAnalyzer:
     def __init__(self):
         self.version = "NHAA-Deterministic-NLP-v1.0"
 
-    def analyze_complaint(self, text: str, category: str = "OTHER") -> Dict[str, Any]:
+    def analyze_complaint(self, text: str, category: str = "OTHER", category_responses: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
         text_lower = text.lower()
 
         # Evaluate against trained English & Hinglish datasets (888 entries)
@@ -59,6 +59,16 @@ class DeterministicNLPAnalyzer:
         coercion_hits = [p for p in COERCION_TRAFFICKING_PATTERNS if re.search(p, text_lower)]
         urgency_hits = [p for p in TEMPORAL_URGENCY_PATTERNS if re.search(p, text_lower)]
 
+        # Process category specific questionnaire responses (boost score & indicators)
+        qa_score_boost = 0.0
+        qa_indicators = []
+        if category_responses and isinstance(category_responses, dict):
+            for key, val in category_responses.items():
+                val_str = str(val).strip().lower()
+                if val_str in ["yes", "true", "1"]:
+                    qa_score_boost += 12.0
+                    qa_indicators.append(f"Category Clarification Confirmed: {key.replace('_', ' ').title()}")
+
         # Combine base scoring with dataset-trained score
         physical_score = min(len(physical_hits) * 20.0, 40.0)
         distress_score_comp = min(len(distress_hits) * 15.0, 30.0)
@@ -70,8 +80,8 @@ class DeterministicNLPAnalyzer:
         caps_words = len([w for w in text.split() if w.isupper() and len(w) > 2])
         intensity_boost = min((exclamation_count * 2.5) + (caps_words * 2.5), 10.0)
 
-        base_total = physical_score + distress_score_comp + coercion_score + urgency_score_comp + intensity_boost
-        total_score = round(min(max(base_total, dataset_distress), 100.0), 1)
+        base_total = physical_score + distress_score_comp + coercion_score + urgency_score_comp + intensity_boost + qa_score_boost
+        total_score = round(min(max(base_total, dataset_distress + qa_score_boost), 100.0), 1)
 
         # Baseline logic if text length is significant
         if total_score < 20.0 and len(text.split()) > 8:

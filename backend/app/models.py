@@ -33,6 +33,7 @@ class Complaint(Base):
     state_region = Column(String, default="Delhi NCR")
     
     category = Column(String, default="DOMESTIC_ABUSE") # DOMESTIC_ABUSE, HARASSMENT, TRAFFICKING, CYBER_CRIME, PHYSICAL_ASSAULT, OTHER
+    category_responses = Column(JSON, nullable=True) # Category specific Q&A responses
     input_mode = Column(String, default="TEXT") # TEXT, VOICE, HYBRID
     raw_input_text = Column(Text, nullable=False)
     voice_file_path = Column(String, nullable=True)

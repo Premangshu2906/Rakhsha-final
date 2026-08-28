@@ -38,6 +38,7 @@ class ComplaintCreate(BaseModel):
     complainant_email: Optional[str] = None
     state_region: str = Field("Delhi NCR", description="State or Region in India")
     category: str = Field("DOMESTIC_ABUSE", description="DOMESTIC_ABUSE, HARASSMENT, TRAFFICKING, CYBER_CRIME, PHYSICAL_ASSAULT, OTHER")
+    category_responses: Optional[Dict[str, Any]] = None
     input_mode: str = Field("TEXT", description="TEXT, VOICE, HYBRID")
     raw_input_text: str = Field(..., min_length=5, description="Full text description of complaint/distress")
     voice_file_path: Optional[str] = None
@@ -108,6 +109,7 @@ class ComplaintResponse(BaseModel):
     complainant_email: Optional[str]
     state_region: str
     category: str
+    category_responses: Optional[Dict[str, Any]] = None
     input_mode: str
     raw_input_text: str
     voice_file_path: Optional[str]
