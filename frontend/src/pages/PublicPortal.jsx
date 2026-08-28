@@ -75,12 +75,6 @@ export default function PublicPortal({
     e.preventDefault();
     setErrorMsg(null);
 
-    // If user is not logged in, prompt authentication with redirect back to grievance
-    if (!user && complainantType !== 'ANONYMOUS') {
-      onRequireAuth('grievance');
-      return;
-    }
-
     if (!inputText || inputText.trim().length < 5) {
       setErrorMsg('Please describe what happened or record your voice statement before submitting.');
       return;
