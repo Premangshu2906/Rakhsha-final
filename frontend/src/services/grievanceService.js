@@ -221,11 +221,8 @@ export async function getMyGrievances(citizenId) {
 
   // Fallback to local storage
   const grievances = getStored(MOCK_STORAGE_KEYS.GRIEVANCES, []);
-  const citizenCases = grievances.filter(g => g.citizen_id === citizenId);
-  if (citizenCases.length > 0) return citizenCases;
-
-  // If no citizen-specific cases yet, return all stored demo cases if demo citizen
-  return grievances;
+  const citizenCases = grievances.filter(g => String(g.citizen_id) === String(citizenId) || (g.complainant_email && citizenId && String(g.complainant_email).toLowerCase() === String(citizenId).toLowerCase()));
+  return citizenCases;
 }
 
 /**

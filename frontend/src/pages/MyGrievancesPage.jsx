@@ -176,7 +176,6 @@ export default function MyGrievancesPage({ onNewGrievance, onSelectGrievance }) 
 
                 <div className="flex items-center space-x-2">
                   <SlaStatusBadge complaint={g} />
-                  <RiskBadge level={g.risk_level} score={g.risk_score} />
                   <StatusBadge status={g.status} />
                 </div>
               </div>
@@ -242,8 +241,8 @@ export default function MyGrievancesPage({ onNewGrievance, onSelectGrievance }) 
                   <StatusBadge status={selectedCase.status} />
                 </div>
                 <div>
-                  <span className="text-slate-500 font-medium block">Risk Level</span>
-                  <RiskBadge level={selectedCase.risk_level} score={selectedCase.risk_score} />
+                  <span className="text-slate-500 font-medium block">State / Region</span>
+                  <strong className="text-slate-800">{selectedCase.state_region}</strong>
                 </div>
                 <div>
                   <span className="text-slate-500 font-medium block">Date Logged</span>
@@ -273,7 +272,7 @@ export default function MyGrievancesPage({ onNewGrievance, onSelectGrievance }) 
                     1. Received ✓
                   </div>
                   <div className="p-3 bg-blue-50 border border-blue-200 rounded-xl text-blue-950 font-bold">
-                    2. AI Triaged ✓
+                    2. Intake Processed ✓
                   </div>
                   <div className={`p-3 rounded-xl font-bold ${
                     selectedCase.status !== 'NEW' ? 'bg-blue-50 border border-blue-200 text-blue-950' : 'bg-slate-100 text-slate-400'
