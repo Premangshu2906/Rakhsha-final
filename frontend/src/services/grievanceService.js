@@ -200,7 +200,6 @@ export async function createGrievance(payload, currentUser, currentProfile) {
 
   // Sync to local Mock Storage for offline persistence & track user submitted refs
   const grievances = getStored(MOCK_STORAGE_KEYS.GRIEVANCES, []);
-  // Deduplicate if already present
   const existingIdx = grievances.findIndex(g => String(g.id) === String(createdRecord.id) || g.reference_id === createdRecord.reference_id);
   if (existingIdx !== -1) {
     grievances[existingIdx] = { ...grievances[existingIdx], ...createdRecord };
@@ -216,6 +215,11 @@ export async function createGrievance(payload, currentUser, currentProfile) {
       setStored('nhaa_my_submitted_refs', myRefs);
     }
   }
+
+  // Dispatch custom event to notify open Officer Dashboard tabs/components immediately
+  try {
+    window.dispatchEvent(new CustomEvent('new_complaint_submitted', { detail: createdRecord }));
+  } catch (e) {}
 
   return createdRecord;
 }
@@ -315,7 +319,7 @@ export async function getOfficerCases(filters = {}) {
 
   // 1. Fetch from FastAPI Backend
   try {
-    const backendData = await apiGetOfficerComplaints(filters);
+    const backendData = await apiGetOfficerComplaints();
     if (backendData && Array.isArray(backendData)) {
       allCases = [...backendData];
     }
@@ -330,6 +334,9 @@ export async function getOfficerCases(filters = {}) {
       allCases.push(s);
     }
   });
+
+  // Sync merged set back to local storage
+  setStored(MOCK_STORAGE_KEYS.GRIEVANCES, allCases);
 
   // Apply filters
   let cases = allCases;
@@ -354,7 +361,7 @@ export async function getOfficerCases(filters = {}) {
     );
   }
 
-  // Sort by created_at descending
+  // Sort by created_at / submitted_at descending (Newest complaints first!)
   cases.sort((a, b) => new Date(b.created_at || b.submitted_at || Date.now()) - new Date(a.created_at || a.submitted_at || Date.now()));
 
   return cases;

@@ -110,6 +110,22 @@ export default function OfficerDashboard({ onSelectComplaint, onRequireOfficerAu
 
   useEffect(() => {
     fetchDashboardData();
+
+    // Auto-poll every 10 seconds for newly submitted grievances
+    const pollInterval = setInterval(() => {
+      fetchDashboardData();
+    }, 10000);
+
+    // Listen for instant submission event
+    const handleNewSubmission = () => {
+      fetchDashboardData();
+    };
+    window.addEventListener('new_complaint_submitted', handleNewSubmission);
+
+    return () => {
+      clearInterval(pollInterval);
+      window.removeEventListener('new_complaint_submitted', handleNewSubmission);
+    };
   }, [activeTab, riskFilter, categoryFilter, statusFilter]);
 
   const handleSearchSubmit = (e) => {
