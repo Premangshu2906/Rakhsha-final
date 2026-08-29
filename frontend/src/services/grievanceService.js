@@ -18,6 +18,20 @@ const MOCK_STORAGE_KEYS = {
   AUDIT_LOGS: 'nhaa_mock_audit_logs'
 };
 
+export function parseTimestamp(ts) {
+  if (!ts) return 0;
+  if (ts instanceof Date) return ts.getTime();
+  let str = String(ts).trim();
+  if (str.includes(' ') && !str.includes('T')) {
+    str = str.replace(' ', 'T');
+  }
+  if (!str.endsWith('Z') && !str.includes('+') && !str.includes('-')) {
+    str += 'Z';
+  }
+  const d = new Date(str);
+  return isNaN(d.getTime()) ? Date.now() : d.getTime();
+}
+
 const getStored = (key, def = []) => {
   try {
     const d = localStorage.getItem(key);
@@ -373,8 +387,12 @@ export async function getOfficerCases(filters = {}) {
     );
   }
 
-  // Sort by created_at / submitted_at descending (Newest complaints first!)
-  cases.sort((a, b) => new Date(b.created_at || b.submitted_at || Date.now()) - new Date(a.created_at || a.submitted_at || Date.now()));
+  // Robust timestamp sort: Newest complaints ALWAYS at the top!
+  cases.sort((a, b) => {
+    const timeA = parseTimestamp(a.created_at || a.submitted_at || a.updated_at);
+    const timeB = parseTimestamp(b.created_at || b.submitted_at || b.updated_at);
+    return timeB - timeA;
+  });
 
   return cases;
 }
