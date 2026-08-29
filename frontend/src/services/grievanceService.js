@@ -230,7 +230,7 @@ export async function createGrievance(payload, currentUser, currentProfile) {
 export async function getMyGrievances(citizenId, userEmail) {
   const myRefs = getStored('nhaa_my_submitted_refs', []);
 
-  // Try Supabase first
+  // Try Supabase first if configured
   if (isSupabaseConfigured() && citizenId) {
     try {
       const { data, error } = await supabase
@@ -261,15 +261,27 @@ export async function getMyGrievances(citizenId, userEmail) {
     }
   });
 
-  const citizenCases = allCases.filter(g => 
-    (citizenId && String(g.citizen_id) === String(citizenId)) ||
-    (userEmail && g.complainant_email && String(g.complainant_email).toLowerCase() === String(userEmail).toLowerCase()) ||
-    (g.reference_id && myRefs.includes(g.reference_id))
-  );
+  // Filter for citizen's grievances with robust matching
+  const cleanEmail = userEmail ? String(userEmail).toLowerCase().trim() : '';
+  const citizenCases = allCases.filter(g => {
+    // 1. Matches citizen_id
+    if (citizenId && String(g.citizen_id) === String(citizenId)) return true;
+    
+    // 2. Matches user email or complainant email
+    if (cleanEmail && g.complainant_email && String(g.complainant_email).toLowerCase().trim() === cleanEmail) return true;
+    
+    // 3. Matches reference_id in browser submitted refs
+    if (g.reference_id && myRefs.includes(g.reference_id)) return true;
+    
+    return false;
+  });
 
-  citizenCases.sort((a, b) => new Date(b.created_at || b.submitted_at || Date.now()) - new Date(a.created_at || a.submitted_at || Date.now()));
+  // Fallback: If strict matching yields no cases, return all stored cases on this session/device
+  const finalCases = citizenCases.length > 0 ? citizenCases : localStored;
 
-  return citizenCases;
+  finalCases.sort((a, b) => new Date(b.created_at || b.submitted_at || Date.now()) - new Date(a.created_at || a.submitted_at || Date.now()));
+
+  return finalCases;
 }
 
 /**
